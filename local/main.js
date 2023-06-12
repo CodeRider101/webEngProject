@@ -1,7 +1,12 @@
 //const  WORDS  = require('./words');
 
-const WORDS = ["testt", "hello", "horny", "morny"];
-const NUMBER_OF_GUESSES = 6;
+const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap"];
+const nav = document.querySelector('#nav');
+const menu = document.querySelector('#menu');
+const menuButton = document.querySelector('.nav_button');
+let menuOpen = false;
+let NUMBER_OF_GUESSES = 6;
+let WORD_LENGTH = 5;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
@@ -13,18 +18,20 @@ function initBoard() {
   let board = document.getElementById("game-board");
 
   for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
-    let row = document.createElement("div");
-    row.className = "letter-row";
+      let row = document.createElement("div")
+      row.className = "letter-row"
+      
+      for (let j = 0; j < WORD_LENGTH; j++) {
+          let box = document.createElement("div")
+          box.className = "letter-box"
+          row.appendChild(box)
+      }
 
-    for (let j = 0; j < 5; j++) {
-      let box = document.createElement("div");
-      box.className = "letter-box";
-      row.appendChild(box);
-    }
-
-    board.appendChild(row);
+      board.appendChild(row)
   }
 }
+
+initBoard();
 
 function shadeKeyBoard(letter, color) {
   for (const elem of document.getElementsByClassName("keyboard-button")) {
@@ -183,31 +190,55 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-// document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-//   const target = e.target;
+document.getElementById("keyboard-cont").addEventListener("click", (e) => {
+  const target = e.target;
 
-//   if (!target.classList.contains("keyboard-button")) {
-//     return;
-//   }
-//   let key = target.textContent;
+  if (!target.classList.contains("keyboard-button")) {
+    return;
+  }
+  let key = target.textContent;
 
-//   if (key === "Del") {
-//     key = "Backspace";
-//   }
+  if (key === "Del") {
+    key = "Backspace";
+  }
 
-//   document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
-// });
+  document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
+});
 
-function Quadrat() {
-  let Eingabe  = document.getElementById('Eingabe');
-  let Ergebnis = Eingabe.value * Eingabe.value;
-  alert('Das Quadrat von ' + Eingabe.value + ' = ' + Ergebnis);
-  Eingabe.value = 0;
- }
+function wordLength() {
+  let wordLength = document.getElementById('wordLength').value;
+  if (wordLength < 3) {
+    toastr.error("Please enter a number bigger than 3");
+  } else {
 
-let los  = document.getElementById('los');
-los.addEventListener ('click', Quadrat, true);
+    const rows = document.getElementsByClassName("letter-row");
+    while(rows.length > 0){
+      rows[0].parentNode.removeChild(rows[0]);
+    }
+    const boxes = document.getElementsByClassName("letter-box");
+    while(boxes.length > 0){
+      boxes[0].parentNode.removeChild(boxes[0]);
+    }
 
-initBoard();
+    NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
+    WORD_LENGTH = wordLength;
+    initBoard();
+  }
+}
+
+let submit  = document.getElementById('submit');
+submit.addEventListener('click', wordLength, true);
 
 
+(function($) {
+  $('.js-nav-menu-toggle').on('click', function() {
+    $(this).parents('.navigation-menu').toggleClass('navigation-menu--open');
+  });
+  
+  $('html').on('click', function(e) {
+    if(!$(e.target).closest('.js-nav-menu').length &&
+      ($('.js-nav-menu').hasClass('navigation-menu--open'))) {
+        $('.js-nav-menu').removeClass('navigation-menu--open');
+    }
+  });
+})(jQuery);

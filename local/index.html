@@ -13,13 +13,62 @@
   />
 </head>
 <body>
-    <h1> Wordle Clone </h1>
+    <h1>VTordle</h1>
+
+    <nav id="nav" class="navigation-menu js-nav-menu" role="navigation">
+      <div id="navigation-menu__toggle js-nav-menu-toggle">
+        <span class="navigation-menu__bars"></span>
+      </div>
+      <ul class="menu-list" id="menu" tabindex="-1" aria-label="main navigation" hidden>
+        <li class="menu-list__item"><a href="#" class="nav_link">Profile</a></li>
+        <li class="menu-list__item"><a href="#" class="nav_link">Leaderboard</a></li>
+        <li class="menu-list__item"><a href="#" class="nav_link">VTorlde</a></li>
+        <li class="menu-list__item"><a href="#" class="nav_link">Settings</a></li>
+      </ul>
+    </nav>
     
     <div id="game-board">
 
     </div>
-    <input type="number" id="Eingabe" value="0" size="3">
-    <button type="button" id="los">Quadrat errechnen</button>
+
+    <div id="keyboard-cont">
+      <div class="first-row">
+          <button class="keyboard-button">q</button>
+          <button class="keyboard-button">w</button>
+          <button class="keyboard-button">e</button>
+          <button class="keyboard-button">r</button>
+          <button class="keyboard-button">t</button>
+          <button class="keyboard-button">y</button>
+          <button class="keyboard-button">u</button>
+          <button class="keyboard-button">i</button>
+          <button class="keyboard-button">o</button>
+          <button class="keyboard-button">p</button>
+      </div>
+      <div class="second-row">
+          <button class="keyboard-button">a</button>
+          <button class="keyboard-button">s</button>
+          <button class="keyboard-button">d</button>
+          <button class="keyboard-button">f</button>
+          <button class="keyboard-button">g</button>
+          <button class="keyboard-button">h</button>
+          <button class="keyboard-button">j</button>
+          <button class="keyboard-button">k</button>
+          <button class="keyboard-button">l</button>
+      </div>
+      <div class="third-row">
+          <button class="keyboard-button">Del</button>
+          <button class="keyboard-button">z</button>
+          <button class="keyboard-button">x</button>
+          <button class="keyboard-button">c</button>
+          <button class="keyboard-button">v</button>
+          <button class="keyboard-button">b</button>
+          <button class="keyboard-button">n</button>
+          <button class="keyboard-button">m</button>
+          <button class="keyboard-button">Enter</button>
+      </div>
+  </div>
+  <input type="number" id="wordLength" name="wordLength" placeholder="Word length">
+  <button type="button" id="submit">Submit</button>
 
 <script
 src="https://code.jquery.com/jquery-3.6.0.min.js"
