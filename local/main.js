@@ -230,15 +230,26 @@ let submit  = document.getElementById('submit');
 submit.addEventListener('click', wordLength, true);
 
 
-(function($) {
-  $('.js-nav-menu-toggle').on('click', function() {
-    $(this).parents('.navigation-menu').toggleClass('navigation-menu--open');
+const navSlide = () => {
+  const toggleNavbar = document.querySelector(".toggle-navbar");
+  const nav = document.querySelector(".nav-links");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  toggleNavbar.addEventListener("click", () => {
+    nav.classList.toggle("nav-active");
+
+    navLinks.forEach((link, index) => {
+      if (link.style.animation) {
+        link.style.animation = "";
+      } else {
+        link.style.animation = `navLinkFade 0.5s ease forwards ${
+          index / 7 + 0.5
+        }s `;
+      }
+    });
+    toggleNavbar.classList.toggle("toggle");
   });
-  
-  $('html').on('click', function(e) {
-    if(!$(e.target).closest('.js-nav-menu').length &&
-      ($('.js-nav-menu').hasClass('navigation-menu--open'))) {
-        $('.js-nav-menu').removeClass('navigation-menu--open');
-    }
-  });
-})(jQuery);
+  //
+};
+
+navSlide();
