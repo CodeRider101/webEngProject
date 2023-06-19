@@ -128,7 +128,6 @@ h1 {
     color: var(--textColor);
     margin-left: 10px;
     margin-right:25px;
-    font-size: 1.1rem;
     transition: all .50s ease;
  }
 
@@ -139,7 +138,7 @@ h1 {
  }
  .user i{
     color: var(--textColor);
-    font-size: 28px;
+    font-size: 1.5rem;
     margin-right: 7px;
  }
 
