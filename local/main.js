@@ -1,18 +1,28 @@
-//const  WORDS  = require('./words');
-
-const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap"];
+const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap", "steep", "gains", "saucy"];
 const nav = document.querySelector('#nav');
 const menu = document.querySelector('#menu');
 const menuButton = document.querySelector('.nav_button');
+
+let rightGuessString;
+
+const getWordle = () => {
+  fetch(`http://localhost:8000/word?length=${WORD_LENGTH}`)
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      rightGuessString = json
+    })
+    .catch(err => console.log(err))
+}
+
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
 let WORD_LENGTH = 5;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
-let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 
-// console.log(rightGuessString);
+getWordle();
 
 function initBoard() {
   let board = document.getElementById("game-board");
@@ -60,24 +70,38 @@ function deleteLetter() {
   nextLetter -= 1;
 }
 
-function checkGuess() {
+async function checkGuess() {
   let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
   let guessString = "";
   let rightGuess = Array.from(rightGuessString);
-
+  console.log(rightGuessString)
+ 
   for (const val of currentGuess) {
     guessString += val;
   }
 
-  if (guessString.length != 5) {
+  console.log(guessString);
+  if (guessString.length != WORD_LENGTH) {
     toastr.error("Not enough letters!");
     return;
   }
 
-  if (!WORDS.includes(guessString)) {
-    toastr.error("Word not in list!");
-    return;
-  }
+  let exists = true;
+  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}&word=${rightGuessString}&currentGuess=${currentGuess}`)
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      if(json == 'undefined'){
+        exists=false;
+      }
+    })
+    if(!exists){
+      toastr.error("Word not in list!");
+      for(let i=0; i<WORD_LENGTH; i++){
+        deleteLetter();
+      }
+      return;
+    }
 
   var letterColor = ["gray", "gray", "gray", "gray", "gray"];
 
@@ -91,11 +115,11 @@ function checkGuess() {
 
   //check yellow
   //checking guess letters
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < WORD_LENGTH; i++) {
     if (letterColor[i] == "green") continue;
 
     //checking right letters
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < WORD_LENGTH; j++) {
       if (rightGuess[j] == currentGuess[i]) {
         letterColor[i] = "yellow";
         rightGuess[j] = "#";
@@ -103,7 +127,7 @@ function checkGuess() {
     }
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < WORD_LENGTH; i++) {
     let box = row.children[i];
     let delay = 250 * i;
     setTimeout(() => {
@@ -207,8 +231,8 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 
 function wordLength() {
   let wordLength = document.getElementById('wordLength').value;
-  if (wordLength < 3) {
-    toastr.error("Please enter a number bigger than 3");
+  if (wordLength < 3 || wordLength > 9) {
+    toastr.error("Please enter a number between 3 and 9");
   } else {
 
     const rows = document.getElementsByClassName("letter-row");
@@ -223,6 +247,7 @@ function wordLength() {
     NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
     WORD_LENGTH = wordLength;
     initBoard();
+    getWordle();
   }
 }
 
