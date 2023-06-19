@@ -85,14 +85,18 @@ async function checkGuess() {
   }
 
   let exists = true;
-  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}&word=${rightGuessString}&currentGuess=${currentGuess}`)
+  let letterColor;
+  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      if(json == 'undefined'){
+      let result = JSON.parse(json);
+      letterColor = result[1];
+      if(json == 'notInList'){
         exists=false;
       }
     })
+    console.log(letterColor);
     if(!exists){
       toastr.error("Word not in list!");
       for(let i=0; i<WORD_LENGTH; i++){
@@ -101,29 +105,29 @@ async function checkGuess() {
       return;
     }
 
-  var letterColor = ["gray", "gray", "gray", "gray", "gray"];
+  // var letterColor = ["gray", "gray", "gray", "gray", "gray"];
 
-  //check green
-  for (let i = 0; i < 5; i++) {
-    if (rightGuess[i] == currentGuess[i]) {
-      letterColor[i] = "green";
-      rightGuess[i] = "#";
-    }
-  }
+  // //check green
+  // for (let i = 0; i < 5; i++) {
+  //   if (rightGuess[i] == currentGuess[i]) {
+  //     letterColor[i] = "green";
+  //     rightGuess[i] = "#";
+  //   }
+  // }
 
-  //check yellow
-  //checking guess letters
-  for (let i = 0; i < WORD_LENGTH; i++) {
-    if (letterColor[i] == "green") continue;
+  // //check yellow
+  // //checking guess letters
+  // for (let i = 0; i < WORD_LENGTH; i++) {
+  //   if (letterColor[i] == "green") continue;
 
-    //checking right letters
-    for (let j = 0; j < WORD_LENGTH; j++) {
-      if (rightGuess[j] == currentGuess[i]) {
-        letterColor[i] = "yellow";
-        rightGuess[j] = "#";
-      }
-    }
-  }
+  //   //checking right letters
+  //   for (let j = 0; j < WORD_LENGTH; j++) {
+  //     if (rightGuess[j] == currentGuess[i]) {
+  //       letterColor[i] = "yellow";
+  //       rightGuess[j] = "#";
+  //     }
+  //   }
+  // }
 
   for (let i = 0; i < WORD_LENGTH; i++) {
     let box = row.children[i];
