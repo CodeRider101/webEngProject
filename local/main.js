@@ -1,17 +1,3 @@
-const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap", "steep", "gains", "saucy"];
-
-
-// let rightGuessString;
-
-// const getWordle = () => {
-//   fetch(`http://localhost:8000/word?length=${WORD_LENGTH}`)
-//     .then(response => response.json())
-//     .then(json => {
-//       console.log(json)
-//       rightGuessString = json
-//     })
-//     .catch(err => console.log(err))
-// }
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -20,7 +6,7 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 
-// getWordle();
+// start the game and sets a new word in the backend();
 const start = () => {
   fetch(`http://localhost:8000/start?length=${WORD_LENGTH}`)
     .then(response => response.json())
@@ -31,7 +17,7 @@ const start = () => {
 }
 
 start();
-
+//initializes the board with the right number of rows and boxes
 function initBoard() {
   let board = document.getElementById("game-board");
 
@@ -51,7 +37,7 @@ function initBoard() {
 }
 
 initBoard();
-
+//colors one key on the keyboard 
 function shadeKeyBoard(letter, color) {
   for (const elem of document.getElementsByClassName("keyboard-button")) {
     if (elem.textContent === letter) {
@@ -69,7 +55,7 @@ function shadeKeyBoard(letter, color) {
     }
   }
 }
-
+//deletes the last letter in the box and the current guess
 function deleteLetter() {
   let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
   let box = row.children[nextLetter - 1];
@@ -78,7 +64,7 @@ function deleteLetter() {
   currentGuess.pop();
   nextLetter -= 1;
 }
-
+//checks the current guess based on the result from the backend and colors the boxes accordingly 
 async function checkGuess() {
   let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
   let guessString = "";
@@ -116,31 +102,6 @@ async function checkGuess() {
       }
       return;
     }
-
-  // var letterColor = ["gray", "gray", "gray", "gray", "gray"];
-
-  // //check green
-  // for (let i = 0; i < 5; i++) {
-  //   if (rightGuess[i] == currentGuess[i]) {
-  //     letterColor[i] = "green";
-  //     rightGuess[i] = "#";
-  //   }
-  // }
-
-  // //check yellow
-  // //checking guess letters
-  // for (let i = 0; i < WORD_LENGTH; i++) {
-  //   if (letterColor[i] == "green") continue;
-
-  //   //checking right letters
-  //   for (let j = 0; j < WORD_LENGTH; j++) {
-  //     if (rightGuess[j] == currentGuess[i]) {
-  //       letterColor[i] = "yellow";
-  //       rightGuess[j] = "#";
-  //     }
-  //   }
-  // }
-
   for (let i = 0; i < WORD_LENGTH; i++) {
     let box = row.children[i];
     let delay = 250 * i;
@@ -168,7 +129,7 @@ async function checkGuess() {
     }
   }
 }
-
+//inserts a letter in the next box
 function insertLetter(pressedKey) {
   if (nextLetter === 5) {
     return;
@@ -183,7 +144,7 @@ function insertLetter(pressedKey) {
   currentGuess.push(pressedKey);
   nextLetter += 1;
 }
-
+//animates the boxes
 const animateCSS = (element, animation, prefix = "animate__") =>
   // We create a Promise and return it
   new Promise((resolve, reject) => {
