@@ -1,17 +1,17 @@
 const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap", "steep", "gains", "saucy"];
 
 
-let rightGuessString;
+// let rightGuessString;
 
-const getWordle = () => {
-  fetch(`http://localhost:8000/word?length=${WORD_LENGTH}`)
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      rightGuessString = json
-    })
-    .catch(err => console.log(err))
-}
+// const getWordle = () => {
+//   fetch(`http://localhost:8000/word?length=${WORD_LENGTH}`)
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log(json)
+//       rightGuessString = json
+//     })
+//     .catch(err => console.log(err))
+// }
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -19,6 +19,18 @@ let WORD_LENGTH = 5;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
+
+// getWordle();
+const start = () => {
+  fetch(`http://localhost:8000/start?length=${WORD_LENGTH}`)
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+    })
+    .catch(err => console.log(err))
+}
+
+start();
 
 function initBoard() {
   let board = document.getElementById("game-board");
@@ -70,8 +82,6 @@ function deleteLetter() {
 async function checkGuess() {
   let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
   let guessString = "";
-  let rightGuess = Array.from(rightGuessString);
-  console.log(rightGuessString)
  
   for (const val of currentGuess) {
     guessString += val;
@@ -84,14 +94,21 @@ async function checkGuess() {
   }
 
   let exists = true;
-  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}&word=${rightGuessString}&currentGuess=${currentGuess}`)
+  let correct = false;
+  let letterColor;
+  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      if(json == 'undefined'){
+      let result = JSON.parse(json);
+      letterColor = result[1];
+      if(result[0] == 'notInList'){
         exists=false;
+      }else if(result[0] == 'correct'){
+        correct=true;
       }
     })
+    console.log(letterColor);
     if(!exists){
       toastr.error("Word not in list!");
       for(let i=0; i<WORD_LENGTH; i++){
@@ -100,29 +117,29 @@ async function checkGuess() {
       return;
     }
 
-  var letterColor = ["gray", "gray", "gray", "gray", "gray"];
+  // var letterColor = ["gray", "gray", "gray", "gray", "gray"];
 
-  //check green
-  for (let i = 0; i < 5; i++) {
-    if (rightGuess[i] == currentGuess[i]) {
-      letterColor[i] = "green";
-      rightGuess[i] = "#";
-    }
-  }
+  // //check green
+  // for (let i = 0; i < 5; i++) {
+  //   if (rightGuess[i] == currentGuess[i]) {
+  //     letterColor[i] = "green";
+  //     rightGuess[i] = "#";
+  //   }
+  // }
 
-  //check yellow
-  //checking guess letters
-  for (let i = 0; i < WORD_LENGTH; i++) {
-    if (letterColor[i] == "green") continue;
+  // //check yellow
+  // //checking guess letters
+  // for (let i = 0; i < WORD_LENGTH; i++) {
+  //   if (letterColor[i] == "green") continue;
 
-    //checking right letters
-    for (let j = 0; j < WORD_LENGTH; j++) {
-      if (rightGuess[j] == currentGuess[i]) {
-        letterColor[i] = "yellow";
-        rightGuess[j] = "#";
-      }
-    }
-  }
+  //   //checking right letters
+  //   for (let j = 0; j < WORD_LENGTH; j++) {
+  //     if (rightGuess[j] == currentGuess[i]) {
+  //       letterColor[i] = "yellow";
+  //       rightGuess[j] = "#";
+  //     }
+  //   }
+  // }
 
   for (let i = 0; i < WORD_LENGTH; i++) {
     let box = row.children[i];
@@ -136,7 +153,7 @@ async function checkGuess() {
     }, delay);
   }
 
-  if (guessString === rightGuessString) {
+  if (correct) {
     toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
     return;
@@ -147,7 +164,7 @@ async function checkGuess() {
 
     if (guessesRemaining === 0) {
       toastr.error("You've run out of guesses! Game over!");
-      toastr.info(`The right word was: "${rightGuessString}"`);
+      //toastr.info(`The right word was: "${rightGuessString}"`);
     }
   }
 }
@@ -247,7 +264,7 @@ function wordLength() {
     currentGuess = [];
     nextLetter = 0;
     initBoard();
-    getWordle();
+    start();
   }
 }
 
