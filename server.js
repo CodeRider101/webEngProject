@@ -29,23 +29,6 @@ app.get('/start', async (req, res) => {
   getRightGuess(req.query.length);
 });
 
-app.get('/word', async (req, res) => {
-  const length = req.query.length;
-  const options = {
-    method: 'GET',
-    url: 'https://random-word-api.herokuapp.com/word',
-    params: {length: length, lang: 'en'}
-  };
-  
-  try {
-    const response = await axios.request(options);
-    console.log(response.data);
-    res.json(response.data[0]);
-    rightGuessString=response.data[0];
-  } catch (error) {
-    console.error(error);
-  }
-})
 
 app.get('/check', async (req, res) => {
   const wordLength = req.query.length;
