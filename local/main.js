@@ -16,7 +16,6 @@ const start = () => {
     .catch(err => console.log(err))
 }
 
-start();
 //initializes the board with the right number of rows and boxes
 function initBoard() {
   let board = document.getElementById("game-board");
@@ -33,7 +32,7 @@ function initBoard() {
 
       board.appendChild(row)
   }
-  getWordle();
+  start();
 }
 
 initBoard();
