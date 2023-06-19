@@ -1,7 +1,5 @@
 const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap", "steep", "gains", "saucy"];
-const nav = document.querySelector('#nav');
-const menu = document.querySelector('#menu');
-const menuButton = document.querySelector('.nav_button');
+
 
 let rightGuessString;
 
