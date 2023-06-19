@@ -92,7 +92,7 @@ async function checkGuess() {
       console.log(json)
       let result = JSON.parse(json);
       letterColor = result[1];
-      if(json == 'notInList'){
+      if(result[0] == 'notInList'){
         exists=false;
       }
     })
