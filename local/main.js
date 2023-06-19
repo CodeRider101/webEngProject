@@ -20,8 +20,6 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 
-getWordle();
-
 function initBoard() {
   let board = document.getElementById("game-board");
 
@@ -37,6 +35,7 @@ function initBoard() {
 
       board.appendChild(row)
   }
+  getWordle();
 }
 
 initBoard();
@@ -244,6 +243,9 @@ function wordLength() {
 
     NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
     WORD_LENGTH = wordLength;
+    guessesRemaining = NUMBER_OF_GUESSES;
+    currentGuess = [];
+    nextLetter = 0;
     initBoard();
     getWordle();
   }
@@ -260,3 +262,31 @@ menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
   navBar.classList.toggle('open');
 });
+
+function restart() {
+  const rows = document.getElementsByClassName("letter-row");
+    while(rows.length > 0){
+      rows[0].parentNode.removeChild(rows[0]);
+    }
+    const boxes = document.getElementsByClassName("letter-box");
+    while(boxes.length > 0){
+      boxes[0].parentNode.removeChild(boxes[0]);
+    }
+    
+  initBoard();
+  guessesRemaining = NUMBER_OF_GUESSES;
+  currentGuess = [];
+  nextLetter = 0;
+  for (const elem of document.getElementsByClassName("keyboard-button")) {
+      elem.style.backgroundColor = "white";
+    }
+
+  console.log(NUMBER_OF_GUESSES)
+  console.log(WORD_LENGTH)
+  console.log(guessesRemaining)
+  console.log(currentGuess)
+  console.log(nextLetter)
+}
+
+let newGame  = document.getElementById('newGame');
+newGame.addEventListener('click', restart, true);

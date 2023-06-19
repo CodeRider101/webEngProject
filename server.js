@@ -12,7 +12,7 @@ app.get('/word', async (req, res) => {
   const options = {
     method: 'GET',
     url: 'https://random-word-api.herokuapp.com/word',
-    params: {length: length, lang: 'en'}
+    params: {length: '5', lang: 'en'}
   };
   
   try {
