@@ -33,7 +33,7 @@ function initBoard() {
 
       board.appendChild(row)
   }
-  getWordle();
+  start();
 }
 
 initBoard();
@@ -256,7 +256,7 @@ function restart() {
   currentGuess = [];
   nextLetter = 0;
   for (const elem of document.getElementsByClassName("keyboard-button")) {
-      elem.style.backgroundColor = "white";
+      elem.style.backgroundColor = "#F0F0F0";
     }
 
   console.log(NUMBER_OF_GUESSES)
