@@ -9,6 +9,26 @@ app.use(cors());
 
 let rightGuessString;
 
+async function getRightGuess(length){
+  const options = {
+    method: 'GET',
+    url: 'https://random-word-api.herokuapp.com/word',
+    params: {length: length, lang: 'en'}
+  };
+  
+  try {
+    const response = await axios.request(options);
+    console.log(response.data);
+    rightGuessString=response.data[0];
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+app.get('/start', async (req, res) => {
+  getRightGuess(req.query.length);
+});
+
 app.get('/word', async (req, res) => {
   const length = req.query.length;
   const options = {
@@ -43,6 +63,10 @@ app.get('/check', async (req, res) => {
     let i =0;
     let found = false;
     let resultCheck;
+    if(guess === rightGuessString){
+      resultCheck= "correct";
+      found=true;
+    }
     while(!found){
       
       if(response.data[i] === guess){

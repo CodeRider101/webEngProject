@@ -1,17 +1,17 @@
 const WORDS = ["testt", "hello", "horny", "morny", "steam", "build", "cat", "dog", "cow", "pig", "rat", "bat", "sap", "steep", "gains", "saucy"];
 
 
-let rightGuessString;
+// let rightGuessString;
 
-const getWordle = () => {
-  fetch(`http://localhost:8000/word?length=${WORD_LENGTH}`)
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      rightGuessString = json
-    })
-    .catch(err => console.log(err))
-}
+// const getWordle = () => {
+//   fetch(`http://localhost:8000/word?length=${WORD_LENGTH}`)
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log(json)
+//       rightGuessString = json
+//     })
+//     .catch(err => console.log(err))
+// }
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -20,7 +20,17 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 
-getWordle();
+// getWordle();
+const start = () => {
+  fetch(`http://localhost:8000/start?length=${WORD_LENGTH}`)
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+    })
+    .catch(err => console.log(err))
+}
+
+start();
 
 function initBoard() {
   let board = document.getElementById("game-board");
@@ -71,8 +81,6 @@ function deleteLetter() {
 async function checkGuess() {
   let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
   let guessString = "";
-  let rightGuess = Array.from(rightGuessString);
-  console.log(rightGuessString)
  
   for (const val of currentGuess) {
     guessString += val;
@@ -85,6 +93,7 @@ async function checkGuess() {
   }
 
   let exists = true;
+  let correct = false;
   let letterColor;
   await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}`)
     .then(response => response.json())
@@ -94,6 +103,8 @@ async function checkGuess() {
       letterColor = result[1];
       if(result[0] == 'notInList'){
         exists=false;
+      }else if(result[0] == 'correct'){
+        correct=true;
       }
     })
     console.log(letterColor);
@@ -141,7 +152,7 @@ async function checkGuess() {
     }, delay);
   }
 
-  if (guessString === rightGuessString) {
+  if (correct) {
     toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
     return;
@@ -152,7 +163,7 @@ async function checkGuess() {
 
     if (guessesRemaining === 0) {
       toastr.error("You've run out of guesses! Game over!");
-      toastr.info(`The right word was: "${rightGuessString}"`);
+      //toastr.info(`The right word was: "${rightGuessString}"`);
     }
   }
 }
@@ -249,7 +260,7 @@ function wordLength() {
     NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
     WORD_LENGTH = wordLength;
     initBoard();
-    getWordle();
+    start();
   }
 }
 
