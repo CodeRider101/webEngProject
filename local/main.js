@@ -255,26 +255,10 @@ let submit  = document.getElementById('submit');
 submit.addEventListener('click', wordLength, true);
 
 
-const navSlide = () => {
-  const toggleNavbar = document.querySelector(".toggle-navbar");
-  const nav = document.querySelector(".nav-links");
-  const navLinks = document.querySelectorAll(".nav-links a");
+let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
 
-  toggleNavbar.addEventListener("click", () => {
-    nav.classList.toggle("nav-active");
-
-    navLinks.forEach((link, index) => {
-      if (link.style.animation) {
-        link.style.animation = "";
-      } else {
-        link.style.animation = `navLinkFade 0.5s ease forwards ${
-          index / 7 + 0.5
-        }s `;
-      }
-    });
-    toggleNavbar.classList.toggle("toggle");
-  });
-  //
-};
-
-navSlide();
+menu.addEventListener('click', () => {
+  menu.classList.toggle('bx-x');
+  navBar.classList.toggle('open');
+});
