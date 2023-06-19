@@ -6,29 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
 </head>
 <body>
-    <h1>VTordle</h1>
+  <header>
+    <div>t</div>
+    <div class="logo"><i class='bx bx-home'></i><span>Wordle</span></div>
 
-    <nav>
-      <ul class="nav-links"> 
-          <a href="#">Home</a>
-          <a href="#">About</a> 
-          <a href="#">Contact</a>
-         <a href="#">Blog</a> 
     
-      </ul>
-      <div class="toggle-navbar">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-    </nav>
+    <ul class="navbar">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+
+    <div class="main">
+      <a href="login.html" class="user"><i class='bx bxs-user'></i><i>Sign in</i></a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+    </div>
+  </header>
+    <!-- <h1>VTordle</h1> -->
+
+     
     
     <div id="game-board">
 
