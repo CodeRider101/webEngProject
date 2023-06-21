@@ -1,17 +1,16 @@
-import { json } from "body-parser";
-import { response } from "express";
-
 const signUp = document.getElementById("signUp");
 if(signUp){
-  signUp.addEventListener("submit", checkLogIn);
+  console.log("Sign Up");
+  signUp.addEventListener("submit", checkSignUp);
 }
 
 const login = document.getElementById("login");
 if(login){
-  login.addEventListener("submit", checkSignUp);
+  console.log("Sign In");
+  login.addEventListener("submit", checkLogin);
 }
 
-async function checkSignUp(event) {
+async function checkLogin(event) {
   event.preventDefault();
   let username = document.getElementById('uname').value;
   let password = document.getElementById('psw').value;
@@ -22,7 +21,7 @@ async function checkSignUp(event) {
       if(!response.ok){
         throw new Error(response.statusText);
       }else{
-        confirm("Welcome back! You will get redirected to the game in a sec.")
+        //confirm("Welcome back! You will get redirected to the game in a sec.")
         window.location.href= '../html/index.html';
         return response.json();
       }
@@ -36,7 +35,7 @@ async function checkSignUp(event) {
     })
 }
 
-async function checkLogIn(event) {
+async function checkSignUp(event) {
   event.preventDefault();
   const username = document.getElementById('uname').value;
   const password = document.getElementById('psw').value;
@@ -49,7 +48,7 @@ async function checkLogIn(event) {
           throw new Error(response.statusText);
         }else{
           //redirect to login
-          confirm("You created an account. You will get redirected to the Game :)\nHave fun!");
+          //confirm("You created an account. You will get redirected to the Game :)\nHave fun!");
           window.location.href= '../html/index.html';
         }
       })

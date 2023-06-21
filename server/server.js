@@ -113,7 +113,7 @@ app.get('/check', async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-})
+});
 
 app.get('/createUser', async (req, res) => {
   try{
@@ -131,13 +131,14 @@ app.get('/createUser', async (req, res) => {
 app.get('/logIn', async (req, res) => {
   try{
     const result = await userSchema.findOne({
-      username : req.query.username,
-      password : req.query.password
+      username : req.query.username
     })
     if(result){
-      return res.status(200).json(result);
+      if(result.password === req.query.password){
+        return res.status(200).json(result);
+      }else{console.log("Falsches Passwort")}
     }else{
-      console.log("Nope");
+      console.log("User is not given");
     }
   }catch(e){
     console.log(e);
@@ -175,22 +176,6 @@ app.get('/test3', async (req, res) => {
       {username : "jesuuusu"}
       )
     return res.status(200).json(result);
-  }catch(e){
-    console.log(e);
-  }
-});
-
-app.get('/signUp', async (req, res) => {
-  try{
-    req.
-    console.log("hallo");
-  }catch(e){
-    console.log(e);
-  }
-});
-app.get('/logIn', async (req, res) => {
-  try{
-    console.log("hallos")
   }catch(e){
     console.log(e);
   }
