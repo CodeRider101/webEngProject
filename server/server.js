@@ -1,9 +1,21 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import axios from 'axios';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import userSchema from './models/userSchema.js';
+import mongooseErrorHandler from './mongooseErrorHandler.js';
+
 const app = express();
-const axios = require('axios');
-const cors = require('cors');
 const port = 8000;
+
+mongoose.connect('mongodb+srv://jere_YT:rIG0jourr6rrUlng@vtordle-data.n0naebt.mongodb.net/'
+).then(() => {
+    console.log('Connected to the database!')
+
+}).catch(() => {
+    console.log('Connection failed!')
+});
 
 app.use(cors());
 
@@ -38,9 +50,6 @@ app.get('/check', async (req, res) => {
     url: 'https://random-word-api.herokuapp.com/word',
     params: {number: 100000000, length: wordLength, lang: 'en'}
   };
-
-
-
   try {
     const response = await axios.request(options);
     let i =0;
@@ -104,7 +113,78 @@ app.get('/check', async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-})
+});
+
+app.get('/createUser', async (req, res) => {
+  try{
+    const result = await userSchema.create({
+      username: req.query.username,
+      password: req.query.password
+    })
+    return res.status(200).json(result);
+  }catch(e){
+    res.status(406).json(mongooseErrorHandler(e));
+  }
+});
+
+app.get('/logIn', async (req, res) => {
+  try{
+    const result = await userSchema.findOne({
+      username : req.query.username
+    })
+    //found an user?
+    if(result){
+      //correct password?
+      if(result.password === req.query.password){
+        return res.status(200).json(result);
+      }else{
+        //error : wrong password
+        return res.status(400).json({error: "You entered a wrong password..\nPlease try again or press 'forgot password."});
+      }
+    //error : wrong username
+    }else{
+      return res.status(400).json({error : "The user you entered is not given."});
+    }
+  }catch(e){
+    res.status(400).json(e);
+  }
+});
+
+
+app.get('/test', async (req, res) => {
+  try{
+    const result = await userSchema.create({
+      username: "ijksd",
+      password: "ijssdj"
+    })
+    return res.status(200).json(result);
+  }catch(e){
+    console.log(e);
+  }
+});
+
+app.get('/test2', async (req, res) => {
+  try{
+    const result = await userSchema.findOne({
+      username: "ijksd"
+    })
+    return res.status(200).json(result);
+  }catch(e){
+    console.log(e);
+  }
+});
+
+app.get('/test3', async (req, res) => {
+  try{
+    const result = await userSchema.updateOne(
+      {username: "ijksd"},
+      {username : "jesuuusu"}
+      )
+    return res.status(200).json(result);
+  }catch(e){
+    console.log(e);
+  }
+});
 
 // Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
