@@ -39,7 +39,7 @@ app.get('/check', async (req, res) => {
     params: {number: 100000000, length: wordLength, lang: 'en'}
   };
 
-  // var letterColor = ["gray", "gray", "gray", "gray", "gray"];
+
 
   try {
     const response = await axios.request(options);
