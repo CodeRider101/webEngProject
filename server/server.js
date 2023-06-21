@@ -123,8 +123,7 @@ app.get('/createUser', async (req, res) => {
     })
     return res.status(200).json(result);
   }catch(e){
-    const error = mongooseErrorHandler(e);
-    res.status(406).json({error});
+    res.status(406).json(mongooseErrorHandler(e));
   }
 });
 
@@ -133,15 +132,21 @@ app.get('/logIn', async (req, res) => {
     const result = await userSchema.findOne({
       username : req.query.username
     })
+    //found an user?
     if(result){
+      //correct password?
       if(result.password === req.query.password){
         return res.status(200).json(result);
-      }else{console.log("Falsches Passwort")}
+      }else{
+        //error : wrong password
+        return res.status(400).json({error: "You entered a wrong password..\nPlease try again or press 'forgot password."});
+      }
+    //error : wrong username
     }else{
-      console.log("User is not given");
+      return res.status(400).json({error : "The user you entered is not given."});
     }
   }catch(e){
-    console.log(e);
+    res.status(400).json(e);
   }
 });
 

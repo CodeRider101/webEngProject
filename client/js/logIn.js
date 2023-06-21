@@ -16,23 +16,25 @@ async function checkLogin(event) {
   let password = document.getElementById('psw').value;
   let rememberMe = document.getElementById('remember').value;
 
-  await fetch(`http://localhost:8000/logIn?username=${username}&password=${password}`)
-    .then(response =>{
-      if(!response.ok){
-        throw new Error(response.statusText);
-      }else{
-        //confirm("Welcome back! You will get redirected to the game in a sec.")
-        window.location.href= '../html/index.html';
-        return response.json();
-      }
-    })
-    .then(json =>{
-      console.log(json);
-    })
-    .catch(error =>{
-      console.error(error.message);
-      alert(error.message);
-    })
+  await fetch(`http://localhost:8000/logIn?username=${username}&password=${password}&remember=${rememberMe}`)
+  .then(response => {
+    if (response.ok) {
+      // Successful login
+      console.log('Login successful');
+      //redirect to main
+      confirm("Welcome back. You'll get redirected to the main page in a sec.");
+      window.location.href= '../html/index.html';
+    } else {
+      //wrong user or wrong password
+      return response.json().then(data => {
+        throw new Error(data.error);
+      });
+    }
+  })
+  .catch(error => {
+    alert(error.message);
+    console.log(error.message);
+  });
 }
 
 async function checkSignUp(event) {
@@ -47,8 +49,8 @@ async function checkSignUp(event) {
         if (!response.ok) {
           throw new Error(response.statusText);
         }else{
-          //redirect to login
-          //confirm("You created an account. You will get redirected to the Game :)\nHave fun!");
+          //redirect to main
+          confirm("You created an account. You will get redirected to the Game :)\nHave fun!");
           window.location.href= '../html/index.html';
         }
       })

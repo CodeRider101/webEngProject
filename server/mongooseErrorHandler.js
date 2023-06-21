@@ -3,6 +3,8 @@ function handleUniqueConstraintError(err) {
       var errorMessage = "This username is already taken!";
       console.error(errorMessage);
       return errorMessage;
+    }else{
+      return err.errorMessage;
     }
   }
 
