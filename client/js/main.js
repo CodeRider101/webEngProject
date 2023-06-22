@@ -208,7 +208,7 @@ function wordLength() {
     toastr.error("Please enter a number between 3 and 9");p
   } else {
     NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
-    WORD_LENGTH = wordLength;naeh
+    WORD_LENGTH = wordLength;
     restart();
   }
 }
