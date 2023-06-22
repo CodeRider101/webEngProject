@@ -2,13 +2,18 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
 
-input[type=text], input[type=password] {
+input[type=text]:not(.exposed-style), input[type=password] {
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 10px;
   margin: 8px 0;
-  display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  margin-bottom: 30px;
+}
+.exposed-style{
+  padding: 11px 10px;
+  height: 15px;
+  width: 100%;
 }
 
 button {
@@ -57,19 +62,28 @@ button:hover {
     color: white;
 }
 
-
 img.avatar {
   width: 40%;
   border-radius: 50%;
 }
 
 .container {
-  padding: 16px;
-}
-.signupContainer{
-    position: relative;
+  padding: 10px;
 }
 
+.signupContainer{
+  position: relative;
+}
+.form-group{
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.select{
+  height: 40px;
+  margin-right: 15px;
+}
 span.psw {
   float: right;
   padding-top: 16px;

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h2>Login Form</h2>
+<h2>Sign Up Form</h2>
 <form id="signUp">
   <div class="container">
     <label for="uname"><b>Username</b></label>
@@ -16,6 +16,16 @@
     <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
     <label for="psw2"><b>Confirm Password</b></label>
     <input type="password" placeholder="Confirm Password" id="psw2" name="psw2" required>
+    <label for="securityQuestions"><b>Security Question</b></label>
+    <div class="form-group">
+      <select class="select" name="securityQuestions" id="securityQuestions" required>
+        <option value="mothersGirlsname">What is your Mothers girlsname?</option>
+        <option value="highschoolName">What was your highschool?</option>
+        <option value="bestGradeInMaths">Which was your best grade in math?</option>
+        <option value="favoriteFootballTeam">Which team is your favorite in football?</option>
+      </select>
+      <input class="exposed-style" type="text" placeholder="Your answer" id="securityAnswer" name="securityAnswer" required>
+    </div>
     <div class="signupContainer">    
         <button class="login" type="submit">Sign Up</button>
     </div>
