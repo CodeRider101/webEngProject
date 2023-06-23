@@ -49,11 +49,11 @@ async function checkSignUp(event) {
   const password = document.getElementById('psw').value;
   const confirmPassword = document.getElementById('psw2').value;
   const securityQuestion = document.getElementById('securityQuestion').value;
-  const securityQuestionNumber = document.getElementById('securityQuestionNumber').value;
+  const securityAnswer = document.getElementById('securityAnswer').value;
 
 
   if(password === confirmPassword && username != "Not Acceptable"){
-    await fetch(`http://localhost:8000/createUser?username=${username}&password=${password}&securityQuestion=${securityQuestion}&securityQuestionNumber=${securityQuestionNumber}`)
+    await fetch(`http://localhost:8000/createUser?username=${username}&password=${password}&securityQuestion=${securityQuestion}&securityAnswer=${securityAnswer}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
