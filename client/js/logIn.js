@@ -9,11 +9,17 @@ if(login){
   console.log("Sign In");
   login.addEventListener("submit", checkLogin);
 }
+
 const forgotPassword = document.getElementById("forgotPassword");
 if(forgotPassword){
   console.log("Forgot Password");
-  forgotPassword.addEventListener("submit", checkForgotPassword);
-  forgotPassword.addKeyListener();
+  const usernameField = document.getElementById('uname');
+  const usernameEntered = usernameField.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      checkWhichSecurityQuestion();
+    }
+  });
+  //forgotPassword.addEventListener("submit", checkWhichSecurityQuestion);
 }
 
 async function checkLogin(event) {
@@ -48,8 +54,8 @@ async function checkSignUp(event) {
   const username = document.getElementById('uname').value;
   const password = document.getElementById('psw').value;
   const confirmPassword = document.getElementById('psw2').value;
-  const securityQuestion = document.getElementById('securityQuestion').value;
   const securityAnswer = document.getElementById('securityAnswer').value;
+  const securityQuestion = document.getElementById('securityQuestion').value;
 
 
   if(password === confirmPassword && username != "Not Acceptable"){
@@ -76,11 +82,33 @@ async function checkSignUp(event) {
     alert("Your password didn't match the Confirmpassword!");
   }
 }
+async function checkWhichSecurityQuestion(event) {
+  console.log("checkWhichSecurityQuestion")
+  const username = document.getElementById('uname').value;
+  await fetch(`http://localhost:8000/getSecurityQuestion?username=${username}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }else{
+          response.json().then(data => {
+            //change the security Question to display the right Question
+            console.log(data);
+            document.getElementById("securityQuestion").innerHTML = "<b>"+data+"</b>";
+            document.getElementById("securityQuestionInput").disabled = false;
+            document.getElementById("psw").disabled = false;
+            document.getElementById("psw2").disabled = false;
+            document.getElementById("uname").disabled = true;
+          })
+        }
+      }
+  )
+}
 
 async function checkForgotPassword(event) {
   event.preventDefault();
-  const username = document.getElementById('uname').value;
-  const securityQuestion = document.getElementById('securityQuestion').value;
+  const usernameField = document.getElementById('uname');
+  const usernameEntered = usernameField.addEventListener("submit", checkWhichSecurityQuestion);
+  const username = usernameField.value;
   const password = document.getElementById('psw').value;
   const confirmPassword = document.getElementById('psw2').value;
 

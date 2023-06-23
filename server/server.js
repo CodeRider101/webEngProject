@@ -143,6 +143,17 @@ app.get('/changePassword', async (req, res) => {
   }
 });
 
+app.get('/getSecurityQuestion', async (req, res) => {
+  try{
+    const result = await userSchema.findOne({
+      username: req.query.username
+    });
+    return res.status(200).json(result.securityQuestion);
+  }catch(e){
+    res.status(406).json(e);
+  }
+});
+
 app.get('/logIn', async (req, res) => {
   try{
     const result = await userSchema.findOne({
