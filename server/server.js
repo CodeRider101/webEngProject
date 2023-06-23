@@ -119,6 +119,21 @@ app.get('/createUser', async (req, res) => {
   try{
     const result = await userSchema.create({
       username: req.query.username,
+      password: req.query.password,
+      securityQuestion: req.query.securityQuestion,
+      securityQuestionNumber: req.query.securityQuestionNumber
+    })
+    console.log("passt");
+    return res.status(200).json(result);
+  }catch(e){
+    res.status(406).json(mongooseErrorHandler(e));
+  }
+});
+
+app.get('/changePassword', async (req, res) => {
+  try{
+    const result = await userSchema.updateOne({
+      username: req.query.username,
       password: req.query.password
     })
     return res.status(200).json(result);

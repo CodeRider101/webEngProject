@@ -9,6 +9,12 @@ if(login){
   console.log("Sign In");
   login.addEventListener("submit", checkLogin);
 }
+const forgotPassword = document.getElementById("forgotPassword");
+if(forgotPassword){
+  console.log("Forgot Password");
+  forgotPassword.addEventListener("submit", checkForgotPassword);
+  forgotPassword.addKeyListener();
+}
 
 async function checkLogin(event) {
   event.preventDefault();
@@ -42,9 +48,12 @@ async function checkSignUp(event) {
   const username = document.getElementById('uname').value;
   const password = document.getElementById('psw').value;
   const confirmPassword = document.getElementById('psw2').value;
+  const securityQuestion = document.getElementById('securityQuestion').value;
+  const securityQuestionNumber = document.getElementById('securityQuestionNumber').value;
+
 
   if(password === confirmPassword && username != "Not Acceptable"){
-    await fetch(`http://localhost:8000/createUser?username=${username}&password=${password}`)
+    await fetch(`http://localhost:8000/createUser?username=${username}&password=${password}&securityQuestion=${securityQuestion}&securityQuestionNumber=${securityQuestionNumber}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -61,7 +70,40 @@ async function checkSignUp(event) {
         const error = e.message;
         console.error(error);
         document.getElementById('uname').value = error;
-        alert("This Username is already taken. Please chose another one!")
+        alert("This Username is already taken. Please choose another one!")
+      });
+  }else{
+    alert("Your password didn't match the Confirmpassword!");
+  }
+}
+
+async function checkForgotPassword(event) {
+  event.preventDefault();
+  const username = document.getElementById('uname').value;
+  const securityQuestion = document.getElementById('securityQuestion').value;
+  const password = document.getElementById('psw').value;
+  const confirmPassword = document.getElementById('psw2').value;
+
+
+  if(password === confirmPassword && username != "Not Acceptable"){
+    await fetch(`http://localhost:8000/changePassword?username=${username}&password=${password}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }else{
+          //redirect to main
+          confirm("You created an account. You will get redirected to the Game :)\nHave fun!");
+          window.location.href= '../html/index.html';
+        }
+      })
+      .then(json=>{
+        console.log(json);
+      })
+      .catch(e => {
+        const error = e.message;
+        console.error(error);
+        document.getElementById('uname').value = error;
+        alert("This Username is already taken. Please choose another one!")
       });
   }else{
     alert("Your password didn't match the Confirmpassword!");
