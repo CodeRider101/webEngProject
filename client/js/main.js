@@ -56,7 +56,7 @@ function shadeKeyBoard(letter, color) {
 }
 //deletes the last letter in the box and the current guess
 function deleteLetter() {
-  let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
+  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
   let box = row.children[nextLetter - 1];
   box.textContent = "";
   box.classList.remove("filled-box");
@@ -65,14 +65,13 @@ function deleteLetter() {
 }
 //checks the current guess based on the result from the backend and colors the boxes accordingly 
 async function checkGuess() {
-  let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
+  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
   let guessString = "";
  
   for (const val of currentGuess) {
     guessString += val;
   }
 
-  console.log(guessString);
   if (guessString.length != WORD_LENGTH) {
     toastr.error("Not enough letters!");
     return;
@@ -130,12 +129,12 @@ async function checkGuess() {
 }
 //inserts a letter in the next box
 function insertLetter(pressedKey) {
-  if (nextLetter === 5) {
+  if (nextLetter === WORD_LENGTH) {
     return;
   }
   pressedKey = pressedKey.toLowerCase();
 
-  let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
+  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
   let box = row.children[nextLetter];
   animateCSS(box, "pulse");
   box.textContent = pressedKey;
@@ -206,25 +205,11 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 function wordLength() {
   let wordLength = document.getElementById('wordLength').value;
   if (wordLength < 3 || wordLength > 9) {
-    toastr.error("Please enter a number between 3 and 9");
+    toastr.error("Please enter a number between 3 and 9");p
   } else {
-
-    const rows = document.getElementsByClassName("letter-row");
-    while(rows.length > 0){
-      rows[0].parentNode.removeChild(rows[0]);
-    }
-    const boxes = document.getElementsByClassName("letter-box");
-    while(boxes.length > 0){
-      boxes[0].parentNode.removeChild(boxes[0]);
-    }
-
     NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
     WORD_LENGTH = wordLength;
-    guessesRemaining = NUMBER_OF_GUESSES;
-    currentGuess = [];
-    nextLetter = 0;
-    initBoard();
-    start();
+    restart();
   }
 }
 
@@ -257,12 +242,6 @@ function restart() {
   for (const elem of document.getElementsByClassName("keyboard-button")) {
       elem.style.backgroundColor = "#F0F0F0";
     }
-
-  console.log(NUMBER_OF_GUESSES)
-  console.log(WORD_LENGTH)
-  console.log(guessesRemaining)
-  console.log(currentGuess)
-  console.log(nextLetter)
 }
 
 let newGame  = document.getElementById('newGame');

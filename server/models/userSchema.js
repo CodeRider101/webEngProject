@@ -14,10 +14,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    securityQuestionNumber:{
-        type: Number,
+    securityAnswer: {
+        type: String,
         required: true
     }
+
 });
 
 export default mongoose.model("User", userSchema);
