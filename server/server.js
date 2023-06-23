@@ -131,8 +131,6 @@ app.get('/createUser', async (req, res) => {
 
 app.get('/resetPasswordCheck', async (req, res) => {
   try{
-    console.log(req.query.securityAnswer);
-    console.log(req.query);
     const result = await userSchema.findOne({
       username: req.query.username,
       securityAnswer : req.query.securityAnswer
@@ -176,7 +174,7 @@ app.get('/logIn', async (req, res) => {
         return res.status(200).json(result);
       }else{
         //error : wrong password
-        return res.status(400).json({error: "You entered a wrong password..\nPlease try again or press 'forgot password."});
+        return res.status(400).json({error: "You entered a wrong password..\nPlease try again or press 'forgot password'."});
       }
     //error : wrong username
     }else{

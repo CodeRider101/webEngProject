@@ -16,6 +16,9 @@ async function checkLogin(event) {
   let password = document.getElementById('psw').value;
   let rememberMe = document.getElementById('remember').value;
 
+
+  document.cookie = "username=" + username;
+
   await fetch(`http://localhost:8000/logIn?username=${username}&password=${password}&remember=${rememberMe}`)
   .then(response => {
     if (response.ok) {

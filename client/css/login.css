@@ -2,7 +2,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
 
-input[type=text]:not(.exposed-style), input[type=password] {
+input[type=text]:not(.exposed-style, #checkUname), input[type=password] {
   width: 100%;
   padding: 12px 10px;
   margin: 8px 0;
@@ -16,7 +16,7 @@ input[type=text]:not(.exposed-style), input[type=password] {
   width: 100%;
 }
 
-button {
+button:not(#checkUser) {
   background-color: #22ab3b;
   color: white;
   padding: 14px 25px;
@@ -29,6 +29,7 @@ button {
   position: relative;
   left: 25%;
   top: 0%;
+  border-radius: 12px;
 }
 
 button:hover {
@@ -43,6 +44,7 @@ button:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 12px;
 }
   
 .cancelbtn:hover, .cancelbtn:active {
@@ -56,6 +58,7 @@ button:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 12px;
 }
 .signup:hover, .signup:active {
     background-color: #2652d6;
@@ -103,6 +106,7 @@ span.psw {
      width: 100%;
   }
   button{
-    width: 100%
+    width: 100%;
+    border-radius: 12px;
   }
 }
