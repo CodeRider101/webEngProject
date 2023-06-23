@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import bodyParser from 'body-parser';
 import axios from 'axios';
 import cors from 'cors';
@@ -129,17 +129,27 @@ app.get('/createUser', async (req, res) => {
   }
 });
 
-app.get('/changePassword', async (req, res) => {
+app.get('/resetPasswordCheck', async (req, res) => {
   try{
-    const result = await userSchema.updateOne({
-      username: req.query.username
-    },
-    {
-      password: req.query.password
+    console.log(req.query.securityAnswer);
+    console.log(req.query);
+    const result = await userSchema.findOne({
+      username: req.query.username,
+      securityAnswer : req.query.securityAnswer
     })
+    if(result){
+      await userSchema.updateOne(
+        result,
+        {
+          password: req.query.password
+        }
+      )
+    }else{
+      throw new Error(response.statusText);
+    }
     return res.status(200).json(result);
   }catch(e){
-    res.status(406).json(e);
+    res.status(400).json(e);
   }
 });
 
