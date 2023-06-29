@@ -50,7 +50,7 @@ body{
   background: linear-gradient(0deg, transparent, transparent, var(--mainColor),  var(--mainColor), var(--mainColor));
   z-index: 1;
   transform-origin: bottom right;
-  animation: animate 6s linear infinite;
+  animation: animate 10s linear infinite;
 }
 .box::after{
   content: "";
@@ -62,8 +62,8 @@ body{
   background: linear-gradient(0deg, transparent, transparent,  var(--mainColor),  var(--mainColor), var(--mainColor));
   z-index: 1;
   transform-origin: bottom right;
-  animation: animate 6s linear infinite;
-  animation-delay: -3s;
+  animation: animate 10s linear infinite;
+  animation-delay: -5s;
 }
 
 @keyframes animate{
