@@ -1,3 +1,9 @@
+:root{
+  --bgColor: #f5f5f5;
+  --textColor: #333;
+  --mainColor: #2196f3;
+  --accentColor: #f44336;
+}
 *{
   margin: 0;
   padding: 0;
@@ -26,7 +32,7 @@ body{
   position: absolute;
   padding: 50px 40px;
   inset: 6px;
-  background-color: rgb(200, 200, 200);
+  background-color: #F0F0F0;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -41,7 +47,7 @@ body{
   left: -50%;
   width: 420px;
   height: 600px;
-  background: linear-gradient(0deg, transparent, transparent, blue, blue, blue);
+  background: linear-gradient(0deg, transparent, transparent, var(--mainColor),  var(--mainColor), var(--mainColor));
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -53,7 +59,7 @@ body{
   left: -50%;
   width: 420px;
   height: 600px;
-  background: linear-gradient(0deg, transparent, transparent, blue, blue, blue);
+  background: linear-gradient(0deg, transparent, transparent,  var(--mainColor),  var(--mainColor), var(--mainColor));
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -119,7 +125,7 @@ button:hover {
 }
 
 .signup{
-    background-color: #4570f1;
+    background-color: var(--mainColor);
 }
 .signup:hover{
     background-color: #2652d6;

@@ -26,8 +26,8 @@ input[type=text]:not(.exposed-style, #checkUname), input[type=password] {
 
 .box{
   position: relative;
-  width: 900px;
-  height: 800px;
+  width: 700px;
+  height: 650px;
   border-radius: 10px;
   background-color: grey;
   overflow: hidden;
@@ -48,8 +48,8 @@ input[type=text]:not(.exposed-style, #checkUname), input[type=password] {
   position: absolute;
   top: -50%;
   left: -50%;
-  width: 900px;
-  height: 800px;
+  width: 700px;
+  height: 650px;
   background: linear-gradient(0deg, transparent, transparent, blue, blue, blue);
   z-index: 1;
   transform-origin: bottom right;
@@ -80,7 +80,7 @@ input[type=text]:not(.exposed-style, #checkUname), input[type=password] {
   }
 }
 
-button:not(#checkUser, .cancelbtn) {
+button:not(.cancelbtn) {
   background-color: #22ab3b;
   color: white;
   padding: 14px 25px;
@@ -142,9 +142,31 @@ button:hover {
 
 .select{
   height: 40px;
+  width: 50%;
   margin-right: 15px;
 }
 span.psw {
   float: right;
   padding-top: 16px;
+}
+
+@media screen and (max-width: 300px) {
+  .box{
+    box-sizing: border-box;
+  }
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .signup {
+    width: 100%;
+    padding: 16px;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+  button{
+    width: 100%;
+    border-radius: 12px;
+  }
 }
