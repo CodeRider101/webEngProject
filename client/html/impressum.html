@@ -10,20 +10,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <link rel="stylesheet" href="../css/dark.css">
     <link rel="stylesheet" href="../css/impressum.css">
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            var paragraphs = document.getElementsByTagName('p');
-            for (var i = 0; i < paragraphs.length; i++) {
-              var text = paragraphs[i].innerText;
-              var index = text.indexOf(':');
-              if (index > -1) {
-                var firstSentence = text.substring(0, index + 1);
-                var remainingText = text.substring(index + 1);
-                paragraphs[i].innerHTML = '<span class="bold-first-sentence">' + firstSentence + '</span>' + remainingText;
-              }
-            }
-          });
-    </script>
 </head>
 <body>
     <div id="headerDiv">
@@ -51,7 +37,7 @@
     <div id="impressum">
         <h1>Impressum</h1>
         <p>
-            Verantwortlich für den Inhalt dieser Website gemäß §5 TMG:
+            <b>Verantwortlich für den Inhalt dieser Website gemäß §5 TMG:</b>
             <br>
             <br>
             VTordle GmbH
@@ -62,46 +48,46 @@
         </p>
         <p>
             <b>Vertreten durch:</b>
-            <table>
-                <tr>
-                    <td>Jonas Sinnhöfer</td>
-                    <td>(Geschäftsführer)</td>
-                </tr>
-                <tr>
-                    <td>Jeremie Bents</td>
-                    <td>(Geschäftsführer)</td></td>
-                </tr>
-                <tr>
-                    <td>Lara Langau</td>
-                    <td>(Geschäftsführer)</td>
-                </tr>
-                <tr>
-                    <td>Gerrit Grätz</td>
-                    <td>(Geschäftsführer)</td>
-                </tr>
-            </table>
         </p>
+        <table>
+            <tr>
+                <td>Jonas Sinnhöfer</td>
+                <td>(Geschäftsführer)</td>
+            </tr>
+            <tr>
+                <td>Jeremie Bents</td>
+                <td>(Geschäftsführer)</td>
+            </tr>
+            <tr>
+                <td>Lara Langau</td>
+                <td>(Geschäftsführer)</td>
+            </tr>
+            <tr>
+                <td>Gerrit Grätz</td>
+                <td>(Geschäftsführer)</td>
+            </tr>
+        </table>
         <p>
-            Kontakt:
+            <b>Kontakt:</b>
             <br>
             Telefon: +49 (0)123 456789
             <br>
             E-Mail: info@spiel-website.de
         </p>
         <p>
-            Handelsregister:
+            <b>Handelsregister:</b>
             <br>
             Registergericht: Amtsgericht Karlsruhe
             <br>
             Registernummer: HRB 12345
         </p>
         <p>
-            Umsatzsteuer-ID:
+            <b>Umsatzsteuer-ID:</b>
             <br>
             Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE 123456789
         </p>
         <p>
-            Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 55 RStV:
+            <b>Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 55 RStV:</b>
             <br>
             Jonas Sinnhöfer GmbH
             <br>
@@ -110,12 +96,12 @@
             12345 Musterstadt
         </p>
         <p>
-            Haftungsausschluss:
+            <b>Haftungsausschluss:</b>
             <br>
             Die Betreiber der Website übernehmen keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
         </p>
         <p>
-            Urheberrecht:
+            <b>Urheberrecht:</b>
             <br>
             Die auf dieser Website verwendeten Texte, Bilder und Grafiken unterliegen dem deutschen Urheberrecht. Eine Vervielfältigung, Bearbeitung, Verbreitung oder jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung der Person1 GmbH oder des jeweiligen Rechteinhabers.
         </p>
