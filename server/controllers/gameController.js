@@ -2,6 +2,11 @@ import axios from 'axios';
 import highScoreSchema from '../models/highscoreSchema.js';
 
 let rightGuessString;
+let tries = 0;
+let start;
+let end;
+
+
 
 async function getRightGuess(length){
   const options = {
@@ -19,97 +24,98 @@ async function getRightGuess(length){
   }
 }
 
-app.get('/start', async (req, res) => {
-  getRightGuess(req.query.length);
-  res.status(200).send("started");
-  console.log("started");
-  tries=0;
-  start = Date.now();
-});
-app.get('/check', async (req, res) => {
-  const wordLength = req.query.length;
-  const guess = req.query.guess;
-  const options = {
+export const gameStart = async(req, res)=>{
+    getRightGuess(req.body.length);
+    res.status(200).send("started");
+    console.log("started");
+    tries=0;
+    start = Date.now();
+}
+
+export const check = async (req, res) => {
+    const wordLength = req.query.length;
+    const guess = req.query.guess;
+    const options = {
     method: 'GET',
     url: 'https://random-word-api.herokuapp.com/word',
     params: {number: 100000000, length: wordLength, lang: 'en'}
-  };
-  try {
+    };
+    try {
     const response = await axios.request(options);
     let i = 0;
     let found = false;
     let resultCheck;
     if(guess === rightGuessString){
-      tries++;
-      resultCheck= "correct";
-      found=true;
+        tries++;
+        resultCheck= "correct";
+        found=true;
 
-      end = Date.now();
-      let time = (end-start)/1000; 
-      console.log(time + " seconds");
-      let score = (wordLength/(tries*(time*0,2)))*10000;
-      score = score.toFixed(0);
-      console.log("Score: "+ score);
-      let scoreEntry = new highScoreSchema({
+        end = Date.now();
+        let time = (end-start)/1000; 
+        console.log(time + " seconds");
+        let score = (wordLength/(tries*(time*0,2)))*10000;
+        score = score.toFixed(0);
+        console.log("Score: "+ score);
+        let scoreEntry = new highScoreSchema({
         score: score,
         date: Date.now()
-      })
-      try{
+        })
+        try{
         scoreEntry.save();
-      }catch(err){
+        }catch(err){
         console.log(err);
-      }
+        }
 
-      
+        
 
-      tries=0;
+        tries=0;
     }
     while(!found){
-      
-      if(response.data[i] === guess){
+        
+        if(response.data[i] === guess){
         resultCheck= "inList";
         found=true;
         tries++;
         break;
-      }else if(response.data[i] === undefined){
+        }else if(response.data[i] === undefined){
         break;
-      }
-      i++;
+        }
+        i++;
     }
     console.log(tries);
     let rightGuessArray = Array.from(rightGuessString);
     let guessArray = Array.from(guess);
     let letterColor = ["gray", "gray", "gray", "gray", "gray"];
     if(!found){
-      resultCheck= "notInList";
+        resultCheck= "notInList";
     }
-    
+
     else{
-      //check green
-      for (let i = 0; i < wordLength; i++) {
+        //check green
+        for (let i = 0; i < wordLength; i++) {
         if (rightGuessArray[i] == guessArray[i]) {
-          letterColor[i] = "green";
-          rightGuessArray[i] = "#";
+            letterColor[i] = "green";
+            rightGuessArray[i] = "#";
         }
-      }
-      //check yellow
-      //checking guess letters
-      for (let i = 0; i < wordLength; i++) {
+        }
+        //check yellow
+        //checking guess letters
+        for (let i = 0; i < wordLength; i++) {
         if (letterColor[i] == "green") continue;
 
         //checking right letters
         for (let j = 0; j < wordLength; j++) {
-          if (rightGuessArray[j] == guessArray[i]) {
+            if (rightGuessArray[j] == guessArray[i]) {
             letterColor[i] = "yellow";
             rightGuessArray[j] = "#";
-          }
+            }
         }
-      }
+        }
 
-      let correct = false;
-      if (guess === rightGuessString) {
+        let correct = false;
+        if (guess === rightGuessString) {
         correct = true;
-      }
+        }
     }
     let result = [];
     result.push(resultCheck);
@@ -117,7 +123,7 @@ app.get('/check', async (req, res) => {
     let resultJSON= JSON.stringify(result);
     console.log(resultJSON);
     res.json(resultJSON);
-  } catch (error) {
-    console.error(error);
-  }
-});
+    } catch (error) {
+        console.error(error);
+    }
+};

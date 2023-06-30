@@ -12,7 +12,16 @@ let newGame  = document.getElementById('newGame');
 newGame.addEventListener('click', restart, true);
 // start the game and sets a new word in the backend();
 const start = () => {
-  fetch(`http://localhost:8000/start?length=${WORD_LENGTH}`)
+  fetch(`http://localhost:8000/api/game/`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      length: WORD_LENGTH
+    }),
+  })
     .then(response => response.json())
     .then(json => {
       console.log(json)
@@ -84,7 +93,7 @@ async function checkGuess() {
   let exists = true;
   let correct = false;
   let letterColor;
-  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}`)
+  await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
@@ -95,8 +104,7 @@ async function checkGuess() {
       }else if(result[0] == 'correct'){
         correct=true;
       }
-    })
-    console.log(letterColor);
+    });
     if(!exists){
       toastr.error("Word not in list!");
       for(let i=0; i<WORD_LENGTH; i++){
