@@ -5,6 +5,12 @@ endDate.setFullYear(endDate.getFullYear() + 10);
 window.addEventListener('DOMContentLoaded', event => {
     toggleTheme();
     setThemeFromCookie();
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("wLength="))
+      ?.split("=")[1];
+    output.textContent = cookieValue;
+    slider.value = cookieValue;
 });
 
 const toggleTheme = () => {
@@ -31,12 +37,9 @@ function setThemeFromCookie() {
 
 function wordLength() {
     let wordLength = document.getElementById('slider').value;
-    if (wordLength < 3 || wordLength > 9) {
-      toastr.error("Please enter a number between 3 and 9");
-    } else {
-        document.cookie = 'wLength=' + wordLength + '; Expires=' + endDate + ';'
-        toastr.success("Word length changed to " + wordLength);
-    }
+    document.cookie = 'wLength=' + wordLength + '; Expires=' + endDate + ';'
+    toastr.success("Word length changed to " + wordLength);
+    output.textContent = wordLength;
   }
   
 //   let submit  = document.getElementById('changeLength');
@@ -44,10 +47,11 @@ function wordLength() {
 
 
 let output = document.getElementById('output');
-let test = document.getElementById('slider');
-let slider = document.getElementById('slider').oninput = function() {
+let slider = document.getElementById('slider');
+
+function updateSlider(){
    let value = this.value;
    output.textContent = value;
 }
 
-test.addEventListener('change', wordLength, false);
+slider.addEventListener('change', wordLength, false);
