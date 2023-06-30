@@ -75,7 +75,7 @@ label {
     top: 2px;
     text-align: center;
     transition: all 0.3s ease;
-    box-shadow: 0px 0px 6px -2px #111;
+    box-shadow: 0px 0px 6px -2px #000000;
     padding: 5px 0px;
 }
 
@@ -91,14 +91,14 @@ label {
 }
 
 .themeToggle input[type="checkbox"]:checked + label.themeToggle-dark{
-    background: #151515;
+    background: #171a1e;
     color: #fff;
 }
 
 .themeToggle input[type="checkbox"]:checked + label.themeToggle-dark:after{
     content: attr(data-on);
     left: 68px;
-    background: #3c3c3c;
+    background: #373e46;
 }
 
 .themeToggle input[type="checkbox"]:checked + label.themeToggle-dark:before{
