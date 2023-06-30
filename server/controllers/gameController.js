@@ -1,4 +1,5 @@
 import axios from 'axios';
+import highScoreSchema from '../models/highscoreSchema.js';
 
 let rightGuessString;
 
@@ -25,7 +26,6 @@ app.get('/start', async (req, res) => {
   tries=0;
   start = Date.now();
 });
-
 app.get('/check', async (req, res) => {
   const wordLength = req.query.length;
   const guess = req.query.guess;
@@ -36,7 +36,7 @@ app.get('/check', async (req, res) => {
   };
   try {
     const response = await axios.request(options);
-    let i =0;
+    let i = 0;
     let found = false;
     let resultCheck;
     if(guess === rightGuessString){
@@ -47,9 +47,19 @@ app.get('/check', async (req, res) => {
       end = Date.now();
       let time = (end-start)/1000; 
       console.log(time + " seconds");
-      let score = (wordLength/(tries*(time*0,2)))*1000;
+      let score = (wordLength/(tries*(time*0,2)))*10000;
       score = score.toFixed(0);
       console.log("Score: "+ score);
+      let scoreEntry = new highScoreSchema({
+        score: score,
+        date: Date.now()
+      })
+      try{
+        scoreEntry.save();
+      }catch(err){
+        console.log(err);
+      }
+
       
 
       tries=0;
