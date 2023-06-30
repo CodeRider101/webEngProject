@@ -4,11 +4,28 @@ let WORD_LENGTH = 5;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
+let darkModeEnabled;
 
-document.addEventListener("DOMContentLoaded", initBoard);
+if(document.cookie.match(/theme=dark/) != null) {
+  darkModeEnabled = true;
+}
 
-let newGame  = document.getElementById('newGame');
-newGame.addEventListener('click', restart, true);
+document.addEventListener("DOMContentLoaded", () => {
+    if(getCookieValue('username') !== ""){
+      document.getElementById('logIn').style.display = 'none';
+      document.getElementById('userInfo').style.display='block';
+      document.getElementById('username').innerHTML = getCookieValue('username');
+    }else{
+      document.getElementById('userInfo').style.display='none';
+      document.getElementById('logIn').style.display = 'block';
+    }
+});
+
+function getCookieValue(a) {
+  const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+  return b ? b.pop() : '';
+}
+
 // start the game and sets a new word in the backend();
 const start = () => {
   fetch(`http://localhost:8000/api/game/`,{
@@ -26,12 +43,32 @@ const start = () => {
       console.log(json)
     })
     .catch(err => console.log(err))
-    
+
 }
+
+let newGame  = document.getElementById('newGame');
+newGame.addEventListener('click', restart, true);
+
+//delete, enter button
+document.addEventListener("DOMContentLoaded", initBoard);
+document.getElementById("deleteButton").addEventListener("click", deleteLetter);
+document.getElementById("enterButton").addEventListener("click", checkGuess)
+
 
 //initializes the board with the right number of rows and boxes
 function initBoard() {
   let board = document.getElementById("game-board");
+  
+  // Get the cookie value for the word length
+  const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("wLength="))
+      ?.split("=")[1];
+  if (cookieValue !== undefined) {
+  NUMBER_OF_GUESSES = parseInt(cookieValue) + 1;
+  guessesRemaining = NUMBER_OF_GUESSES;
+  WORD_LENGTH = cookieValue;
+  }
 
   for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
       let row = document.createElement("div")
@@ -69,11 +106,13 @@ function shadeKeyBoard(letter, color) {
 //deletes the last letter in the box and the current guess
 function deleteLetter() {
   let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
-  let box = row.children[nextLetter - 1];
-  box.textContent = "";
-  box.classList.remove("filled-box");
-  currentGuess.pop();
-  nextLetter -= 1;
+  if(nextLetter !== 0){
+    let box = row.children[nextLetter - 1];
+    box.textContent = "";
+    box.classList.remove("filled-box");
+    currentGuess.pop();
+    nextLetter -= 1;
+  }
 }
 //checks the current guess based on the result from the backend and colors the boxes accordingly 
 async function checkGuess() {
@@ -118,6 +157,12 @@ async function checkGuess() {
       //flip box
       animateCSS(box, "flipInX");
       //shade box
+      letterColor.forEach ((color, index) => {
+        if(darkModeEnabled && color === "yellow"){
+          letterColor[index] = "#ffbf00";
+        }
+      });
+      
       box.style.backgroundColor = letterColor[i];
       shadeKeyBoard(guessString.charAt(i) + "", letterColor[i]);
     }, delay);
@@ -145,7 +190,7 @@ function insertLetter(pressedKey) {
   }
   pressedKey = pressedKey.toLowerCase();
 
-  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
+  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];  
   let box = row.children[nextLetter];
   animateCSS(box, "pulse");
   box.textContent = pressedKey;
@@ -164,6 +209,15 @@ const animateCSS = (element, animation, prefix = "animate__") =>
 
     node.classList.add(`${prefix}animated`, animationName);
 
+    // Adapt border color (after animation) to dark mode or light mode
+    let borderColor;
+    if(darkModeEnabled){
+      borderColor = "#fff";
+    }else{
+      borderColor = "#333";
+    }
+    node.style.setProperty("border-color", borderColor);
+
     // When the animation ends, we clean the classes and resolve the Promise
     function handleAnimationEnd(event) {
       event.stopPropagation();
@@ -180,7 +234,7 @@ document.addEventListener("keyup", (e) => {
   }
 
   let pressedKey = String(e.key);
-  if (pressedKey === "Backspace" && nextLetter !== 0) {
+  if (pressedKey === "Backspace") {
     deleteLetter();
     return;
   }
@@ -213,6 +267,9 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
+let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
+
 function wordLength() {
   let wordLength = document.getElementById('wordLength').value;
   if (wordLength < 3 || wordLength > 9) {
@@ -223,9 +280,6 @@ function wordLength() {
     restart();
   }
 }
-
-let menu = document.querySelector('#menu-icon');
-let navBar = document.querySelector('.navbar');
 
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
@@ -247,6 +301,10 @@ function restart() {
   currentGuess = [];
   nextLetter = 0;
   for (const elem of document.getElementsByClassName("keyboard-button")) {
+    if(darkModeEnabled){
+      elem.style.backgroundColor = "#74787c";
+    } else {
       elem.style.backgroundColor = "#F0F0F0";
     }
+  }
 }

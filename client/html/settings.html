@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/settings.css">
@@ -13,7 +15,7 @@
         <ul class="navbar">
             <li><a href="./index.html" class="active">Home</a></li>
             <li><a href="./leaderboard.html">Leaderboard</a></li>
-            <li><a href="./settings.html">Game Settings</a></li>
+            <li><a href="./settings.html"><b>Game Settings</b></a></li>
             <li><a href="./impressum.html">Contact Us</a></li>
         </ul>
     
@@ -46,8 +48,13 @@
             <option value="8">
             <option value="9">
         </datalist>
-        <button type="button" id="submit">Change</button>
+        <button type="button" id="changeLength">Change</button>
     </div>
     <script src="../js/settings.js" type="text/javascript"></script>
+    <script
+src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>
