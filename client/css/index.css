@@ -17,24 +17,24 @@
 h1 {
   text-align: center;
  }
- 
- /* .dark-mode {
-   --bgColor: #21272d;
-   --textColor: #fff;
-   --btnColor: #74787c;
-   --btnTextColor: #fff;
-   --btnBorderColor: #fff;
- } */
+
+ .header{
+   position: fixed;
+   background: var(--bgColor);
+   top: 0;
+   height: 90px;
+   width: 100%
+ }
 
  #game-board {
-  margin-top:100px;
+   margin-top:100px;
    display: flex;
    align-items: center;
    flex-direction: column;
  }
  
  .letter-box {
-   border: 2px solid gray;
+   border: 2px solid var(--btnBorderColor);
    border-radius: 3px;
    margin: 2px;
    font-size: 2.5rem;
@@ -100,6 +100,27 @@ h1 {
    background-color: var(--btnColor);
    color: var(--btnTextColor);
  }
+
+.resetBtn{
+	margin:5px;
+   text-align: center;
+	display: inline-block;
+   font-weight: bold;
+   padding: 10px 30px 10px 30px;
+   background-color: var(--mainColor);
+   color: var(--btnTextColor);
+	border-radius: 5px;
+   border-color: transparent;
+   box-shadow: 0 .3em #1d7bc7; 
+   cursor: pointer;
+   margin-top: 40px;
+}
+
+.resetBtn:active{
+   box-shadow: none;
+	position: relative;
+	top: .2em;
+}
 
  @media screen and (max-width: 600px){
   .keyboard-button{
