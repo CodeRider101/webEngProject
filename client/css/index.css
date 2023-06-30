@@ -207,24 +207,33 @@ h1 {
     display: flex;
     align-items: center;
     text-decoration: none;
- }
- .user i{
     color: var(--textColor);
     font-size: 1.5rem;
     margin-right: 7px;
+    font-weight: 600;
  }
 
- .user i:hover{
+ #userIcon:hover{
     color: var(--mainColor);
+ }
+
+ #logIn:hover{
+   color: var(--mainColor);
     border-bottom: 2px solid var(--mainColor);
  }
 
+ #username{
+    color: var(--textColor);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 10px;
+ }
  #menu-icon{
   font-size: 35px;
   color: var(--textColor);
-  cursor:pointer;
+  cursor: pointer;
   z-index: 1001;
-  display:none;
+  display: none;
  }
 
  @media (max-width: 1280px){
