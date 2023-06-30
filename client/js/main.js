@@ -225,10 +225,6 @@ function wordLength() {
   }
 }
 
-let submit  = document.getElementById('submit');
-submit.addEventListener('click', wordLength, true);
-
-
 let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
 
