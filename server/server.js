@@ -4,7 +4,6 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import userRouter from './routes/userRoutes.js';
 import loginRouter from './routes/loginRoutes.js';
-import highScoreSchema from './models/highScoreSchema.js';
 import gameRouter from './routes/gameRoutes.js';
 
 const app = express();
