@@ -1,10 +1,10 @@
 import express from 'express';
 //Import functions from Controller
-import { checkWord } from '../controllers/gameController';
+import { check, gameStart } from '../controllers/gameController.js';
 
 const gameRouter = express.Router();
 
-gameRouter.get("/", );
-gameRouter.get("/check",checkWord )
+gameRouter.post("/", gameStart);
+gameRouter.get("/check", check )
 
 export default gameRouter;
