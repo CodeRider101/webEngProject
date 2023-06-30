@@ -78,6 +78,7 @@ async function checkSignUp(event) {
         if (!response.ok) {
           throw new Error(response.statusText);
         }else{
+          document.cookie = "username=" + username;
           //redirect to main
           confirm("You created an account. You will get redirected to the Game :)\nHave fun!");
           window.location.href= '../html/index.html';
