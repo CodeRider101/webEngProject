@@ -6,7 +6,8 @@
         <title>Leaderboard</title>
         <link rel="stylesheet" href="../css/leaderboard.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
-
+        <link rel="stylesheet" href="../css/dark.css">
+        <link rel="stylesheet" href="../css/index.css">
     </head>
     <body>
         <header>
@@ -16,13 +17,17 @@
             <ul class="navbar">
             <li><a href="./index.html" class="active">Home</a></li>
             <li><a href="./leaderboard.html"><b>Leaderboard</b></a></li>
-            <li><a href="./about.html">Game Settings</a></li>
+            <li><a href="./settings.html">Game Settings</a></li>
             <li><a href="./contact.html">Contact Us</a></li>
             </ul>
         
             <div class="main">
             <a href="./login.html" class="user"><i class='bx bxs-user'></i><i>Sign in</i></a>
             <div class="bx bx-menu" id="menu-icon"></div>
+            </div>
+
+            <div class="theme-switch" hidden="hidden">
+              <input type="checkbox" />
             </div>
         </header>
 
@@ -40,5 +45,7 @@
             </div>
           </div>
     </body>
+    
     <script src="../js/leaderboard.js" type="module"></script>
+    <script src="../js/settings.js" type="module"></script>
 </html>
