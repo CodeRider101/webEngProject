@@ -3,9 +3,8 @@ import bodyParser from 'body-parser';
 import axios from 'axios';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import userSchema from './models/userSchema.js';
-import mongooseErrorHandler from './mongooseErrorHandler.js';
 import userRouter from './routes/userRoutes.js';
+import loginRouter from './routes/loginRoutes.js';
 
 const app = express();
 const port = 8000;
@@ -16,6 +15,7 @@ app.use(cors());
 
 //Routes
 app.use("/api/users", userRouter);
+app.use("/api/login", loginRouter);
 
 
 mongoose.connect('mongodb+srv://jere_YT:rIG0jourr6rrUlng@vtordle-data.n0naebt.mongodb.net/'
@@ -49,8 +49,6 @@ async function getRightGuess(length){
 app.get('/start', async (req, res) => {
   getRightGuess(req.query.length);
 });
-
-
 app.get('/check', async (req, res) => {
   const wordLength = req.query.length;
   const guess = req.query.guess;
@@ -121,111 +119,5 @@ app.get('/check', async (req, res) => {
     res.json(resultJSON);
   } catch (error) {
     console.error(error);
-  }
-});
-
-app.get('/createUser', async (req, res) => {
-  try{
-    const result = await userSchema.create({
-      username: req.query.username,
-      password: req.query.password,
-      securityQuestion: req.query.securityQuestion,
-      securityAnswer: req.query.securityAnswer
-    })
-    return res.status(200).json(result);
-  }catch(e){
-    res.status(406).json(mongooseErrorHandler(e));
-  }
-});
-
-app.get('/resetPasswordCheck', async (req, res) => {
-  try{
-    const result = await userSchema.findOne({
-      username: req.query.username,
-      securityAnswer : req.query.securityAnswer
-    })
-    if(result){
-      await userSchema.updateOne(
-        result,
-        {
-          password: req.query.password
-        }
-      )
-    }else{
-      throw new Error(response.statusText);
-    }
-    return res.status(200).json(result);
-  }catch(e){
-    res.status(400).json(e);
-  }
-});
-
-app.get('/getSecurityQuestion', async (req, res) => {
-  try{
-    const result = await userSchema.findOne({
-      username: req.query.username
-    });
-    return res.status(200).json(result.securityQuestion);
-  }catch(e){
-    res.status(406).json(e);
-  }
-});
-
-// app.get('/logIn', async (req, res) => {
-//   try{
-//     const result = await userSchema.findOne({
-//       username : req.query.username
-//     })
-//     //found an user?
-//     if(result){
-//       //correct password?
-//       if(result.password === req.query.password){
-//         return res.status(200).json(result);
-//       }else{
-//         //error : wrong password
-//         return res.status(400).json({error: "You entered a wrong password..\nPlease try again or press 'forgot password'."});
-//       }
-//     //error : wrong username
-//     }else{
-//       return res.status(400).json({error : "The user you entered is not given."});
-//     }
-//   }catch(e){
-//     res.status(400).json(e);
-//   }
-// });
-
-
-app.get('/test', async (req, res) => {
-  try{
-    const result = await userSchema.create({
-      username: "ijksd",
-      password: "ijssdj"
-    })
-    return res.status(200).json(result);
-  }catch(e){
-    console.log(e);
-  }
-});
-
-app.get('/test2', async (req, res) => {
-  try{
-    const result = await userSchema.findOne({
-      username: "ijksd"
-    })
-    return res.status(200).json(result);
-  }catch(e){
-    console.log(e);
-  }
-});
-
-app.get('/test3', async (req, res) => {
-  try{
-    const result = await userSchema.updateOne(
-      {username: "ijksd"},
-      {username : "jesuuusu"}
-      )
-    return res.status(200).json(result);
-  }catch(e){
-    console.log(e);
   }
 });
