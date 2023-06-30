@@ -5,6 +5,11 @@ let WORD_LENGTH = 5;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
+let darkModeEnabled;
+
+if(document.cookie.match(/theme=dark/) != null) {
+  darkModeEnabled = true;
+}
 
 document.addEventListener("DOMContentLoaded", initBoard);
 
@@ -24,6 +29,16 @@ const start = () => {
 //initializes the board with the right number of rows and boxes
 function initBoard() {
   let board = document.getElementById("game-board");
+  
+  // Get the cookie value for the word length
+  const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("wLength="))
+      ?.split("=")[1];
+  if (cookieValue !== undefined) {
+  NUMBER_OF_GUESSES = parseInt(cookieValue) + 1;
+  WORD_LENGTH = cookieValue;
+  }
 
   for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
       let row = document.createElement("div")
@@ -111,6 +126,12 @@ async function checkGuess() {
       //flip box
       animateCSS(box, "flipInX");
       //shade box
+      letterColor.forEach ((color, index) => {
+        if(darkModeEnabled && color === "yellow"){
+          letterColor[index] = "#ffbf00";
+        }
+      });
+      
       box.style.backgroundColor = letterColor[i];
       shadeKeyBoard(guessString.charAt(i) + "", letterColor[i]);
     }, delay);
@@ -156,6 +177,15 @@ const animateCSS = (element, animation, prefix = "animate__") =>
     node.style.setProperty("--animate-duration", "0.3s");
 
     node.classList.add(`${prefix}animated`, animationName);
+
+    // Adapt border color (after animation) to dark mode or light mode
+    let borderColor;
+    if(darkModeEnabled){
+      borderColor = "#fff";
+    }else{
+      borderColor = "#333";
+    }
+    node.style.setProperty("border-color", borderColor);
 
     // When the animation ends, we clean the classes and resolve the Promise
     function handleAnimationEnd(event) {
@@ -206,21 +236,6 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
-function wordLength() {
-  let wordLength = document.getElementById('wordLength').value;
-  if (wordLength < 3 || wordLength > 9) {
-    toastr.error("Please enter a number between 3 and 9");p
-  } else {
-    NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
-    WORD_LENGTH = wordLength;
-    restart();
-  }
-}
-
-let submit  = document.getElementById('submit');
-submit.addEventListener('click', wordLength, true);
-
-
 let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
 
@@ -244,7 +259,11 @@ function restart() {
   currentGuess = [];
   nextLetter = 0;
   for (const elem of document.getElementsByClassName("keyboard-button")) {
+    if(darkModeEnabled){
+      elem.style.backgroundColor = "#74787c";
+    } else {
       elem.style.backgroundColor = "#F0F0F0";
     }
+  }
 }
 
