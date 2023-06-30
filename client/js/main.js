@@ -13,8 +13,6 @@ if(document.cookie.match(/theme=dark/) != null) {
 
 document.addEventListener("DOMContentLoaded", initBoard);
 
-let newGame  = document.getElementById('newGame');
-newGame.addEventListener('click', restart, true);
 // start the game and sets a new word in the backend();
 const start = () => {
   fetch(`http://localhost:8000/api/game/`,{
@@ -34,9 +32,6 @@ const start = () => {
     .catch(err => console.log(err))
     
 }
-
-let menu = document.querySelector('#menu-icon');
-let navBar = document.querySelector('.navbar');
 
 let newGame  = document.getElementById('newGame');
 newGame.addEventListener('click', restart, true);
