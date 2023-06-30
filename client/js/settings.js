@@ -30,15 +30,24 @@ function setThemeFromCookie() {
 
 
 function wordLength() {
-    let wordLength = document.getElementById('wordLength').value;
+    let wordLength = document.getElementById('slider').value;
     if (wordLength < 3 || wordLength > 9) {
-      toastr.error("Please enter a number between 3 and 9");p
+      toastr.error("Please enter a number between 3 and 9");
     } else {
         document.cookie = 'wLength=' + wordLength + '; Expires=' + endDate + ';'
-        document.getElementById('wordLength').value = '';
         toastr.success("Word length changed to " + wordLength);
     }
   }
   
-  let submit  = document.getElementById('changeLength');
-  submit.addEventListener('click', wordLength, false);
+//   let submit  = document.getElementById('changeLength');
+//   submit.addEventListener('click', wordLength, false);
+
+
+let output = document.getElementById('output');
+let test = document.getElementById('slider');
+let slider = document.getElementById('slider').oninput = function() {
+   let value = this.value;
+   output.textContent = value;
+}
+
+test.addEventListener('change', wordLength, false);
