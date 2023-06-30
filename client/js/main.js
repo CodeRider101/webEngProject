@@ -67,6 +67,7 @@ function initBoard() {
       ?.split("=")[1];
   if (cookieValue !== undefined) {
   NUMBER_OF_GUESSES = parseInt(cookieValue) + 1;
+  guessesRemaining = NUMBER_OF_GUESSES;
   WORD_LENGTH = cookieValue;
   }
 
@@ -190,7 +191,7 @@ function insertLetter(pressedKey) {
   }
   pressedKey = pressedKey.toLowerCase();
 
-  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
+  let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];  
   let box = row.children[nextLetter];
   animateCSS(box, "pulse");
   box.textContent = pressedKey;
