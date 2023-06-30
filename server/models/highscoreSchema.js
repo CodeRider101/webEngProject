@@ -1,8 +1,12 @@
 import mongoose from 'mongoose';
 
 const highscoreSchema = new mongoose.Schema({
+    userID: {
+        type: uuID,
+        required: true
+    },
     score: {
-        type: String,
+        type: Int16Array,
         required: true
     },
     date: {
