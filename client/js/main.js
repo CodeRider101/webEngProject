@@ -6,10 +6,6 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 
-document.addEventListener("DOMContentLoaded", initBoard);
-
-let newGame  = document.getElementById('newGame');
-newGame.addEventListener('click', restart, true);
 // start the game and sets a new word in the backend();
 const start = () => {
   fetch(`http://localhost:8000/api/game/`,{
@@ -29,6 +25,18 @@ const start = () => {
     .catch(err => console.log(err))
     
 }
+
+let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
+
+let newGame  = document.getElementById('newGame');
+newGame.addEventListener('click', restart, true);
+
+//delete, enter button
+document.addEventListener("DOMContentLoaded", initBoard);
+document.getElementById("deleteButton").addEventListener("click", deleteLetter);
+document.getElementById("enterButton").addEventListener("click", checkGuess)
+
 
 //initializes the board with the right number of rows and boxes
 function initBoard() {
@@ -70,11 +78,13 @@ function shadeKeyBoard(letter, color) {
 //deletes the last letter in the box and the current guess
 function deleteLetter() {
   let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
-  let box = row.children[nextLetter - 1];
-  box.textContent = "";
-  box.classList.remove("filled-box");
-  currentGuess.pop();
-  nextLetter -= 1;
+  if(nextLetter !== 0){
+    let box = row.children[nextLetter - 1];
+    box.textContent = "";
+    box.classList.remove("filled-box");
+    currentGuess.pop();
+    nextLetter -= 1;
+  }
 }
 //checks the current guess based on the result from the backend and colors the boxes accordingly 
 async function checkGuess() {
@@ -181,7 +191,7 @@ document.addEventListener("keyup", (e) => {
   }
 
   let pressedKey = String(e.key);
-  if (pressedKey === "Backspace" && nextLetter !== 0) {
+  if (pressedKey === "Backspace") {
     deleteLetter();
     return;
   }
@@ -225,13 +235,6 @@ function wordLength() {
   }
 }
 
-let submit  = document.getElementById('submit');
-submit.addEventListener('click', wordLength, true);
-
-
-let menu = document.querySelector('#menu-icon');
-let navBar = document.querySelector('.navbar');
-
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
   navBar.classList.toggle('open');
@@ -255,4 +258,3 @@ function restart() {
       elem.style.backgroundColor = "#F0F0F0";
     }
 }
-
