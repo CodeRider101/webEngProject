@@ -1,6 +1,6 @@
 import axios from 'axios';
 import highScoreSchema from '../models/highscoreSchema.js';
-
+import cookieParser from 'cookie-parser';
 let rightGuessString;
 let tries = 0;
 let start;
@@ -56,9 +56,12 @@ export const check = async (req, res) => {
         let score = (wordLength/(tries*(time*0,2)))*10000;
         score = score.toFixed(0);
         console.log("Score: "+ score);
+        res.cookie("score", score);
+        console.log("Username: "+ req.query.username)
         let scoreEntry = new highScoreSchema({
+        username: req.query.username,
         score: score,
-        date: Date.now()
+        date: Date.UTC()
         })
         try{
         scoreEntry.save();
