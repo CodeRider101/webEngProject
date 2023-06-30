@@ -19,7 +19,7 @@ async function checkLogin(event) {
 
   document.cookie = "username=" + username;
 
-  await fetch(`http://localhost:8000/api/users/logIn`, {
+  await fetch(`http://localhost:8000/api/login/logIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -61,7 +61,19 @@ async function checkSignUp(event) {
 
 
   if(password === confirmPassword && username != "Not Acceptable"){
-    await fetch(`http://localhost:8000/createUser?username=${username}&password=${password}&securityQuestion=${securityQuestion}&securityAnswer=${securityAnswer}`)
+    await fetch(`http://localhost:8000/api/login/signUp`, {
+      method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      securityQuestion,
+      securityAnswer
+    }),
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);

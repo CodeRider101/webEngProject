@@ -1,66 +1,45 @@
 import userSchema from "../models/userSchema.js";
 import bcrypt from "bcryptjs";
 
-export const getAllUser = async (req, res, next) =>{
-    let users;
+export const resetPassword = async(req, res) =>{
     try{
-        users = await userSchema.find();
-    } catch(err){
-        console.log(err);
-    }
-    if(!userSchema){
-        return res.status(404).json({message: "No Users Found!"});
-    }
-    return res.status(200).json({users})
-}
-
-export const signup = async(req, res, next) =>{
-    const { name, email, password } = req.body;
-    let existingUser;
-    try{
-        existingUser = await userSchema.findOne({email});
-    }catch(err){
-        console.log(err);
-    }
-    if(!existingUser){
-        const hashedPassword = bcrypt.hashSync(password);
-        const newUser = new userSchema({
-            //yeet
-        })
-        try{
-            newUser.save();
-        }catch(err){
-            console.log(err);
-        }
-        return res.status(201).json({newUser});
-    }
-    return res.status(400).json({message:"User Already Exists!"});
-}
-
-export const login = async(req, res) =>{
-    try{
-        console.log("Moin")
-        console.log(req.body);
-        const { username, password } = req.body;
-
         const result = await userSchema.findOne({
-          username
+          username: req.body.username,
+          securityAnswer : req.body.securityAnswer,
         })
-        //found an user?
         if(result){
-          //correct password?
-          const isPasswordCorrect = bcrypt.compareSync(password, result.password);
-          if(isPasswordCorrect){
-            return res.status(200).json(result);
+          if(bcrypt.compareSync(req.body.password, result.password)){
+            return res.status(400).json({error: "Your New Password Can't Be The Old Password!"});
           }else{
-            //error : wrong password
-            return res.status(400).json({error: "You entered a wrong password..\nPlease try again or press 'forgot password'."});
+            const hashedPassword =  bcrypt.hashSync(req.body.password);
+            console.log(result+", pw: "+hashedPassword);
+            await userSchema.updateOne(
+              result,
+              {
+                password: hashedPassword
+              }
+            )
           }
-        //error : wrong username
         }else{
-          return res.status(400).json({error : "The user you entered is not given."});
+          throw new Error(response.statusText);
         }
+        return res.status(200).json(result);
       }catch(e){
-        res.status(400).json(e);
+        return res.status(400).json(e);
       }
+};
+
+export const getSecurityQuestion = async(req, res)=>{
+  try{
+    const result = await userSchema.findOne({
+      username: req.body.username
+    });
+    if(result){
+      return res.status(200).json(result.securityQuestion);
+    }else{
+      return res.status(400).json({error: "The User Is Not Given!"});
+    }
+  }catch(e){
+    console.log(e);
+  }
 }
