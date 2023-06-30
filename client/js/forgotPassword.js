@@ -1,3 +1,5 @@
+import { getCookieValue, setCookie} from "./cookies.js"
+
 const usernameField = document.getElementById('checkUname');
 if(usernameField){
     console.log("Forgot Password");
@@ -18,23 +20,33 @@ if(usernameField){
 async function checkWhichSecurityQuestion(event){
     console.log("checkWhichSecurityQuestion")
     const username = document.getElementById('checkUname').value;
-    await fetch(`http://localhost:8000/getSecurityQuestion?username=${username}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(response.statusText);
-          }else{
-            response.json().then(data => {
-              document.getElementById("securityQuestion").innerHTML = "<b>"+data+"</b>";
-              document.getElementById("securityQuestionInput").disabled = false;
-              document.getElementById("psw").disabled = false;
-              document.getElementById("psw2").disabled = false;
-              document.getElementById("checkUname").disabled = true;
-              document.getElementById("checkUser").disabled = true;
-            })
-            usernameField.removeEventListener('keypress', checkWhichSecurityQuestion, true);
-            document.getElementById('forgotPassword').addEventListener("submit", checkForgotPassword);
-          }
+    document.cookie = "username=" + username;
+      await fetch(`http://localhost:8000/api/users/getSecurityQuestion`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          username
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          alert("The User Is Not Given!");
+        }else{
+          response.json().then(data => {
+            document.getElementById("securityQuestion").innerHTML = "<b>"+data+"</b>";
+            document.getElementById("securityQuestionInput").disabled = false;
+            document.getElementById("psw").disabled = false;
+            document.getElementById("psw2").disabled = false;
+            document.getElementById("checkUname").disabled = true;
+            document.getElementById("checkUser").disabled = true;
+          })
+          usernameField.removeEventListener('keypress', checkWhichSecurityQuestion, true);
+          document.getElementById('forgotPassword').addEventListener("submit", checkForgotPassword);
         }
+      }
     )
   }
 
@@ -49,7 +61,18 @@ async function checkForgotPassword(event) {
     }
 
     if(password === confirmPassword && username != "Not Acceptable"){
-      await fetch(`http://localhost:8000/resetPasswordCheck?username=${username}&password=${password}&securityAnswer=${securityAnswer}`)
+      await fetch(`http://localhost:8000/api/users/resetPassword`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          securityAnswer
+        })
+      })
         .then(response => {
           if (!response.ok) {
             throw new Error(response.statusText);
@@ -67,21 +90,3 @@ async function checkForgotPassword(event) {
       alert("Your password didn't match the Confirmpassword!");
     }
   }
-
-
-function getCookieValue(name) {
-    let cookieName = name + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let cookieArray = decodedCookie.split(";");
-
-    for (let i = 0; i < cookieArray.length; i++) {
-        let cookie = cookieArray[i];
-        while (cookie.charAt(0) === " ") {
-            cookie = cookie.substring(1);
-            }
-        if (cookie.indexOf(cookieName) === 0) {
-            return cookie.substring(cookieName.length, cookie.length);
-        }
-    }
-    return "";
-}

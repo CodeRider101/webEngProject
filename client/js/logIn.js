@@ -4,7 +4,7 @@ if(signUp){
   signUp.addEventListener("submit", checkSignUp);
 }
 
-const login = document.getElementById("login");
+const login = document.getElementById("wholeBox");
 if(login){
   console.log("Sign In");
   login.addEventListener("submit", checkLogin);
@@ -12,14 +12,25 @@ if(login){
 
 async function checkLogin(event) {
   event.preventDefault();
+  console.log("login");
   let username = document.getElementById('uname').value;
   let password = document.getElementById('psw').value;
   let rememberMe = document.getElementById('remember').value;
 
-
   document.cookie = "username=" + username;
 
-  await fetch(`http://localhost:8000/logIn?username=${username}&password=${password}&remember=${rememberMe}`)
+  await fetch(`http://localhost:8000/api/login/logIn`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      rememberMe
+    }),
+  })
   .then(response => {
     if (response.ok) {
       // Successful login
@@ -50,7 +61,19 @@ async function checkSignUp(event) {
 
 
   if(password === confirmPassword && username != "Not Acceptable"){
-    await fetch(`http://localhost:8000/createUser?username=${username}&password=${password}&securityQuestion=${securityQuestion}&securityAnswer=${securityAnswer}`)
+    await fetch(`http://localhost:8000/api/login/signUp`, {
+      method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      securityQuestion,
+      securityAnswer
+    }),
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
