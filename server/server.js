@@ -8,6 +8,9 @@ import loginRouter from './routes/loginRoutes.js';
 
 const app = express();
 const port = 8000;
+let tries = 0;
+let start;
+let end;
 
 // Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
@@ -48,6 +51,10 @@ async function getRightGuess(length){
 
 app.get('/start', async (req, res) => {
   getRightGuess(req.query.length);
+  res.status(200).send("started");
+  console.log("started");
+  tries=0;
+  start = Date.now();
 });
 app.get('/check', async (req, res) => {
   const wordLength = req.query.length;
@@ -63,20 +70,33 @@ app.get('/check', async (req, res) => {
     let found = false;
     let resultCheck;
     if(guess === rightGuessString){
+      tries++;
       resultCheck= "correct";
       found=true;
+
+      end = Date.now();
+      let time = (end-start)/1000; 
+      console.log(time + " seconds");
+      let score = (wordLength/(tries*(time*0,2)))*1000;
+      score = score.toFixed(0);
+      console.log("Score: "+ score);
+      
+
+      tries=0;
     }
     while(!found){
       
       if(response.data[i] === guess){
         resultCheck= "inList";
         found=true;
+        tries++;
         break;
       }else if(response.data[i] === undefined){
         break;
       }
       i++;
     }
+    console.log(tries);
     let rightGuessArray = Array.from(rightGuessString);
     let guessArray = Array.from(guess);
     let letterColor = ["gray", "gray", "gray", "gray", "gray"];
@@ -121,3 +141,4 @@ app.get('/check', async (req, res) => {
     console.error(error);
   }
 });
+
