@@ -1,0 +1,7 @@
+[data-theme="dark"] {
+    --bgColor: #21272d;
+    --textColor: #fff;
+    --btnColor: #74787c;
+    --btnTextColor: #fff;
+    --btnBorderColor: #fff;
+}
