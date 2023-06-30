@@ -1,0 +1,104 @@
+/* Word Length Settings */
+
+.wordSettings{
+    margin-top: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="number"] {
+    width: 150px;
+}
+
+/* Theme Settings */
+
+.themeSettings {
+    margin-top: 20px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+label {
+    font-size: 13px;
+    color: var(--textColor);
+    font-weight: 500;
+}
+
+.themeToggle{
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+}
+
+.themeToggle > label.themeToggle-dark{
+    margin: 0px;
+    width: 140px;
+    height: 30px;
+    cursor: pointer;
+    background: #E0E0E0;
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.themeToggle > label.themeToggle-dark:before{
+    content: attr(data-on);
+    position: absolute;
+    font-size: 12px;
+    font-weight: 500;
+    top: 7px;
+    right: 20px;
+
+}
+
+.themeToggle > label.themeToggle-dark:after{
+    content: attr(data-off);
+    width: 70px;
+    height: 16px;
+    background: var(--bgColor);
+    border-radius: 26px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 6px -2px #111;
+    padding: 5px 0px;
+}
+
+.themeToggle input[type="checkbox"]{
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin: 0px;
+}
+
+.themeToggle input[type="checkbox"]:checked + label.themeToggle-dark{
+    background: #151515;
+    color: #fff;
+}
+
+.themeToggle input[type="checkbox"]:checked + label.themeToggle-dark:after{
+    content: attr(data-on);
+    left: 68px;
+    background: #3c3c3c;
+}
+
+.themeToggle input[type="checkbox"]:checked + label.themeToggle-dark:before{
+    content: attr(data-off);
+    right: auto;
+    left: 20px;
+}

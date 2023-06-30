@@ -8,6 +8,9 @@ import gameRouter from './routes/gameRoutes.js';
 
 const app = express();
 const port = 8000;
+let tries = 0;
+let start;
+let end;
 
 // Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
