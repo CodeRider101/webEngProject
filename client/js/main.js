@@ -6,6 +6,10 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 
+document.addEventListener("DOMContentLoaded", initBoard);
+
+let newGame  = document.getElementById('newGame');
+newGame.addEventListener('click', restart, true);
 // start the game and sets a new word in the backend();
 const start = () => {
   fetch(`http://localhost:8000/start?length=${WORD_LENGTH}`)
@@ -14,6 +18,7 @@ const start = () => {
       console.log(json)
     })
     .catch(err => console.log(err))
+    
 }
 
 //initializes the board with the right number of rows and boxes
@@ -35,7 +40,6 @@ function initBoard() {
   start();
 }
 
-initBoard();
 //colors one key on the keyboard 
 function shadeKeyBoard(letter, color) {
   for (const elem of document.getElementsByClassName("keyboard-button")) {
@@ -244,5 +248,3 @@ function restart() {
     }
 }
 
-let newGame  = document.getElementById('newGame');
-newGame.addEventListener('click', restart, true);
