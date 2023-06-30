@@ -1,9 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
-
-*{
-   font-family: 'Montserrat', sans-serif;
-}
-
 h1 {
   text-align: center;
  }
@@ -42,7 +36,6 @@ h1 {
    display: flex;
    flex-direction: column;
    align-items: center;
-   width: 100%;
  }
  
  #keyboard-cont div {
@@ -64,7 +57,6 @@ h1 {
    text-transform: uppercase;
    border-radius: 3px;
    border: 1px solid gray;
-   transition: all 0.5s ease;
  }
  .delete, .enter {
    width: 100px;
@@ -79,7 +71,7 @@ h1 {
    border: 1px solid gray;
  }
 
- @media screen and (max-width: 600px){
+ @media screen and (max-width: 900px){
   .keyboard-button{
     font-size: 0.9rem;
     width: 33px;
@@ -109,14 +101,16 @@ h1 {
    min-height: 100vh;
  }
  header{
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
+    right:0;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background:transparent;
-    padding: 28px 10%;
+    padding: 28px 12%;
     transition:all .50 ease;
  }
 
@@ -139,7 +133,6 @@ h1 {
     align-items: center;
     justify-content: center;
     list-style-type: none;
-    padding-inline-start: 0px;
  }
  .navbar a{
     color: var(--textColor);
@@ -193,7 +186,7 @@ h1 {
 
  @media (max-width: 1280px){
    header{
-      padding: 14px 10%;
+      padding: 14px 2%;
       transition: .2s;
    }
    .navbar a{
@@ -206,7 +199,19 @@ h1 {
       display: block;
    }
    .navbar{
-      display:none;
+      position: absolute;
+      top: 100%;
+      right: -100%;
+      height: 290vh;
+      width: 270px;
+      background: var(--mainColor);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-radius: 10px;
+      transition: all .50s ease;
+      z-index: 1000;
+      align-items: center;
    }
    .navbar a{
       display: block;
@@ -225,18 +230,6 @@ h1 {
     color: var(--accentColor);
    }
    .navbar.open{
-      position: absolute;
-      top: 100%;
-      height: 290vh;
-      width: 270px;
-      background: var(--mainColor);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      border-radius: 10px;
-      transition: all .50s ease;
-      z-index: 1000;
-      align-items: center;
-      right:1%;
+    right:2%;
    }
  }

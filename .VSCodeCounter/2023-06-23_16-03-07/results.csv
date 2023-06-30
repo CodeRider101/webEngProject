@@ -1,0 +1,19 @@
+"filename", "language", "HTML", "JavaScript", "CSS", "JSON", "Markdown", "comment", "blank", "total"
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/README.md", "Markdown", 0, 0, 0, 0, 2, 0, 1, 3
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/css/forgotPassword.css", "CSS", 0, 0, 17, 0, 0, 0, 0, 17
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/css/index.css", "CSS", 0, 0, 215, 0, 0, 1, 20, 236
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/css/login.css", "CSS", 0, 0, 97, 0, 0, 1, 14, 112
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/html/forgotPassword.html", "HTML", 35, 0, 0, 0, 0, 0, 0, 35
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/html/index.html", "HTML", 81, 0, 0, 0, 0, 1, 13, 95
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/html/login.html", "HTML", 30, 0, 0, 0, 0, 0, 7, 37
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/html/signup.html", "HTML", 38, 0, 0, 0, 0, 0, 3, 41
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/js/forgotPassword.js", "JavaScript", 0, 80, 0, 0, 0, 1, 6, 87
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/js/logIn.js", "JavaScript", 0, 63, 0, 0, 0, 4, 8, 75
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/client/js/main.js", "JavaScript", 0, 201, 0, 0, 0, 13, 34, 248
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/package-lock.json", "JSON", 0, 0, 0, 6, 0, 0, 1, 7
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/server/models/userSchema.js", "JavaScript", 0, 21, 0, 0, 0, 0, 3, 24
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/server/mongooseErrorHandler.js", "JavaScript", 0, 10, 0, 0, 0, 0, 1, 11
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/server/package-lock.json", "JSON", 0, 0, 0, 2469, 0, 0, 1, 2470
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/server/package.json", "JSON", 0, 0, 0, 23, 0, 0, 1, 24
+"/Users/I568800/Library/CloudStorage/OneDrive-SAPSE/DHBW/2tes Semester/webeng und pm/webEngProject/server/server.js", "JavaScript", 0, 196, 0, 0, 0, 9, 24, 229
+"Total", "-", 184, 571, 329, 2498, 2, 30, 137, 3751
