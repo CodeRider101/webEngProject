@@ -17,7 +17,16 @@ let newGame  = document.getElementById('newGame');
 newGame.addEventListener('click', restart, true);
 // start the game and sets a new word in the backend();
 const start = () => {
-  fetch(`http://localhost:8000/start?length=${WORD_LENGTH}`)
+  fetch(`http://localhost:8000/api/game/`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      length: WORD_LENGTH
+    }),
+  })
     .then(response => response.json())
     .then(json => {
       console.log(json)
@@ -25,6 +34,18 @@ const start = () => {
     .catch(err => console.log(err))
     
 }
+
+let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
+
+let newGame  = document.getElementById('newGame');
+newGame.addEventListener('click', restart, true);
+
+//delete, enter button
+document.addEventListener("DOMContentLoaded", initBoard);
+document.getElementById("deleteButton").addEventListener("click", deleteLetter);
+document.getElementById("enterButton").addEventListener("click", checkGuess)
+
 
 //initializes the board with the right number of rows and boxes
 function initBoard() {
@@ -76,11 +97,13 @@ function shadeKeyBoard(letter, color) {
 //deletes the last letter in the box and the current guess
 function deleteLetter() {
   let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining];
-  let box = row.children[nextLetter - 1];
-  box.textContent = "";
-  box.classList.remove("filled-box");
-  currentGuess.pop();
-  nextLetter -= 1;
+  if(nextLetter !== 0){
+    let box = row.children[nextLetter - 1];
+    box.textContent = "";
+    box.classList.remove("filled-box");
+    currentGuess.pop();
+    nextLetter -= 1;
+  }
 }
 //checks the current guess based on the result from the backend and colors the boxes accordingly 
 async function checkGuess() {
@@ -99,7 +122,7 @@ async function checkGuess() {
   let exists = true;
   let correct = false;
   let letterColor;
-  await fetch(`http://localhost:8000/check?guess=${guessString}&length=${WORD_LENGTH}`)
+  await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
@@ -110,8 +133,7 @@ async function checkGuess() {
       }else if(result[0] == 'correct'){
         correct=true;
       }
-    })
-    console.log(letterColor);
+    });
     if(!exists){
       toastr.error("Word not in list!");
       for(let i=0; i<WORD_LENGTH; i++){
@@ -203,7 +225,7 @@ document.addEventListener("keyup", (e) => {
   }
 
   let pressedKey = String(e.key);
-  if (pressedKey === "Backspace" && nextLetter !== 0) {
+  if (pressedKey === "Backspace") {
     deleteLetter();
     return;
   }
@@ -238,6 +260,17 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 
 let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
+
+function wordLength() {
+  let wordLength = document.getElementById('wordLength').value;
+  if (wordLength < 3 || wordLength > 9) {
+    toastr.error("Please enter a number between 3 and 9");p
+  } else {
+    NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
+    WORD_LENGTH = wordLength;
+    restart();
+  }
+}
 
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
