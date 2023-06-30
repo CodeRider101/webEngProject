@@ -11,7 +11,6 @@ if(document.cookie.match(/theme=dark/) != null) {
   darkModeEnabled = true;
 }
 
-document.addEventListener("DOMContentLoaded", initBoard);
 document.addEventListener("DOMContentLoaded", () => {
     if(getCookieValue('username') !== ""){
       document.getElementById('logIn').style.display = 'none';
