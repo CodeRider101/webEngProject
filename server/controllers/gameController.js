@@ -56,6 +56,7 @@ export const check = async (req, res) => {
         let score = (wordLength/(tries*(time*0,2)))*10000;
         score = score.toFixed(0);
         console.log("Score: "+ score);
+        console.log("Datum:" + DgetUTCDate());
         let scoreEntry = new highScoreSchema({
         score: score,
         date: Date.now()
