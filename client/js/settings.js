@@ -41,17 +41,8 @@ function wordLength() {
     toastr.success("Word length changed to " + wordLength);
     output.textContent = wordLength;
   }
-  
-//   let submit  = document.getElementById('changeLength');
-//   submit.addEventListener('click', wordLength, false);
-
 
 let output = document.getElementById('output');
 let slider = document.getElementById('slider');
-
-function updateSlider(){
-   let value = this.value;
-   output.textContent = value;
-}
 
 slider.addEventListener('change', wordLength, false);
