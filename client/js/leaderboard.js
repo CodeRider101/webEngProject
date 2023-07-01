@@ -6,8 +6,8 @@ menu.addEventListener('click', () => {
   navBar.classList.toggle('open');
 });
 
-let output = document.getElementById('output');
-let slider = document.getElementById('slider');
+let output = document.getElementById('outputScore');
+let slider = document.getElementById('sliderScore');
 
 function updateSlider(){
    let value = this.value;
