@@ -6,28 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum</title>
 
-    <link rel="stylesheet" href="../css/index.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/dark.css">
     <link rel="stylesheet" href="../css/impressum.css">
 </head>
 <body>
-    <div id="headerDiv">
+    <div class="header">
         <header>
             <div class="logo"><i class='bx bx-home'></i><span>VTordle</span></div>
-
             <ul class="navbar">
-                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index.html" class="active">Home</a></li>
                 <li><a href="./leaderboard.html">Leaderboard</a></li>
                 <li><a href="./settings.html">Game Settings</a></li>
-                <li><a href="./impressum.html" class="active"><b>Contact Us</b></a></li>
+                <li><a href="./impressum.html"><b>Contact Us</b></a></li>
             </ul>
-
-            <div class="main">
+        
+            <div class="main" hidden="hidden">
                 <a href="./login.html" class="user"><i class='bx bxs-user'></i><i>Sign in</i></a>
                 <div class="bx bx-menu" id="menu-icon"></div>
             </div>
-
             <div class="theme-switch" hidden="hidden">
                 <input type="checkbox" />
             </div>
@@ -37,8 +35,7 @@
     <div id="impressum">
         <h1>Impressum</h1>
         <p>
-            <b>Verantwortlich für den Inhalt dieser Website gemäß §5 TMG:</b>
-            <br>
+            <b>Verantwortlich für den<br>Inhalt dieser Website gemäß §5 TMG:</b>
             <br>
             VTordle GmbH
             <br>
@@ -49,7 +46,7 @@
         <p>
             <b>Vertreten durch:</b>
         </p>
-        <table>
+        <table id="contacts">
             <tr>
                 <td>Jonas Sinnhöfer</td>
                 <td>(Geschäftsführer)</td>
@@ -87,7 +84,7 @@
             Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE 123456789
         </p>
         <p>
-            <b>Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 55 RStV:</b>
+            <b>Verantwortlich für journalistisch-<br>redaktionelle Inhalte gemäß § 55 RStV:</b>
             <br>
             Jonas Sinnhöfer GmbH
             <br>
@@ -106,5 +103,7 @@
             Die auf dieser Website verwendeten Texte, Bilder und Grafiken unterliegen dem deutschen Urheberrecht. Eine Vervielfältigung, Bearbeitung, Verbreitung oder jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung der Person1 GmbH oder des jeweiligen Rechteinhabers.
         </p>
     </div>
+    
+    <script src="../js/settings.js" type="module"></script>
 </body>
 </html>
