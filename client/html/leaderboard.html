@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="../css/index.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
         <link rel="stylesheet" href="../css/dark.css">
-        <link rel="stylesheet" href="../css/index.css">
     </head>
     <body>
         <header>
@@ -36,15 +35,12 @@
             
             <label for="wordLength"><b>Choose your word length!</b></label>
 
-            <select name="wordLength" id="wordLength">
-                <option value="wordLength3">3</option>
-                <option value="wordLength4">4</option>
-                <option value="wordLength5">5</option>
-                <option value="wordLength6">6</option>
-                <option value="wordLength7">7</option>
-                <option value="wordLength8">8</option>
-                <option value="wordLength9">9</option>
-            </select>
+            <div class="slider-container">
+                <div class="value-container">
+                    <span id="outputScore" class="output"></span>
+                </div>
+                <input type="range" min="3" max="9" class="slider" id="sliderScore">
+            </div>
         </div>
         <div class="split left">
             <div class="centered">

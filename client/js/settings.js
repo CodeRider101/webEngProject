@@ -5,6 +5,12 @@ endDate.setFullYear(endDate.getFullYear() + 10);
 window.addEventListener('DOMContentLoaded', event => {
     toggleTheme();
     setThemeFromCookie();
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("wLength="))
+      ?.split("=")[1];
+    output.textContent = cookieValue;
+    slider.value = cookieValue;
 });
 
 const toggleTheme = () => {
@@ -30,15 +36,13 @@ function setThemeFromCookie() {
 
 
 function wordLength() {
-    let wordLength = document.getElementById('wordLength').value;
-    if (wordLength < 3 || wordLength > 9) {
-      toastr.error("Please enter a number between 3 and 9");p
-    } else {
-        document.cookie = 'wLength=' + wordLength + '; Expires=' + endDate + ';'
-        document.getElementById('wordLength').value = '';
-        toastr.success("Word length changed to " + wordLength);
-    }
+    let wordLength = document.getElementById('slider').value;
+    document.cookie = 'wLength=' + wordLength + '; Expires=' + endDate + ';'
+    toastr.success("Word length changed to " + wordLength);
+    output.textContent = wordLength;
   }
-  
-  let submit  = document.getElementById('changeLength');
-  submit.addEventListener('click', wordLength, false);
+
+let output = document.getElementById('output');
+let slider = document.getElementById('slider');
+
+slider.addEventListener('change', wordLength, false);
