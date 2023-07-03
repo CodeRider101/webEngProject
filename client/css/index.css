@@ -21,7 +21,7 @@ h1 {
    position: fixed;
    background: var(--bgColor);
    top: 0;
-   height: 90px;
+   height: 80px;
    width: 100%
  }
 
