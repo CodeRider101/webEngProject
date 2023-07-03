@@ -1,4 +1,9 @@
 /* Split the screen in half */
+.center{
+  text-align: center;
+  padding-top: 10px;
+}
+
 .split {
     height: 87%;
     width: 50%;
