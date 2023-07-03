@@ -9,6 +9,9 @@ window.addEventListener('DOMContentLoaded', event => {
       .split("; ")
       .find((row) => row.startsWith("wLength="))
       ?.split("=")[1];
+    if(cookieValue == undefined) {
+        document.cookie = 'wLength=5; Expires=' + endDate + ';'
+    }
     output.textContent = cookieValue;
     slider.value = cookieValue;
 });
