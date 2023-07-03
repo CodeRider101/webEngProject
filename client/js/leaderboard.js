@@ -1,3 +1,4 @@
+//slider
 let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
 
@@ -15,3 +16,10 @@ function updateSlider(){
 }
 
 slider.addEventListener('change', updateSlider, false);
+
+//
+
+const signUp = document.getElementById("leaderboard");
+if(leaderboard){
+  console.log("Sign Up");
+}

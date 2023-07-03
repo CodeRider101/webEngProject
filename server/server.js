@@ -1,10 +1,11 @@
-import express, { response } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRouter from './routes/userRoutes.js';
 import loginRouter from './routes/loginRoutes.js';
 import gameRouter from './routes/gameRoutes.js';
+import leaderboardRouter from './routes/leaderboardRoutes.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/api/users", userRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/game", gameRouter);
+app.use("/api/leaderboard", leaderboardRouter);
 
 
 
