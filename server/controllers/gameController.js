@@ -56,12 +56,13 @@ export const check = async (req, res) => {
         let score = (wordLength/(tries*(time*0,2)))*10000;
         score = score.toFixed(0);
         console.log("Score: "+ score);
-        res.cookie("score", score);
         console.log("Username: "+ req.query.username)
+        let date = new Date().toUTCString();
+        console.log(date);
         let scoreEntry = new highScoreSchema({
         username: req.query.username,
         score: score,
-        date: Date.UTC()
+        date: date
         })
         try{
         scoreEntry.save();
