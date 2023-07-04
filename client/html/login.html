@@ -4,15 +4,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/dark.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
 </head>
 <body>
-  <div class="theme-switch" hidden="hidden">
-    <input type="checkbox" />
+  <div class="header">
+    <header>
+      <div class="logo"><i class='bx bx-home'></i><span>VTordle</span></div>  
+      <ul class="navbar">
+        <li><a href="./index.html" class="active"><b>Home</b></a></li>
+        <li><a href="./leaderboard.html">Leaderboard</a></li>
+        <li><a href="./settings.html">Game Settings</a></li>
+        <li><a href="./impressum.html">Contact Us</a></li>
+      </ul>
+  
+      <div class="main">
+        <div class="bx bx-menu" id="menu-icon"></div>
+      </div>
+  
+      <div class="theme-switch" hidden="hidden">
+        <input type="checkbox" />
+      </div>
+    </header>
   </div>
 
   <div class="box">
     <form id="wholeBox" class="container">
-      <h2 style="padding-bottom: 30px;  text-decoration: underline;font-style: italic;">Login Form</h2>
+      <h2 style="padding-bottom: 30px;">Login Form</h2>
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
   
@@ -32,5 +51,7 @@
   </div>
 
 <script src="../js/logIn.js" type="module"></script>
+<script src="../js/popUp.js"></script>
+<script src="../js/settings.js" type="module"></script>
 </body>
 </html>

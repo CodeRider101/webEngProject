@@ -1,0 +1,21 @@
+.popUp{
+    width: 400px;
+    height: 500px;
+    background: white;
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.popUp p{
+    color: grey;
+}
+
+.open-popUp{
+    visibility: visible;
+}
