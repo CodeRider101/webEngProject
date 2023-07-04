@@ -1,3 +1,5 @@
+import { setThemeFromCookie } from './darkmode.js';
+
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
 let WORD_LENGTH = 5;

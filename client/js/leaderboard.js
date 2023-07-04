@@ -1,4 +1,5 @@
-//slider
+import { setThemeFromCookie } from './darkmode.js';
+
 let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
 
