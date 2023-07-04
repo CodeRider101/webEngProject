@@ -12,13 +12,12 @@
 *{
    font-family: 'Montserrat', sans-serif;
 }
-iframe {
-   border: none;
-}
+
 .header{
    position: fixed;
    background: var(--bgColor);
    top: 0;
+   left: 0%;
    height: 80px;
    width: 100%
 }
@@ -60,9 +59,6 @@ iframe {
    width: 100%;
  }
  
- #keyboard-cont div {
-   display: flex;
- }
  
  .row {
    margin: 0.2rem 0;
