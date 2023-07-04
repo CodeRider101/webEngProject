@@ -1,3 +1,5 @@
+import { setThemeFromCookie } from './darkmode.js';
+
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
 let WORD_LENGTH = 5;
@@ -131,7 +133,7 @@ async function checkGuess() {
   let exists = true;
   let correct = false;
   let letterColor;
-  await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}`)
+  await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}&username=${getCookieValue('username')}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
