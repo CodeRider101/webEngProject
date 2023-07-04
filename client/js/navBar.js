@@ -7,40 +7,62 @@ fetch('../html/navbar.html')
       document.body.insertBefore(navbarContainer, document.body.firstChild);
 });
 
-let homeTab = document.getElementById("Home");
-if(homeTab){
-    homeTab.addEventListener("click", ()=>{
-        homeTab.classList.add("active");
-        leaderBoardTab.classList.remove("active)");
-        settingsTab.classList.remove("active)");
-        contactUsTab.classList.remove("active)");
-    })
-}
-let leaderBoardTab = document.getElementById("leaderboard");
-if(leaderBoardTab){
-    leaderBoardTab.addEventListener("click", ()=>{
-        homeTab.classList.remove("active");
-        leaderBoardTab.classList.add("active)");
-        settingsTab.classList.remove("active)");
-        contactUsTab.classList.remove("active)");
-    })
-}
-let settingsTab = document.getElementById("settings");
-if(settingsTab){
-    settingsTab.addEventListener("click", ()=>{
-        homeTab.classList.remove("active");
-        leaderBoardTab.classList.remove("active)");
-        settingsTab.classList.add("active)");
-        contactUsTab.classList.remove("active)");
-    })
-}
-let contactUsTab = document.getElementById("contactUs");
-if(contactUsTab){
-    contactUsTab.addEventListener("click", ()=>{
-        console.log("Hallo Contact Us")
-        homeTab.classList.remove("active");
-        leaderBoardTab.classList.remove("active)");
-        settingsTab.classList.add("active)");
-        contactUsTab.classList.add("active)");
-    })
+function openPopup() {
+    var popup = document.getElementById('popup');
+    var overlay = document.getElementById('overlay');
+
+    popup.style.visibility = 'visible';
+    popup.style.opacity = '1';
+
+    overlay.classList.add('active');
+  }
+
+  function closePopup() {
+    var popup = document.getElementById('popup');
+    var overlay = document.getElementById('overlay');
+
+    popup.style.visibility = 'hidden';
+    popup.style.opacity = '0';
+
+    overlay.classList.remove('active');
+  }
+
+window.onload = function() {
+    let homeTab = document.getElementById("Home");
+    let leaderBoardTab = document.getElementById("leaderboard");
+    let settingsTab = document.getElementById("settings");
+    let contactUsTab = document.getElementById("contactUs");
+    if(homeTab){
+        homeTab.addEventListener("click", ()=>{
+            homeTab.classList.add("active");
+            leaderBoardTab.classList.remove("active)");
+            settingsTab.classList.remove("active)");
+            contactUsTab.classList.remove("active)");
+        })
+    }
+    if(leaderBoardTab){
+        leaderBoardTab.addEventListener("click", ()=>{
+            homeTab.classList.remove("active");
+            leaderBoardTab.classList.add("active)");
+            settingsTab.classList.remove("active)");
+            contactUsTab.classList.remove("active)");
+        })
+    }
+    if(settingsTab){
+        settingsTab.addEventListener("click", ()=>{
+            homeTab.classList.remove("active");
+            leaderBoardTab.classList.remove("active)");
+            settingsTab.classList.add("active)");
+            contactUsTab.classList.remove("active)");
+        })
+    }
+    if(contactUsTab){
+        contactUsTab.addEventListener("click", ()=>{
+            console.log("Hallo Contact Us")
+            contactUsTab.classList.toggle("active)");
+            homeTab.classList.remove("active");
+            leaderBoardTab.classList.remove("active)");
+            settingsTab.classList.remove("active)");
+        })
+    }
 }

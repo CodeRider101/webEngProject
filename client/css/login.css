@@ -5,23 +5,20 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.box{
-  position: relative;
+.login-box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 420px;
   height: 600px;
   border-radius: 10px;
   background-color: rgb(192, 189, 189);
   overflow: hidden;
+  z-index: 100;
 }
 
-.box form{
+.login-box form{
   position: absolute;
   padding: 50px 40px;
   inset: 6px;
@@ -30,10 +27,11 @@ body{
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  z-index: 100;
 }
 
 
-.box::before{
+.login-box::before{
   content: "";
   position: absolute;
   top: -50%;
@@ -45,7 +43,7 @@ body{
   transform-origin: bottom right;
   animation: animate 10s linear infinite;
 }
-.box::after{
+.login-box::after{
   content: "";
   position: absolute;
   top: -50%;
@@ -80,7 +78,7 @@ input[type=text], input[type=password] {
   margin-bottom: 30px;
 }
 
-button {
+.login {
   background-color: #22ab3b;
   color: white;
   padding: 14px 25px;

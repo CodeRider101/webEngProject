@@ -1,33 +1,53 @@
 <link href="../css/navBar.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/dark.css">
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/dark.css">
+<link rel="stylesheet" href="../css/login.css">
 <div class="header">
-    <header>
-        <div class="logo">
-            <i class='bx bx-home'></i>
-            <span>VTordle</span>
-        </div>
-  
-    
+  <header>
+      <div class="logo"><i class='bx bx-home'></i><span>VTordle</span></div>
       <ul class="navbar">
-        <li><a id="Home" href="./index.html" target="_self">Home</a></li>
-        <li><a id="leaderboard" href="./leaderboard.html" target="_parent" >Leaderboard</a></li>
-        <li><a id="settings" href="./settings.html" target="_parent" >Game Settings</a></li>
-        <li><a id="contactUs" href="./impressum.html" target="_parent" >Contact Us</a></li>
+          <li><a id="Home" href="./index.html">Home</a></li>
+          <li><a id="leaderboard" href="./leaderboard.html">Leaderboard</a></li>
+          <li><a id="settings" href="./settings.html">Game Settings</a></li>
+          <li><a id="contactUs" href="./impressum.html">Contact Us</a></li>
       </ul>
   
-      <div class="main">
-        <a class="user" target="_parent" href="./login.html" id="logIn">Sign in</a>
-        <a class="user" id="userInfo"><i class='bx bxs-user' id="userIcon"></i><span id="username"></span></a>
-        <div class="bx bx-menu" id="menu-icon"></div>
+      <div class="main" hidden="hidden">
+        <a onclick="openPopup()" class="user"><i class='bx bxs-user'></i><i>Sign in</i></a>
+        <div id="popup" class="popup">
+          <div class="popup-content">
+            <!-- LogIn HTML -->
+            <div class="login-box">
+              <form id="wholeBox" class="container">
+                <h2 style="padding-bottom: 30px;">Login Form</h2>
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember" id="remember"> Remember me
+                </label>
+                <button class="login" type="submit">Login</button>
+                <div style="display:flex;">
+                  <a class="cancelbtn" onclick="closePopup()" style="flex:1; margin-right: 10px;" >Cancel</a>
+                  <a class="signup" style="flex:1" href="./signup.html">Sign Up</a>
+                </div>
+                <span class="psw"><a href="./forgotPassword.html">Forgot password?</a></span>
+                
+              </form>
+            </div>
+            <!-- end login html file -->
+          </div>
+        </div>
+      <div id="overlay" class="overlay"></div>
+          <div class="bx bx-menu" id="menu-icon"></div>
       </div>
-  
-      <div class="theme-switch" hidden="hidden">
-        <input type="checkbox" />
-      </div>
-    </header>
-  </div>
+  </header>
+</div>
 <script src="../js/navBar.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="../js/settings.js" type="module"></script>
 <script src="../js/darkmode.js"></script>
+<script src="../js/logIn.js"></script>
