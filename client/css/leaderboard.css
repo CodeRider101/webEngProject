@@ -1,32 +1,36 @@
 /* Split the screen in half */
 .center{
   text-align: center;
+  z-index: 10;
   padding-top: 10px;
 }
 
+#wordLengthChooser{
+  margin-top: 100px;
+}
 .split {
-    height: 87%;
+    height: 100%;
     width: 50%;
     position: fixed;
     z-index: 1;
     top: 0;
     overflow-x: hidden;
     padding-top: 20px;
-    margin-top: 130px;
+    margin-top: 200px;
   }
   
   /* Control the left side */
   .left {
     left: 0;
-    margin-top: 200px;
     background-color: #2196f3;
+    z-index: -1;
   }
   
   /* Control the right side */
   .right {
     right: 0;
-    margin-top: 200px;
     background-color: #add1ee;
+    z-index: -1;
 
   }
 
