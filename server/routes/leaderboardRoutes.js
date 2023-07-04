@@ -3,6 +3,6 @@ import { leaderboardOnInnit } from "../controllers/leaderboardController.js";
 
 const leaderboardRouter = express.Router();
 
-leaderboardRouter.get("/lead", leaderboardOnInnit);
+leaderboardRouter.get("/", leaderboardOnInnit);
 
 export default leaderboardRouter;

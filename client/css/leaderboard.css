@@ -50,7 +50,7 @@
     text-align: center;
    }
 
-   #container {
+   .container {
 	width: 600px;
 	height: auto;
 }
