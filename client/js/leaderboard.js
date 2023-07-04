@@ -2,26 +2,21 @@ import { setThemeFromCookie } from './darkmode.js';
 
 let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
-let wordLength = 5;
-let timeSpan = "All time";
+
 
 window.onload = function() {
   console.log("Leaderboard"); 
-  document.getElementById('sliderScore').setAttribute("value",wordLength);
-  document.getElementById('outputScore').textContent = wordLength;
   document.querySelector('#selectLeaderboard').addEventListener('click', (e) => {
-    timeSpan = e.target.textContent;
-    loadOverallBest(wordLength, timeSpan);
+    console.log(e.target.textContent);
   })
-  loadOverallBest(wordLength, timeSpan)
-  loadPersonalBest(wordLength);
+  loadPersonalBest();
 }
 
 function switchLeaderboard(timeSpan){
 
 }
 
-function loadPersonalBest(wordlength){
+function loadPersonalBest(){
   const mockData = [
     {
       name: "jeje",
@@ -57,28 +52,7 @@ function loadPersonalBest(wordlength){
     row.setAttribute("class", "row");
     const place = document.createElement("div");
     place.setAttribute("class", "place"); 
-    let p = "1";
-    switch(i){
-      case 1:
-        p= "1st";
-        break;
-      case 2:
-        p= "2nd";
-        break;
-
-      case 3:
-        p= "3rd";  
-        break;
-
-      case 4:
-        p= "4th";
-        break;
-
-      case 5:
-        p= "5th";    
-        break;
-    }
-    place.innerHTML=p;
+    place.innerHTML=i.toString();
     const score = document.createElement("div");
     score.setAttribute("class", "score");
     score.innerHTML=entry.score;
@@ -90,72 +64,20 @@ function loadPersonalBest(wordlength){
     row.appendChild(score);
     row.appendChild(date);
     personalContainer.appendChild(row);
+
+
     i ++;
   }
-}
-
-function loadOverallBest(wordLength, timeSpan){
-  const mockData = [
-    {
-      name: "jeje",
-      score: "21533",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "253633",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "213",
-      date:"253h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "2133",
-      date:"32h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "33",
-      date:"28th June 2023"
-    }
-  ];
-  
 
   const overallContainer = document.getElementById("overallContainer");
-  console.log("wordLength: "+ wordLength);
-  console.log("timeSpan: "+ timeSpan);
 
-  let i = 1;
+  let o = 1;
   for(const entry of mockData){
     const row = document.createElement("div");
     row.setAttribute("class", "row");
     const place = document.createElement("div");
     place.setAttribute("class", "place"); 
-    let p = 1;
-    switch(i){
-      case 1:
-        p= "1st";
-        break;
-      case 2:
-        p= "2nd";
-        break;
-
-      case 3:
-        p= "3rd";       
-        break;
-
-      case 4:
-        p= "4th";       
-        break;
-
-      case 5:
-        p= "5th";       
-        break;
-    }
-    place.innerHTML=p;
+    place.innerHTML=o.toString();
 
     const name = document.createElement("div");
     name.setAttribute("class", "name");
@@ -175,7 +97,7 @@ function loadOverallBest(wordLength, timeSpan){
     overallContainer.appendChild(row);
 
 
-    i ++;
+    o ++;
   }
 
 }
@@ -186,19 +108,17 @@ menu.addEventListener('click', () => {
   navBar.classList.toggle('open');
 });
 
-
 let output = document.getElementById('outputScore');
 let slider = document.getElementById('sliderScore');
 
+function updateSlider(){
+   let value = this.value;
+   output.textContent = value;
+}
+
 slider.addEventListener('change', updateSlider, false);
 
-// Word length slider
-function updateSlider() {
-  wordLength = document.getElementById('sliderScore').value;
-  output.textContent = wordLength;
-  loadPersonalBest(wordLength);
-  loadOverallBest(wordLength, timeSpan);
-}
+//
 
 const leaderboard = document.getElementById("leaderboard");
 if(leaderboard){
