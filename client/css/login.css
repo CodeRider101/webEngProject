@@ -141,6 +141,12 @@ button:hover {
   position: relative;
 }
 
+img{
+  width: 34px;
+  height: 28px;
+  margin-right: 3px;
+}
+
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
