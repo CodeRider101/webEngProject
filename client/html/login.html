@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/dark.css">
     <link rel="stylesheet" href="../css/popup.css">
@@ -13,12 +14,18 @@
 <body>
   <div class="login-box">
     <form id="wholeBox" class="container">
-      <h2 style="padding-bottom: 30px;">Login Form</h2>
+      <h2 style="padding-bottom: 30px;">Sign in</h2>
       <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+      <div>
+        <i id="userIcon" class='bx bxs-user'></i>
+        <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+      </div>
   
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <div>
+        <i id="lockIcon" class='bx bxs-lock'></i>
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      </div>
       <label>
         <input type="checkbox" checked="checked" name="remember" id="remember"> Remember me
       </label>

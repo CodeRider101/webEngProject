@@ -20,12 +20,21 @@
             <!-- LogIn HTML -->
             <div class="login-box">
               <form id="wholeBox" class="container">
-                <h2 style="padding-bottom: 30px;">Login Form</h2>
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
-            
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                <h2 style="padding-bottom: 30px;">Sign in</h2>
+                <div class="formGroup">
+                  <label for="uname"><b>Username</b></label>
+                  <div>
+                    <i class='bx bxs-user loginIcon'></i>
+                    <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+                  </div>
+                </div>
+                <div class="formGroup">
+                  <label for="psw"><b>Password</b></label>
+                  <div>
+                    <i class='bx bxs-lock loginIcon'></i>
+                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                  </div>
+                </div>
                 <label>
                   <input type="checkbox" checked="checked" name="remember" id="remember"> Remember me
                 </label>
