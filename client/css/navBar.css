@@ -15,6 +15,7 @@
 .active{
    font-weight: bold;
 }
+
 .header{
    position: fixed;
    background: var(--bgColor);
