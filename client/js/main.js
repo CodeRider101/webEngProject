@@ -1,4 +1,5 @@
 import { setThemeFromCookie } from './darkmode.js';
+import { startConfetti, stopConfetti } from './confetti.js';
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -173,6 +174,7 @@ async function checkGuess() {
   if (correct) {
     toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
+    startConfetti();
     return;
   } else {
     guessesRemaining -= 1;
@@ -289,6 +291,7 @@ menu.addEventListener('click', () => {
 });
 
 function restart() {
+  stopConfetti();
   const rows = document.getElementsByClassName("letter-row");
     while(rows.length > 0){
       rows[0].parentNode.removeChild(rows[0]);
