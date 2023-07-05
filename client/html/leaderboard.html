@@ -6,10 +6,15 @@
         <title>Leaderboard</title>
         <link rel="stylesheet" href="../css/leaderboard.css">
         <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/dark.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+        <script src="../js/navBar.js" defer></script>
     </head>
     <body>
         <script src="../js/navBar.js"></script>
+        <div class="theme-switch" hidden="hidden">
+            <input type="checkbox" />
+        </div>
         <div class="center" id="wordLengthChooser">
             <label for="wordLength"><b>Choose your word length!</b></label>
 
@@ -30,23 +35,22 @@
           </div>
           
           <div class="split right">
-            <div class="centered">
+            <div class="centered"> 
                 <h2>Overall Leaderboard</h2>
                 
-                <ul class="navbarLead" id="selectLeaderboard">
-                    <li>Hourly</li>
+                <ul class="selectLeaderboard">
+                    <li class="l1">Hourly</li>
                     <li>Daily</li>
                     <li>Weekly</li>
                     <li>Monthly</li>
                     <li>All time</li>
-                 </ul>
+                </ul>
                 <div class="container" id="overallContainer">
                     
                 </div>
             </div>
           </div>
+
+          <script src="../js/leaderboard.js" type="module"></script>
     </body>
-    
-    <script src="../js/leaderboard.js" type="module"></script>
-    <script src="../js/settings.js" type="module"></script>
 </html>
