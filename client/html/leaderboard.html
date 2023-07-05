@@ -7,32 +7,10 @@
         <link rel="stylesheet" href="../css/leaderboard.css">
         <link rel="stylesheet" href="../css/index.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
-        <link rel="stylesheet" href="../css/dark.css">
     </head>
     <body>
-        <header>
-            <div class="logo"><i class='bx bx-home'></i><span>VTordle</span></div>
-        
-        
-            <ul class="navbar">
-            <li><a href="./index.html" class="active">Home</a></li>
-            <li><a href="./leaderboard.html"><b>Leaderboard</b></a></li>
-            <li><a href="./settings.html">Game Settings</a></li>
-            <li><a href="./impressum.html">Contact Us</a></li>
-            </ul>
-        
-            <div class="main">
-            <a href="./login.html" class="user"><i class='bx bxs-user'></i><i>Sign in</i></a>
-            <div class="bx bx-menu" id="menu-icon"></div>
-            </div>
-
-            <div class="theme-switch" hidden="hidden">
-              <input type="checkbox" />
-            </div>
-        </header>
-
-        <div class="center">
-            
+        <script src="../js/navBar.js"></script>
+        <div class="center" id="wordLengthChooser">
             <label for="wordLength"><b>Choose your word length!</b></label>
 
             <div class="slider-container">
@@ -42,44 +20,11 @@
                 <input type="range" min="3" max="9" class="slider" id="sliderScore">
             </div>
         </div>
-        <div class="split left">
+        <div class="split left" id="leaderboard">
             <div class="centered">
                 <h2>Personal Best</h2>
-                <div id="container">
-                    <div class="row">
-                        <div class="place">1st</div>
-                        <div class="name">Player1</div>
-                        <div class="score">430</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
+                <div class="container" id="personalContainer">
                     
-                    <div class="row">
-                        <div class="place">2nd</div>
-                        <div class="name">Player2</div>
-                        <div class="score">580</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="place">3rd</div>
-                        <div class="name">Player3</div>
-                        <div class="score">310</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="place">4th</div>
-                        <div class="name">Player4</div>
-                        <div class="score">640</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="place">5th</div>
-                        <div class="name">Player5</div>
-                        <div class="score">495</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
                 </div>
             </div>
           </div>
@@ -95,41 +40,8 @@
                     <li><a>Monthly</a></li>
                     <li><a>All time</a></li>
                     </ul>
-                <div id="container">
-                    <div class="row">
-                        <div class="place">1st</div>
-                        <div class="name">Player1</div>
-                        <div class="score">430</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
+                <div class="container" id="overallContainer">
                     
-                    <div class="row">
-                        <div class="place">2nd</div>
-                        <div class="name">Player2</div>
-                        <div class="score">580</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="place">3rd</div>
-                        <div class="name">Player3</div>
-                        <div class="score">310</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="place">4th</div>
-                        <div class="name">Player4</div>
-                        <div class="score">640</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="place">5th</div>
-                        <div class="name">Player5</div>
-                        <div class="score">495</div>
-                        <div class="date">20th June 2021</div>
-                    </div>
                 </div>
             </div>
           </div>

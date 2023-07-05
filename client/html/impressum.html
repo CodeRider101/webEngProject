@@ -12,26 +12,7 @@
     <link rel="stylesheet" href="../css/impressum.css">
 </head>
 <body>
-    <div class="header">
-        <header>
-            <div class="logo"><i class='bx bx-home'></i><span>VTordle</span></div>
-            <ul class="navbar">
-                <li><a href="./index.html" class="active">Home</a></li>
-                <li><a href="./leaderboard.html">Leaderboard</a></li>
-                <li><a href="./settings.html">Game Settings</a></li>
-                <li><a href="./impressum.html"><b>Contact Us</b></a></li>
-            </ul>
-        
-            <div class="main" hidden="hidden">
-                <a href="./login.html" class="user"><i class='bx bxs-user'></i><i>Sign in</i></a>
-                <div class="bx bx-menu" id="menu-icon"></div>
-            </div>
-            <div class="theme-switch" hidden="hidden">
-                <input type="checkbox" />
-            </div>
-        </header>
-    </div>
-
+    <script src="../js/navBar.js"></script>
     <div id="impressum">
         <h1>Impressum</h1>
         <p>
@@ -103,7 +84,9 @@
             Die auf dieser Website verwendeten Texte, Bilder und Grafiken unterliegen dem deutschen Urheberrecht. Eine Vervielfältigung, Bearbeitung, Verbreitung oder jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung der Person1 GmbH oder des jeweiligen Rechteinhabers.
         </p>
     </div>
-    
-    <script src="../js/settings.js" type="module"></script>
+
+<script type="module">
+   import { setThemeFromCookie } from '../js/darkmode.js';
+</script>
 </body>
 </html>

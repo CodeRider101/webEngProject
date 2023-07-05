@@ -12,6 +12,10 @@ const highscoreSchema = new mongoose.Schema({
     date: {
         type: String,
         required: true
+    },
+    wordLength: {
+        type: String,
+        required: true
     }
 });
 
