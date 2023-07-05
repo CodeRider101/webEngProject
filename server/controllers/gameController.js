@@ -53,7 +53,7 @@ export const check = async (req, res) => {
         end = Date.now();
         let time = (end-start)/1000; 
         console.log(time + " seconds");
-        let score = (wordLength/(tries*(time*0,2)))*10000;
+        let score = (wordLength/(tries+(time*0.2)))*10000;
         score = score.toFixed(0);
         console.log("Score: "+ score);
         console.log("Username: "+ req.query.username)

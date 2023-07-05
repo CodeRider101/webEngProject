@@ -4,12 +4,17 @@ let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
 let wordLength = 5;
 let timeSpan = "All time";
+let output = document.getElementById('outputScore');
+let slider = document.getElementById('sliderScore');
+
 
 window.onload = function() {
   console.log("Leaderboard"); 
+  slider.addEventListener('change', updateSlider, false);
   document.getElementById('sliderScore').setAttribute("value",wordLength);
   document.getElementById('outputScore').textContent = wordLength;
-  document.querySelector('#selectLeaderboard').addEventListener('click', (e) => {
+  document.querySelector('.selectLeaderboard').addEventListener('click', (e) => {
+    console.log("ich wurde gedrückt: "+ e.target.textContent)
     timeSpan = e.target.textContent;
     loadOverallBest(wordLength, timeSpan);
   })
@@ -187,10 +192,7 @@ menu.addEventListener('click', () => {
 });
 
 
-let output = document.getElementById('outputScore');
-let slider = document.getElementById('sliderScore');
 
-slider.addEventListener('change', updateSlider, false);
 
 // Word length slider
 function updateSlider() {
