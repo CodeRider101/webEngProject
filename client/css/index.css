@@ -142,3 +142,80 @@
   top:0px;
   left:0px;
  }
+
+
+ /* Modal */
+
+ .modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid var(--textColor);
+  border-radius: 10px;
+  z-index: 10;
+  background-color: var(--bgColor);
+  width: 400px;
+  max-width: 50%;
+ }
+
+ .modal.active{
+  transform: translate(-50%, -50%) scale(1);
+ }
+
+ .modal-header{
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--textColor);
+ }
+
+ .modal-header .title{
+  font-size: 1.25rem;
+  font-weight: bold;
+ }
+
+ .modal-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--textColor);
+ }
+
+ .modal-body {
+  padding: 30px 15px;
+ }
+
+ #overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(64, 75, 78, 0.5);
+  pointer-events: none;
+ }
+
+ #overlay.active {
+  pointer-events: all;
+  opacity: 1;
+ }
+
+ .playAgain{
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+
+ }
+
+ #newGame2 {
+  padding: 10px 20px;
+  color: var(--btnTextColor);
+ }

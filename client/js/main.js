@@ -1,5 +1,5 @@
 import { setThemeFromCookie } from './darkmode.js';
-import { startConfetti, stopConfetti } from './confetti.js';
+import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.js';
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -51,6 +51,9 @@ const start = () => {
 
 let newGame  = document.getElementById('newGame');
 newGame.addEventListener('click', restart, true);
+
+let newGame2  = document.getElementById('newGame2');
+newGame2.addEventListener('click', restart, true);
 
 //delete, enter button
 document.addEventListener("DOMContentLoaded", initBoard);
@@ -172,8 +175,9 @@ async function checkGuess() {
   }
 
   if (correct) {
-    toastr.success("You guessed right! Game over!");
+    // toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
+    openModal();
     startConfetti();
     return;
   } else {
@@ -291,6 +295,7 @@ menu.addEventListener('click', () => {
 });
 
 function restart() {
+  closeModal();
   stopConfetti();
   const rows = document.getElementsByClassName("letter-row");
     while(rows.length > 0){
@@ -313,3 +318,4 @@ function restart() {
     }
   }
 }
+

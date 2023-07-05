@@ -128,3 +128,27 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 		}
 	}
 })();
+
+
+// Popup
+const closeModalButtons = document.querySelectorAll('[data-close-button]');
+const overlay = document.getElementById('overlay');
+const modal = document.getElementById('modal');
+
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    closeModal(modal);
+  });
+});
+
+export function openModal() {
+	if(modal == null) return;
+	modal.classList.add('active');
+	overlay.classList.add('active');
+}
+
+export function closeModal() {
+	if(modal == null) return;
+	modal.classList.remove('active');
+	overlay.classList.remove('active');
+}
