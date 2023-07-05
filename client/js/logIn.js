@@ -1,20 +1,15 @@
 const login = document.getElementById("wholeBox");
 if(login){
-  console.log("Sign In");
-  login.addEventListener("submit", checkLogin);
+  console.log("logIn");
+  login.addEventListener("submit", ()=>{
+    console.log("Dummer Hund");
+  }
+  );
 }
 
-window.onload = (event) => {
-  if(document.cookie){
-    createPopUp("Hey\Choose between free to play or play as a logged User to save your highscores and compare them with globals.");
-  }else{
-    console.log(document.cookie)
-  }
-};
-
 async function checkLogin(event) {
-  event.preventDefault();
   console.log("login");
+  event.preventDefault();
   let username = document.getElementById('uname').value;
   let password = document.getElementById('psw').value;
   let rememberMe = document.getElementById('remember').value;

@@ -7,6 +7,14 @@ fetch('../html/navbar.html')
       document.body.insertBefore(navbarContainer, document.body.firstChild);
 });
 
+let menu = document.querySelector('#menu-icon');
+if(menu){
+    menu.addEventListener('click', () => {
+        menu.classList.toggle('bx-x');
+        navBar.classList.toggle('open');
+      });
+}
+
 function openPopup() {
     var popup = document.getElementById('popup');
     var overlay = document.getElementById('overlay');

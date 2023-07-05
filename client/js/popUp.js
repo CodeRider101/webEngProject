@@ -1,6 +1,6 @@
 let popUp = document.getElementById("popUp");
 
-function createPopUp(text){
+export const createPopUp = (text)=>{
     const textP = document.createElement("p");
     textP.setAttribute("id", "popP");
     textP.appendChild(document.createTextNode(text));
@@ -25,7 +25,7 @@ function createPopUp(text){
         popUp = popUpDiv;
     }
 }
-function removePopUp(){
+export const removePopUp = ()=>{
     if(popUp){
         popUp.classList.remove("open-popUp")
     }

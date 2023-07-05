@@ -1,4 +1,5 @@
 import { setThemeFromCookie } from './darkmode.js';
+import { createPopUp, removePopUp } from './popUp.js';
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -7,10 +8,19 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 let darkModeEnabled;
+const popUp = document.getElementById("popup");
 
 if(document.cookie.match(/theme=dark/) != null) {
   darkModeEnabled = true;
 }
+
+// window.onload = (event) => {
+//   if(document.cookie){
+//     createPopUp("Hey\Choose between free to play or play as a logged User to save your highscores and compare them with globals.");
+//   }else{
+//     console.log(document.cookie)
+//   }
+// };
 
 document.addEventListener("DOMContentLoaded", () => {
     if(getCookieValue('username') !== ""){
@@ -187,7 +197,7 @@ async function checkGuess() {
 }
 //inserts a letter in the next box
 function insertLetter(pressedKey) {
-  if (nextLetter === WORD_LENGTH) {
+  if (nextLetter === WORD_LENGTH || popUp.style.visibility == 'visible') {
     return;
   }
   pressedKey = pressedKey.toLowerCase();
@@ -241,7 +251,7 @@ document.addEventListener("keyup", (e) => {
     return;
   }
 
-  if (pressedKey === "Enter") {
+  if (pressedKey === "Enter" && popUp.style.visibility != 'visible') {
     checkGuess();
     return;
   }

@@ -5,14 +5,16 @@ let navBar = document.querySelector('.navbar');
 let wordLength = 5;
 let timeSpan = "All time";
 
+
 window.onload = function() {
   console.log("Leaderboard"); 
   document.getElementById('sliderScore').setAttribute("value",wordLength);
   document.getElementById('outputScore').textContent = wordLength;
   document.querySelector('#selectLeaderboard').addEventListener('click', (e) => {
+    console.log("Yeet")
     timeSpan = e.target.textContent;
     loadOverallBest(wordLength, timeSpan);
-  })
+  });
   loadOverallBest(wordLength, timeSpan)
   loadPersonalBest(wordLength);
 }
@@ -198,9 +200,4 @@ function updateSlider() {
   output.textContent = wordLength;
   loadPersonalBest(wordLength);
   loadOverallBest(wordLength, timeSpan);
-}
-
-const leaderboard = document.getElementById("leaderboard");
-if(leaderboard){
-  console.log("Sign Up");
 }
