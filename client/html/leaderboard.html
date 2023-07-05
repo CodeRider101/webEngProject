@@ -6,10 +6,14 @@
         <title>Leaderboard</title>
         <link rel="stylesheet" href="../css/leaderboard.css">
         <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/dark.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     </head>
     <body>
         <script src="../js/navBar.js"></script>
+        <div class="theme-switch" hidden="hidden">
+            <input type="checkbox" />
+        </div>
         <div class="center" id="wordLengthChooser">
             <label for="wordLength"><b>Choose your word length!</b></label>
 
@@ -45,8 +49,7 @@
                 </div>
             </div>
           </div>
+
+          <script src="../js/leaderboard.js" type="module"></script>
     </body>
-    
-    <script src="../js/leaderboard.js" type="module"></script>
-    <script src="../js/settings.js" type="module"></script>
 </html>
