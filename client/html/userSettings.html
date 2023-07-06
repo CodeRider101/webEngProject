@@ -20,22 +20,26 @@
       <div id="nav-container"></div>
 
       <div id="userSettings">
-      <h1>User Settings</h1>
-      <h2 style="padding-bottom: 30px;">Sign in</h2>
+      <br>
       <div class="formGroup">
-        <label for="uname"><b>Username</b></label>
-        <div>
+        <label for="uname"><b>Change username:</b></label>
+
+        <div class="inputContainer">
           <i class='bx bxs-user loginIcon'></i>
           <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
         </div>
       </div>
       <div class="formGroup">
-        <label for="psw"><b>Password</b></label>
-        <div>
+        <label for="psw"><b>Change password:</b></label>
+        <div class="inputContainer">
           <i class='bx bxs-lock loginIcon'></i>
           <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
         </div>
-      </div> 
+      </div>
+      
+      <div class="signOut">
+        <i class='bx bx-log-out logoutIcon'></i>Sign Out
+      </div>
     </div>
 
 
@@ -45,5 +49,6 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="../js/settings.js" type="module"></script>
+<script src="../js/userSettings.js"></script>
 </body>
 </html>
