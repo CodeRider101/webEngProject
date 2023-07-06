@@ -189,7 +189,10 @@
  }
  
  .popup-content {
-   /* Add styles to your existing content */
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
  }
  
  .overlay {
@@ -211,3 +214,9 @@
    pointer-events: auto;
  }
  
+ .login-box{
+   z-index: 20;
+ }
+ #wholeBox{
+   z-index: 21;
+ }

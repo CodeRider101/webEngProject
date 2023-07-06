@@ -1,15 +1,5 @@
-const login = document.getElementById("wholeBox");
-if(login){
-  console.log("logIn");
-  login.addEventListener("submit", ()=>{
-    console.log("Dummer Hund");
-  }
-  );
-}
-
-async function checkLogin(event) {
-  console.log("login");
-  event.preventDefault();
+export const checkLogin =  async (event) => {
+  console.log("Check login");
   let username = document.getElementById('uname').value;
   let password = document.getElementById('psw').value;
   let rememberMe = document.getElementById('remember').value;

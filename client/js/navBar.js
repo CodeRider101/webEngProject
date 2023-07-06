@@ -1,3 +1,4 @@
+
 // Fetch and insert the navbar HTML
 fetch('../html/navbar.html')
     .then(response => response.text())
@@ -19,12 +20,51 @@ function openPopup() {
     var popup = document.getElementById('popup');
     var overlay = document.getElementById('overlay');
 
+    //Index.html
+    let wordle = document.getElementById('wordle')
+    //Leaderboard
+    let leaderboard = document.getElementById('leaderboardDiv')
+    //Settings.html
+    let settings = document.getElementById('settings')
+    //Impressum
+    let impressum = document.getElementById('impressum')
+
+    if(wordle){
+        wordle.style.zIndex = '-1';
+    }else if(leaderboard){
+        leaderboard.style.zIndex = '-1';
+    }else if(settings){
+        settings.style.zIndex = '-1';
+    }else if(impressum){
+        impressum.style.zIndex = '-1';
+    }
+
     popup.style.visibility = 'visible';
     popup.style.opacity = '1';
-    document.getElementById('wordle').style.zIndex = '-1';
 
     overlay.classList.add('active');
-  }
+
+    //set autoFocus on username Inputfield
+    document.getElementById("uname").focus();
+
+
+    const login = document.getElementById("logInButton");
+    if(login){
+        login.addEventListener('click', function() {
+            //Import the login Javascript
+            import('./logIn.js')
+                .then(module => {
+                    //Script loaded successfully
+                    //Import our module
+                    module.checkLogin();
+                    })
+                    .catch(error => {
+                    // Error while loading the script
+                    console.error('Error loading script:', error);
+                });
+        });
+    }
+}
 
   function closePopup() {
     var popup = document.getElementById('popup');
@@ -32,7 +72,25 @@ function openPopup() {
 
     popup.style.visibility = 'hidden';
     popup.style.opacity = '0';
-    document.getElementById('wordle').style.zIndex = '0';
+    
+    //Index.html
+    const wordle = document.getElementById('wordle')
+    //Leaderboard
+    const leaderboard = document.getElementById('wordle')
+    //Settings.html
+    const settings = document.getElementById('settings')
+    //Impressum
+    const impressum = document.getElementById('ksl')
+
+    if(wordle){
+        wordle.style.zIndex = '0';
+    }else if(leaderboard){
+        leaderboard.style.zIndex = '0';
+    }else if(settings){
+        settings.style.zIndex = '0';
+    }else if(impressum){
+        impressum.style.zIndex = '0';
+    }
 
 
     overlay.classList.remove('active');
