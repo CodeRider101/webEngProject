@@ -1,6 +1,6 @@
 .popUp{
-    width: 400px;
-    height: 500px;
+    width: 500px;
+    height: 600px;
     background: white;
     border-radius: 12px;
     position: absolute;
@@ -12,10 +12,32 @@
     z-index: 100;
 }
 
-.popUp p{
+.popUp p,h1{
     color: grey;
+    padding: 10px;
+}
+
+.popUp p:last-of-type{
+    color: #2196f3;;
+    font-weight: bold;
+
 }
 
 .open-popUp{
     visibility: visible;
+}
+
+#closePopUpButton{
+    
+  background-color: #22ab3b;
+  color: white;
+  padding: 14px 25px;
+  margin: 12px 0;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  font-size: large;
+  position: relative;
+  border-radius: 12px;
 }
