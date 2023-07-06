@@ -1,6 +1,7 @@
 import { setThemeFromCookie } from './darkmode.js';
 import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.js';
 
+const wordle = document.getElementById('wordle');
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
 let WORD_LENGTH = 5;
@@ -292,6 +293,12 @@ function wordLength() {
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
   navBar.classList.toggle('open');
+  
+  if(navBar.classList.contains('open')){
+    wordle.style.zIndex = "-1";}
+  else{
+    wordle.style.zIndex = "0";
+  }
 });
 
 function restart() {
