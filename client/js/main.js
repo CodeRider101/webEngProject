@@ -18,7 +18,8 @@ if(document.cookie.match(/theme=dark/) != null) {
 
 window.onload = (event) => {
   if(document.cookie){
-    createPopUp("Hey", ["This is a special edition of the game wordle.", "You can either Sign Up or Log In (if you already have an account) to save your highscores and compare yourself with the best players in the whole word or you play for free without any saves.", "Keep in mind that your data will be stored securely and will not be passed on to third parties!", "With this edition you can set the word length of the words to be searched for in the game settings. You can also choose the word length with which you want to compare yourself with others on the leaderboard. But beware! It's not about the length, it's about the best time and the number of attempts.", "When you find any bugs please write anyone of us an e-mail. You can find our mails in the 'Contact Us' Tab.", "Now have fun while playing!!"]);
+    console.log(document.cookie)
+    createPopUp("Hey!", ["This is a special edition of the classic game \"Wordle\".", "You can either Sign Up or Log In (if you already have an account) to save your highscores and compare yourself with the best players in the whole word or you play for free without any saves.", "Keep in mind that your data will be stored securely and will not be passed on to third parties!", "With this edition you can set the word length of the words to be searched for in the game settings. You can also choose the word length with which you want to compare yourself with others on the leaderboard. But beware! It's not about the length, it's about the best time and the number of attempts.", "In the unlikely event that you find any bugs, please feel free to contact us. You can find our mails in the 'Contact Us' Tab.", "Now have fun while playing!!"]);
   }else{
     console.log(document.cookie)
   }
