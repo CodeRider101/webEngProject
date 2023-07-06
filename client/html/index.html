@@ -19,53 +19,67 @@
   <div class="theme-switch" hidden="hidden">
     <input type="checkbox" />
   </div>
-    <div id="game-board">
-
-    </div>
-
-  <div id="keyboard-cont">
-      <div class="row">
-          <button class="keyboard-button">q</button>
-          <button class="keyboard-button">w</button>
-          <button class="keyboard-button">e</button>
-          <button class="keyboard-button">r</button>
-          <button class="keyboard-button">t</button>
-          <button class="keyboard-button">y</button>
-          <button class="keyboard-button">u</button>
-          <button class="keyboard-button i">i</button>
-          <button class="keyboard-button">o</button>
-          <button class="keyboard-button">p</button>
-      </div>
-      <div class="row">
-          <button class="keyboard-button">a</button>
-          <button class="keyboard-button">s</button>
-          <button class="keyboard-button">d</button>
-          <button class="keyboard-button">f</button>
-          <button class="keyboard-button">g</button>
-          <button class="keyboard-button">h</button>
-          <button class="keyboard-button">j</button>
-          <button class="keyboard-button">k</button>
-          <button class="keyboard-button">l</button>
-      </div>
-      <div class="row">
-          <button class="keyboard-button">z</button>
-          <button class="keyboard-button">x</button>
-          <button class="keyboard-button">c</button>
-          <button class="keyboard-button">v</button>
-          <button class="keyboard-button">b</button>
-          <button class="keyboard-button">n</button>
-          <button class="keyboard-button">m</button>
-          
-      </div>
-      <div class="row">
-        <button id="deleteButton" class="delete">Delete</button>
-        <button id="enterButton" class="enter">Enter</button>
-      </div>
-      <button class="resetBtn" type="button" id="newGame" onclick="this.blur()">New Game</button>
-
-  </div>
-
   
+  <div id="wordle" class="wordle">
+      <div id="game-board">
+
+      </div>
+      <div id="keyboard-cont">
+          <div class="row">
+              <button class="keyboard-button">q</button>
+              <button class="keyboard-button">w</button>
+              <button class="keyboard-button">e</button>
+              <button class="keyboard-button">r</button>
+              <button class="keyboard-button">t</button>
+              <button class="keyboard-button">y</button>
+              <button class="keyboard-button">u</button>
+              <button class="keyboard-button i">i</button>
+              <button class="keyboard-button">o</button>
+              <button class="keyboard-button">p</button>
+          </div>
+          <div class="row">
+              <button class="keyboard-button">a</button>
+              <button class="keyboard-button">s</button>
+              <button class="keyboard-button">d</button>
+              <button class="keyboard-button">f</button>
+              <button class="keyboard-button">g</button>
+              <button class="keyboard-button">h</button>
+              <button class="keyboard-button">j</button>
+              <button class="keyboard-button">k</button>
+              <button class="keyboard-button">l</button>
+          </div>
+          <div class="row">
+              <button class="keyboard-button">z</button>
+              <button class="keyboard-button">x</button>
+              <button class="keyboard-button">c</button>
+              <button class="keyboard-button">v</button>
+              <button class="keyboard-button">b</button>
+              <button class="keyboard-button">n</button>
+              <button class="keyboard-button">m</button>
+              
+          </div>
+          <div class="row">
+            <button id="deleteButton" class="delete">Delete</button>
+            <button id="enterButton" class="enter">Enter</button>
+          </div>
+          <button class="resetBtn" type="button" id="newGame" onclick="this.blur()">New Game</button>
+      </div>
+          
+  </div>
+<div class="modal" id="modal">
+  <div class="modal-header">
+    <div class="title">Congratulations!</div>
+    <button data-close-button class="close-button">&times;</button>
+  </div>
+  <div class="modal-body">
+    <h3 id="modal-text">You won!</h3>
+    <div class="playAgain">
+      <label for="newGame2">Want to play again?</label>
+      <button class="resetBtn" type="button" id="newGame2" onclick="this.blur()">Restart</button>
+    </div>
+  </div>
+</div>
+<div id="overlay"></div>
   <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

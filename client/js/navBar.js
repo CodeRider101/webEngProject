@@ -21,6 +21,7 @@ function openPopup() {
 
     popup.style.visibility = 'visible';
     popup.style.opacity = '1';
+    document.getElementById('wordle').style.zIndex = '-1';
 
     overlay.classList.add('active');
   }
@@ -31,6 +32,8 @@ function openPopup() {
 
     popup.style.visibility = 'hidden';
     popup.style.opacity = '0';
+    document.getElementById('wordle').style.zIndex = '0';
+
 
     overlay.classList.remove('active');
   }

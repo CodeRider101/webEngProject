@@ -1,4 +1,5 @@
 import { setThemeFromCookie } from './darkmode.js';
+import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.js';
 import { createPopUp, removePopUp } from './popUp.js';
 
 let menuOpen = false;
@@ -60,6 +61,9 @@ const start = () => {
 
 let newGame  = document.getElementById('newGame');
 newGame.addEventListener('click', restart, true);
+
+let newGame2  = document.getElementById('newGame2');
+newGame2.addEventListener('click', restart, true);
 
 //delete, enter button
 document.addEventListener("DOMContentLoaded", initBoard);
@@ -143,11 +147,12 @@ async function checkGuess() {
   let exists = true;
   let correct = false;
   let letterColor;
+  let result;
   await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}&username=${getCookieValue('username')}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      let result = JSON.parse(json);
+      result = JSON.parse(json);
       letterColor = result[1];
       if(result[0] == 'notInList'){
         exists=false;
@@ -181,8 +186,9 @@ async function checkGuess() {
   }
 
   if (correct) {
-    toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
+    openModal(result[2]);
+    startConfetti();
     return;
   } else {
     guessesRemaining -= 1;
@@ -299,6 +305,8 @@ menu.addEventListener('click', () => {
 });
 
 function restart() {
+  closeModal();
+  stopConfetti();
   const rows = document.getElementsByClassName("letter-row");
     while(rows.length > 0){
       rows[0].parentNode.removeChild(rows[0]);
@@ -320,3 +328,4 @@ function restart() {
     }
   }
 }
+
