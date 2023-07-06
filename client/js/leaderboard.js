@@ -22,38 +22,25 @@ window.onload = function() {
   loadPersonalBest(wordLength);
 }
 
-function switchLeaderboard(timeSpan){
-
+async function findBest(user, wordLength, personal) {
+  try {
+    const response = await fetch(`http://localhost:8000/api/leaderboard/?username=${user}&wordLength=${wordLength}&personal=${personal}`);
+    if (response.ok) {
+      const json = await response.json();
+      return json;
+    } else {
+      console.log('Error: Unable to fetch high score'+ personal);
+      return null;
+    }
+  } catch (error) {
+    console.log('Error: ', error);
+    return null;
+  }
 }
 
-function loadPersonalBest(wordlength){
-  const mockData = [
-    {
-      name: "jeje",
-      score: "21533",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "253633",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "213",
-      date:"253h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "2133",
-      date:"32h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "33",
-      date:"28th June 2023"
-    }
-  ];
+async function loadPersonalBest(wordLength){
+   const mockData = await findBest("xxx",wordLength, "true");
+  console.log("hi"+ mockData);
   const personalContainer = document.getElementById("personalContainer");
 
   let i = 1;
@@ -99,34 +86,9 @@ function loadPersonalBest(wordlength){
   }
 }
 
-function loadOverallBest(wordLength, timeSpan){
-  const mockData = [
-    {
-      name: "jeje",
-      score: "21533",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "253633",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "213",
-      date:"253h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "2133",
-      date:"32h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "33",
-      date:"28th June 2023"
-    }
-  ];
+async function loadOverallBest(wordLength, timeSpan){
+  const mockData = await findBest("xxx",wordLength, "false");
+
   
 
   const overallContainer = document.getElementById("overallContainer");
@@ -162,9 +124,9 @@ function loadOverallBest(wordLength, timeSpan){
     }
     place.innerHTML=p;
 
-    const name = document.createElement("div");
-    name.setAttribute("class", "name");
-    name.innerHTML=entry.name;
+    const username = document.createElement("div");
+    username.setAttribute("class", "username");
+    username.innerHTML=entry.username;
 
     const score = document.createElement("div");
     score.setAttribute("class", "score");
@@ -174,7 +136,7 @@ function loadOverallBest(wordLength, timeSpan){
     date.setAttribute("class", "date");
     date.innerHTML=entry.date;
     row.appendChild(place);
-    row.appendChild(name);
+    row.appendChild(username);
     row.appendChild(score);
     row.appendChild(date);
     overallContainer.appendChild(row);

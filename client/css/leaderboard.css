@@ -33,7 +33,7 @@
   }
 
   .left > .centered > h2{
-    margin-bottom: 55px;
+    margin-bottom: 125px;
   }
   
   .centered {
@@ -136,6 +136,7 @@
   list-style-type: none;
   padding-inline-start: 0px;
   margin-bottom: 50px;
+  margin-top: 50px;
 }
 .selectLeaderboard>li{
   color: var(--textColor);
