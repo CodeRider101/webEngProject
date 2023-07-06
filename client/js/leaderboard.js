@@ -14,17 +14,31 @@ window.onload = function() {
   document.getElementById('sliderScore').setAttribute("value",wordLength);
   document.getElementById('outputScore').textContent = wordLength;
   document.querySelector('.selectLeaderboard').addEventListener('click', (e) => {
-    console.log("ich wurde gedrückt: "+ e.target.textContent)
+    console.log("ich wurde gedrückt: " + e.target.textContent);
     timeSpan = e.target.textContent;
+    const leaderboardElements = document.querySelectorAll('.selectLeaderboard li');
+    leaderboardElements.forEach(element => {
+      if (element === e.target) {
+        element.innerHTML = `<b>${element.textContent}</b>`;
+      } else {
+        element.innerHTML = element.textContent;
+      }
+    });
     loadOverallBest(wordLength, timeSpan);
   })
-  loadOverallBest(wordLength, timeSpan)
+  
+  loadOverallBest(wordLength, timeSpan);
   loadPersonalBest(wordLength);
 }
 
-async function findBest(user, wordLength, personal) {
+function getCookieValue(a) {
+  const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+  return b ? b.pop() : '';
+}
+
+async function findBest(user, wordLength, personal, timeSpan) {
   try {
-    const response = await fetch(`http://localhost:8000/api/leaderboard/?username=${user}&wordLength=${wordLength}&personal=${personal}`);
+    const response = await fetch(`http://localhost:8000/api/leaderboard/?username=${user}&wordLength=${wordLength}&personal=${personal}&timeSpan=${timeSpan}`);
     if (response.ok) {
       const json = await response.json();
       return json;
@@ -39,64 +53,75 @@ async function findBest(user, wordLength, personal) {
 }
 
 async function loadPersonalBest(wordLength){
-   const mockData = await findBest("xxx",wordLength, "true");
-  console.log("hi"+ mockData);
+   
   const personalContainer = document.getElementById("personalContainer");
+  //delete all previous data
+  personalContainer.innerHTML = ""; 
+  if(getCookieValue('username') !== ""){
+    const text = document.createElement("div");
+    text.setAttribute("class", "text");
+    text.innerHTML= "Please Log In for a Personal Best!";
+    personalContainer.appendChild(text);
+  }else{
+    const data = await findBest(getCookieValue('username'),wordLength, "true","nothing here");
+    console.log("hi"+ data); 
+    let i = 1;
+    for(const entry of data){
+      const row = document.createElement("div");
+      row.setAttribute("class", "row");
+      const place = document.createElement("div");
+      place.setAttribute("class", "place"); 
+      let p = "1";
+      switch(i){
+        case 1:
+          p= "1st";
+          break;
+        case 2:
+          p= "2nd";
+          break;
 
-  let i = 1;
-  for(const entry of mockData){
-    const row = document.createElement("div");
-    row.setAttribute("class", "row");
-    const place = document.createElement("div");
-    place.setAttribute("class", "place"); 
-    let p = "1";
-    switch(i){
-      case 1:
-        p= "1st";
-        break;
-      case 2:
-        p= "2nd";
-        break;
+        case 3:
+          p= "3rd";  
+          break;
 
-      case 3:
-        p= "3rd";  
-        break;
+        case 4:
+          p= "4th";
+          break;
 
-      case 4:
-        p= "4th";
-        break;
+        case 5:
+          p= "5th";    
+          break;
+      }
+      place.innerHTML=p;
+      const score = document.createElement("div");
+      score.setAttribute("class", "score");
+      score.innerHTML=entry.score;
 
-      case 5:
-        p= "5th";    
-        break;
+      const date = document.createElement("div");
+      date.setAttribute("class", "date");
+      date.innerHTML=entry.date;
+      row.appendChild(place);
+      row.appendChild(score);
+      row.appendChild(date);
+      personalContainer.appendChild(row);
+      i ++;
     }
-    place.innerHTML=p;
-    const score = document.createElement("div");
-    score.setAttribute("class", "score");
-    score.innerHTML=entry.score;
-
-    const date = document.createElement("div");
-    date.setAttribute("class", "date");
-    date.innerHTML=entry.date;
-    row.appendChild(place);
-    row.appendChild(score);
-    row.appendChild(date);
-    personalContainer.appendChild(row);
-    i ++;
   }
 }
 
 async function loadOverallBest(wordLength, timeSpan){
-  const mockData = await findBest("xxx",wordLength, "false");
+  const data = await findBest("xxx",wordLength, "false", timeSpan);
 
   
 
   const overallContainer = document.getElementById("overallContainer");
+   //delete all previous data
+   overallContainer.innerHTML = ""; 
   console.log("wordLength: "+ wordLength);
   console.log("timeSpan: "+ timeSpan);
 
   let i = 1;
-  for(const entry of mockData){
+  for(const entry of data){
     const row = document.createElement("div");
     row.setAttribute("class", "row");
     const place = document.createElement("div");
