@@ -1,6 +1,6 @@
 import { setThemeFromCookie } from './darkmode.js';
 import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.js';
-import { createPopUp, removePopUp } from './popUp.js';
+import { createPopUp } from './popUp.js';
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -15,13 +15,13 @@ if(document.cookie.match(/theme=dark/) != null) {
   darkModeEnabled = true;
 }
 
-// window.onload = (event) => {
-//   if(document.cookie){
-//     createPopUp("Hey\Choose between free to play or play as a logged User to save your highscores and compare them with globals.");
-//   }else{
-//     console.log(document.cookie)
-//   }
-// };
+window.onload = (event) => {
+  if(document.cookie){
+    createPopUp("Hey", ["This is a special edition of the game wordle.", "You can either Sign Up or Log In (if you already have an account) to save your highscores and compare yourself with the best players in the whole word or you play for free without any saves.", "Keep in mind that your data will be stored securely and will not be passed on to third parties!", "With this edition you can set the word length of the words to be searched for in the game settings. You can also choose the word length with which you want to compare yourself with others on the leaderboard. But beware! It's not about the length, it's about the best time and the number of attempts.", "When you find any bugs please write anyone of us an e-mail. You can find our mails in the 'Contact Us' Tab.", "Now have fun while playing!!"]);
+  }else{
+    console.log(document.cookie)
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     if(getCookieValue('username') !== ""){
