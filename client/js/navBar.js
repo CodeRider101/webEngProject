@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function checkIfLoggedIn(){
 
-    debugger;
     if(getCookieValue('username') !== ""){
         document.getElementById('signIn').style.display = 'none';
         document.getElementById('userInfo').style.display='block';

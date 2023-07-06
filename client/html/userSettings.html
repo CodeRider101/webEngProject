@@ -18,29 +18,51 @@
         });
         </script>
       <div id="nav-container"></div>
+      <div class="userSettingsBody">
 
-      <div id="userSettings">
-      <br>
-      <div class="formGroup">
-        <label for="uname"><b>Change username:</b></label>
-
-        <div class="inputContainer">
-          <i class='bx bxs-user loginIcon'></i>
-          <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
-        </div>
-      </div>
-      <div class="formGroup">
-        <label for="psw"><b>Change password:</b></label>
-        <div class="inputContainer">
-          <i class='bx bxs-lock loginIcon'></i>
-          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-        </div>
-      </div>
       
-      <div class="signOut">
-        <i class='bx bx-log-out logoutIcon'></i>Sign Out
+        <div id="userSettings">
+
+        <div class="usernameChange change">
+          <div class="formGroup">
+            <p class="inputLabel"><b>Change username:</b></p>
+            <div class="inputContainer">
+              <i class='bx bxs-user loginIconU'></i>
+              <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+            </div>
+            <div id="buttonChangeUsername" class="buttonChange">
+        
+            </div>
+          </div>
+        </div>
+
+        <div class="passwordChange change">
+          <div class="formGroup">
+            <p class="inputLabel"><b>Change password:</b></p>
+            <div class="inputContainer">
+              <i class='bx bxs-lock loginIconU'></i>
+              <input type="password" placeholder="Enter current Password" name="psw" id="psw" required>
+            </div>
+            <hr>
+            <div class="inputContainer">
+              <i class='bx bxs-lock loginIconU'></i>
+              <input type="password" placeholder="Enter new Password" name="psw" id="psw" required>
+            </div>
+            <div class="inputContainer">
+              <i class='bx bxs-lock loginIconU'></i>
+              <input type="password" placeholder="Confirm new Password" name="psw" id="psw" required>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="break"></div>
+        
+        <div class="signOut">
+          <i class='bx bx-log-out logoutIcon'></i>Sign Out
+        </div>
       </div>
     </div>
+  
 
 
     <script
