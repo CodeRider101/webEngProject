@@ -48,6 +48,7 @@
 
   .inputContainer{
     display:flex;
+    flex-wrap: wrap;
     align-content: center;
     padding-top: 10px;
     width: 85%;
