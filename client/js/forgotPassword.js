@@ -38,7 +38,7 @@ async function checkWhichSecurityQuestion(event){
           response.json().then(data => {
             document.getElementById("securityQuestion").innerHTML = "<b>"+data+"</b>";
             document.getElementById("securityQuestionInput").disabled = false;
-            document.getElementById("psw").disabled = false;
+            document.getElementById("pswReset").disabled = false;
             document.getElementById("psw2").disabled = false;
             document.getElementById("checkUname").disabled = true;
             document.getElementById("checkUser").disabled = true;
@@ -53,7 +53,7 @@ async function checkWhichSecurityQuestion(event){
 async function checkForgotPassword(event) {
     event.preventDefault();
     const username = usernameField.value;
-    const password = document.getElementById('psw').value;
+    const password = document.getElementById('pswReset').value;
     const confirmPassword = document.getElementById('psw2').value;
     const securityAnswer = document.getElementById('securityQuestionInput').value;
     if(securityAnswer=="" || securityAnswer==undefined){
@@ -79,7 +79,7 @@ async function checkForgotPassword(event) {
           }else{
             //redirect to login
             confirm("You changed you password.\nYou'll get redirected to the Login.");
-            window.location.href= '../html/login.html';
+            window.location.href= '../html/index.html';
           }
         })
         .catch(e => {

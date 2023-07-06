@@ -7,6 +7,20 @@
 #wordLengthChooser{
   margin-top: 100px;
 }
+.navbarLead{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin-right: 10px;
+  padding: 5px 0px;
+}
+
+.navbarLead > li:hover{
+  color: red;
+}
+
 .split {
     height: 100%;
     width: 50%;

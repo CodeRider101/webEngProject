@@ -8,6 +8,7 @@ let output = document.getElementById('outputScore');
 let slider = document.getElementById('sliderScore');
 
 
+
 window.onload = function() {
   console.log("Leaderboard"); 
   slider.addEventListener('change', updateSlider, false);
@@ -25,9 +26,8 @@ window.onload = function() {
       }
     });
     loadOverallBest(wordLength, timeSpan);
-  })
-  
-  loadOverallBest(wordLength, timeSpan);
+  });
+  loadOverallBest(wordLength, timeSpan)
   loadPersonalBest(wordLength);
 }
 
@@ -187,9 +187,4 @@ function updateSlider() {
   output.textContent = wordLength;
   loadPersonalBest(wordLength);
   loadOverallBest(wordLength, timeSpan);
-}
-
-const leaderboard = document.getElementById("leaderboard");
-if(leaderboard){
-  console.log("Sign Up");
 }

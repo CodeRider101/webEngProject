@@ -10,31 +10,33 @@
 </head>
 <body>
     <script src="../js/navBar.js"></script>
-    <div class="themeSettings">
-        <h3>Theme Settings:</h3>
-        
-        <div class="theme-switch">
-                <label class="switch themeToggle">
-                    <input type="checkbox" name="color_mode" id="color_mode" value="1">
-                    <label for="color_mode" data-on="Dark" data-off="Light" class="themeToggle-dark"></label>
-                </label>
-        </div>
-    </div>
-
-    <div class="wordSettings">
-        <h3 >Word Length:</h3>
-        <div class="slider-container">
-            <div class="value-container">
-                <span id="output" class="output"></span>
+    <div id="settings">
+        <div class="themeSettings">
+            <h3>Theme Settings:</h3>
+            
+            <div class="theme-switch">
+                    <label class="switch themeToggle">
+                        <input type="checkbox" name="color_mode" id="color_mode" value="1">
+                        <label for="color_mode" data-on="Dark" data-off="Light" class="themeToggle-dark"></label>
+                    </label>
             </div>
-            <input type="range" min="3" max="9" class="slider" id="slider">
+        </div>
+    
+        <div class="wordSettings">
+            <h3 >Word Length:</h3>
+            <div class="slider-container">
+                <div class="value-container">
+                    <span id="output" class="output"></span>
+                </div>
+                <input type="range" min="3" max="9" class="slider" id="slider">
+            </div>
         </div>
     </div>
     <script
 src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="../js/settings.js" type="module"></script>
 </body>
 </html>

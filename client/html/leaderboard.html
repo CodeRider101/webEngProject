@@ -15,42 +15,43 @@
         <div class="theme-switch" hidden="hidden">
             <input type="checkbox" />
         </div>
-        <div class="center" id="wordLengthChooser">
-            <label for="wordLength"><b>Choose your word length!</b></label>
-
-            <div class="slider-container">
-                <div class="value-container">
-                    <span id="outputScore" class="output"></span>
+        <div id="leaderboardDiv">
+            <div class="center" id="wordLengthChooser">
+                <label for="wordLength"><b>Choose your word length!</b></label>
+    
+                <div class="slider-container">
+                    <div class="value-container">
+                        <span id="outputScore" class="output"></span>
+                    </div>
+                    <input type="range" min="3" max="9" class="slider" id="sliderScore">
                 </div>
-                <input type="range" min="3" max="9" class="slider" id="sliderScore">
+            </div>
+            <div class="split left" id="leaderboard">
+                <div class="centered">
+                    <h2>Personal Best</h2>
+                    <div class="container" id="personalContainer">
+                        
+                    </div>
+                </div>
+            </div>
+              
+            <div class="split right">
+                <div class="centered"> 
+                    <h2>Overall Leaderboard</h2>
+                    
+                    <ul class="selectLeaderboard">
+                        <li class="l1">Hourly</li>
+                        <li>Daily</li>
+                        <li>Weekly</li>
+                        <li>Monthly</li>
+                        <li>All time</li>
+                    </ul>
+                    <div class="container" id="overallContainer">
+                        
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="split left" id="leaderboard">
-            <div class="centered">
-                <h2>Personal Best</h2>
-                <div class="container" id="personalContainer">
-                    
-                </div>
-            </div>
-          </div>
-          
-          <div class="split right">
-            <div class="centered"> 
-                <h2>Overall Leaderboard</h2>
-                
-                <ul class="selectLeaderboard">
-                    <li id="hourly">Hourly</li>
-                    <li id="daily">Daily</li>
-                    <li id="weekly">Weekly</li>
-                    <li id="monthly">Monthly</li>
-                    <li id="allTime">All time</li>
-                </ul>
-                <div class="container" id="overallContainer">
-                    
-                </div>
-            </div>
-          </div>
-
-          <script src="../js/leaderboard.js" type="module"></script>
+        <script src="../js/leaderboard.js" type="module"></script>
     </body>
 </html>
