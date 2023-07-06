@@ -8,10 +8,18 @@
         <link rel="stylesheet" href="../css/index.css">
         <link rel="stylesheet" href="../css/dark.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
         <script src="../js/navBar.js" defer></script>
     </head>
     <body>
-        <script src="../js/navBar.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+              $('#nav-container').load('navBar.html', function(){
+                  checkIfLoggedIn();
+              });
+            });
+            </script>
+          <div id="nav-container"></div>
         <div class="theme-switch" hidden="hidden">
             <input type="checkbox" />
         </div>
@@ -50,7 +58,7 @@
                 </div>
             </div>
           </div>
-
-          <script src="../js/leaderboard.js" type="module"></script>
+        <script src="../js/navbar.js"></script>
+        <script src="../js/leaderboard.js" type="module"></script>
     </body>
 </html>

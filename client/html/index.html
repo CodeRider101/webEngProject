@@ -15,7 +15,15 @@
     <link rel="stylesheet" href="../css/dark.css">
 </head>
 <body>
-  <script src="../js/navBar.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#nav-container').load('navBar.html', function(){
+          checkIfLoggedIn();
+      });
+    });
+    </script>
+  <div id="nav-container"></div>
+
   <div class="theme-switch" hidden="hidden">
     <input type="checkbox" />
   </div>
@@ -73,5 +81,6 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="../js/main.js" type="module"></script>
+  <script src="../js/navBar.js"></script>
 </body>
 </html>

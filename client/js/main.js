@@ -12,16 +12,7 @@ if(document.cookie.match(/theme=dark/) != null) {
   darkModeEnabled = true;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    if(getCookieValue('username') !== ""){
-      document.getElementById('logIn').style.display = 'none';
-      document.getElementById('userInfo').style.display='block';
-      document.getElementById('username').innerHTML = getCookieValue('username');
-    }else{
-      document.getElementById('userInfo').style.display='none';
-      document.getElementById('logIn').style.display = 'block';
-    }
-});
+
 
 function getCookieValue(a) {
   const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');

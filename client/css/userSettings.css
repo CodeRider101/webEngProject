@@ -1,0 +1,38 @@
+/* center the username and password field and adjust its size to the navbar */
+
+
+#userSettings{
+    margin-top: 50px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.login-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 600px;
+    border-radius: 10px;
+    background-color: rgb(192, 189, 189);
+    overflow: hidden;
+    z-index: 100;
+  }
+  
+  .login-box form{
+    position: absolute;
+    padding: 50px 40px;
+    inset: 6px;
+    background-color: #F0F0F0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    z-index: 100;
+  }
