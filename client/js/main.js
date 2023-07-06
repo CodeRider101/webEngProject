@@ -137,11 +137,12 @@ async function checkGuess() {
   let exists = true;
   let correct = false;
   let letterColor;
+  let result;
   await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}&username=${getCookieValue('username')}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      let result = JSON.parse(json);
+      result = JSON.parse(json);
       letterColor = result[1];
       if(result[0] == 'notInList'){
         exists=false;
@@ -176,7 +177,7 @@ async function checkGuess() {
 
   if (correct) {
     guessesRemaining = 0;
-    openModal();
+    openModal(result[2]);
     startConfetti();
     return;
   } else {

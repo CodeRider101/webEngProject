@@ -146,9 +146,14 @@ document.getElementById('wordle').addEventListener('click', () => {
 	stopConfetti();
 });
 
-export function openModal() {
+export function openModal(score) {
 	if(modal == null) return;
 	modal.classList.add('active');
+
+	let scoreText = document.createElement('p');
+	let textNode = document.createTextNode("You reached a score of " + score + ".");
+	scoreText.appendChild(textNode);
+	document.getElementById('modal-text').appendChild(scoreText);
 	overlay.classList.add('active');
 }
 
