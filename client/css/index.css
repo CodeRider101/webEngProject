@@ -141,6 +141,7 @@
   height:100%;
   top:0px;
   left:0px;
+  z-index: 0;
  }
 
 
@@ -188,7 +189,12 @@
  }
 
  .modal-body {
-  padding: 30px 15px;
+  padding: 20px 15px;
+  text-align: center;
+ }
+
+ .modal-body li{
+  list-style: none;
  }
 
  #overlay {
@@ -209,13 +215,16 @@
  }
 
  .playAgain{
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-
+    display: flex;             
+    flex-direction: column;    
+    align-items: center;     
+    height: 80px;
+    margin-top: 30px;
  }
 
+
+
  #newGame2 {
-  padding: 10px 20px;
   color: var(--btnTextColor);
+  margin: 15px;
  }

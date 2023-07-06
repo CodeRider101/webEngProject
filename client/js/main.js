@@ -175,7 +175,6 @@ async function checkGuess() {
   }
 
   if (correct) {
-    // toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
     openModal();
     startConfetti();

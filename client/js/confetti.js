@@ -141,6 +141,11 @@ closeModalButtons.forEach(button => {
   });
 });
 
+document.getElementById('wordle').addEventListener('click', () => {
+	closeModal(modal);
+	stopConfetti();
+});
+
 export function openModal() {
 	if(modal == null) return;
 	modal.classList.add('active');

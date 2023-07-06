@@ -19,8 +19,8 @@
   <div class="theme-switch" hidden="hidden">
     <input type="checkbox" />
   </div>
-
-  <div class="wordle">
+  
+  <div id="wordle" class="wordle">
       <div id="game-board">
 
       </div>
@@ -64,21 +64,22 @@
           </div>
           <button class="resetBtn" type="button" id="newGame" onclick="this.blur()">New Game</button>
       </div>
-          <div class="modal" id="modal">
-            <div class="modal-header">
-              <div class="title">Congratulations!</div>
-              <button data-close-button class="close-button">&times;</button>
-            </div>
-            <div class="modal-body">
-              <h3>You won!</h3>
-              <div class="playAgain">
-                <label for="newGame2">Want to play again?</label>
-                <button class="resetBtn" type="button" id="newGame2" onclick="this.blur()">Restart</button>
-              </div>
-            </div>
-          </div>
-          <div id="overlay"></div>
+          
   </div>
+<div class="modal" id="modal">
+  <div class="modal-header">
+    <div class="title">Congratulations!</div>
+    <button data-close-button class="close-button">&times;</button>
+  </div>
+  <div class="modal-body">
+    <h3>You won!</h3>
+    <div class="playAgain">
+      <label for="newGame2">Want to play again?</label>
+      <button class="resetBtn" type="button" id="newGame2" onclick="this.blur()">Restart</button>
+    </div>
+  </div>
+</div>
+<div id="overlay"></div>
   <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
