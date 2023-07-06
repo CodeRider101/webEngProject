@@ -73,6 +73,7 @@ export const check = async (req, res) => {
           })
           try{
             scoreEntry.save();
+            console.log("Safed to Database.");gud
           }catch(err){
             console.log(err);
           }
