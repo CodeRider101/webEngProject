@@ -15,127 +15,113 @@ window.onload = function() {
   document.getElementById('sliderScore').setAttribute("value",wordLength);
   document.getElementById('outputScore').textContent = wordLength;
   document.querySelector('.selectLeaderboard').addEventListener('click', (e) => {
-    console.log("ich wurde gedrückt: "+ e.target.textContent)
+    console.log("ich wurde gedrückt: " + e.target.textContent);
     timeSpan = e.target.textContent;
+    const leaderboardElements = document.querySelectorAll('.selectLeaderboard li');
+    leaderboardElements.forEach(element => {
+      if (element === e.target) {
+        element.innerHTML = `<b>${element.textContent}</b>`;
+      } else {
+        element.innerHTML = element.textContent;
+      }
+    });
     loadOverallBest(wordLength, timeSpan);
   });
   loadOverallBest(wordLength, timeSpan)
   loadPersonalBest(wordLength);
 }
 
-function switchLeaderboard(timeSpan){
-
+function getCookieValue(a) {
+  const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+  return b ? b.pop() : '';
 }
 
-function loadPersonalBest(wordlength){
-  const mockData = [
-    {
-      name: "jeje",
-      score: "21533",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "253633",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "213",
-      date:"253h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "2133",
-      date:"32h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "33",
-      date:"28th June 2023"
+async function findBest(user, wordLength, personal, timeSpan) {
+  try {
+    const response = await fetch(`http://localhost:8000/api/leaderboard/?username=${user}&wordLength=${wordLength}&personal=${personal}&timeSpan=${timeSpan}`);
+    if (response.ok) {
+      const json = await response.json();
+      return json;
+    } else {
+      console.log('Error: Unable to fetch high score'+ personal);
+      return null;
     }
-  ];
-  const personalContainer = document.getElementById("personalContainer");
-
-  let i = 1;
-  for(const entry of mockData){
-    const row = document.createElement("div");
-    row.setAttribute("class", "row");
-    const place = document.createElement("div");
-    place.setAttribute("class", "place"); 
-    let p = "1";
-    switch(i){
-      case 1:
-        p= "1st";
-        break;
-      case 2:
-        p= "2nd";
-        break;
-
-      case 3:
-        p= "3rd";  
-        break;
-
-      case 4:
-        p= "4th";
-        break;
-
-      case 5:
-        p= "5th";    
-        break;
-    }
-    place.innerHTML=p;
-    const score = document.createElement("div");
-    score.setAttribute("class", "score");
-    score.innerHTML=entry.score;
-
-    const date = document.createElement("div");
-    date.setAttribute("class", "date");
-    date.innerHTML=entry.date;
-    row.appendChild(place);
-    row.appendChild(score);
-    row.appendChild(date);
-    personalContainer.appendChild(row);
-    i ++;
+  } catch (error) {
+    console.log('Error: ', error);
+    return null;
   }
 }
 
-function loadOverallBest(wordLength, timeSpan){
-  const mockData = [
-    {
-      name: "jeje",
-      score: "21533",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "253633",
-      date:"28th June 2023"
-    },
-    {
-      name: "jeje",
-      score: "213",
-      date:"253h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "2133",
-      date:"32h June 2023"
-    },
-    {
-      name: "jeje",
-      score: "33",
-      date:"28th June 2023"
+async function loadPersonalBest(wordLength){
+   
+  const personalContainer = document.getElementById("personalContainer");
+  //delete all previous data
+  personalContainer.innerHTML = ""; 
+  if(getCookieValue('username') !== ""){
+    const text = document.createElement("div");
+    text.setAttribute("class", "text");
+    text.innerHTML= "Please Log In for a Personal Best!";
+    personalContainer.appendChild(text);
+  }else{
+    const data = await findBest(getCookieValue('username'),wordLength, "true","nothing here");
+    console.log("hi"+ data); 
+    let i = 1;
+    for(const entry of data){
+      const row = document.createElement("div");
+      row.setAttribute("class", "row");
+      const place = document.createElement("div");
+      place.setAttribute("class", "place"); 
+      let p = "1";
+      switch(i){
+        case 1:
+          p= "1st";
+          break;
+        case 2:
+          p= "2nd";
+          break;
+
+        case 3:
+          p= "3rd";  
+          break;
+
+        case 4:
+          p= "4th";
+          break;
+
+        case 5:
+          p= "5th";    
+          break;
+      }
+      place.innerHTML=p;
+      const score = document.createElement("div");
+      score.setAttribute("class", "score");
+      score.innerHTML=entry.score;
+
+      const date = document.createElement("div");
+      date.setAttribute("class", "date");
+      date.innerHTML=entry.date;
+      row.appendChild(place);
+      row.appendChild(score);
+      row.appendChild(date);
+      personalContainer.appendChild(row);
+      i ++;
     }
-  ];
+  }
+}
+
+async function loadOverallBest(wordLength, timeSpan){
+  const data = await findBest("xxx",wordLength, "false", timeSpan);
+
   
 
   const overallContainer = document.getElementById("overallContainer");
+   //delete all previous data
+   overallContainer.innerHTML = ""; 
   console.log("wordLength: "+ wordLength);
   console.log("timeSpan: "+ timeSpan);
 
   let i = 1;
-  for(const entry of mockData){
+  for(const entry of data){
     const row = document.createElement("div");
     row.setAttribute("class", "row");
     const place = document.createElement("div");
@@ -163,9 +149,9 @@ function loadOverallBest(wordLength, timeSpan){
     }
     place.innerHTML=p;
 
-    const name = document.createElement("div");
-    name.setAttribute("class", "name");
-    name.innerHTML=entry.name;
+    const username = document.createElement("div");
+    username.setAttribute("class", "username");
+    username.innerHTML=entry.username;
 
     const score = document.createElement("div");
     score.setAttribute("class", "score");
@@ -175,7 +161,7 @@ function loadOverallBest(wordLength, timeSpan){
     date.setAttribute("class", "date");
     date.innerHTML=entry.date;
     row.appendChild(place);
-    row.appendChild(name);
+    row.appendChild(username);
     row.appendChild(score);
     row.appendChild(date);
     overallContainer.appendChild(row);
