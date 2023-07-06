@@ -43,3 +43,17 @@ let output = document.getElementById('output');
 let slider = document.getElementById('slider');
 
 slider.addEventListener('change', wordLength, false);
+
+let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
+
+menu.addEventListener('click', () => {
+    menu.classList.toggle('bx-x');
+    navBar.classList.toggle('open');
+
+    if(navBar.classList.contains('open')) {
+       document.getElementById('settingsDiv').style.zIndex = '-1';
+    } else {
+        document.getElementById('settingsDiv').style.zIndex = '0';
+    }
+});

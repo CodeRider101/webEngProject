@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../css/index.css">
         <link rel="stylesheet" href="../css/dark.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
-        <script src="../js/navBar.js" defer></script>
+        <!-- <script src="../js/navBar.js" defer></script> -->
     </head>
     <body>
         <script src="../js/navBar.js"></script>
@@ -17,7 +17,7 @@
         </div>
         <div id="leaderboardDiv">
             <div class="center" id="wordLengthChooser">
-                <label for="wordLength"><b>Choose your word length!</b></label>
+                <label id="lengthLabel" for="wordLength"><b>Choose your word length!</b></label>
     
                 <div class="slider-container">
                     <div class="value-container">
@@ -29,7 +29,7 @@
             <div class="split left" id="leaderboard">
                 <div class="centered">
                     <h2>Personal Best</h2>
-                    <div class="container" id="personalContainer">
+                    <div class="scoreContainer" id="personalContainer">
                         
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         <li>Monthly</li>
                         <li>All time</li>
                     </ul>
-                    <div class="container" id="overallContainer">
+                    <div class="scoreContainer" id="overallContainer">
                         
                     </div>
                 </div>

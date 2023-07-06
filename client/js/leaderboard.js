@@ -190,6 +190,12 @@ function loadOverallBest(wordLength, timeSpan){
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
   navBar.classList.toggle('open');
+
+  if(navBar.classList.contains('open')) {
+    document.getElementById('leaderboardDiv').style.zIndex = '-1';
+ } else {
+     document.getElementById('leaderboardDiv').style.zIndex = '0';
+ }
 });
 
 

@@ -9,6 +9,9 @@ b{
 td{
     text-align: center;
 }
+h1{
+    border-bottom: 0.5px solid var(--textColor);
+}
   
 #contacts{
     margin: auto;
@@ -16,9 +19,10 @@ td{
     align-items: center;
 }
 
-#impressum{
+#impressumDiv{
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
     width: 30%;
+    text-align: center;
 }

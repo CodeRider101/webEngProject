@@ -303,12 +303,12 @@ function wordLength() {
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
   navBar.classList.toggle('open');
-  
-  if(navBar.classList.contains('open')){
-    wordle.style.zIndex = "-1";}
-  else{
-    wordle.style.zIndex = "0";
-  }
+
+  if(navBar.classList.contains('open')) {
+    document.getElementById('wordle').style.zIndex = '-1';
+ } else {
+     document.getElementById('wordle').style.zIndex = '0';
+ }
 });
 
 function restart() {
