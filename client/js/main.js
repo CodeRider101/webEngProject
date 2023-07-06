@@ -1,4 +1,6 @@
 import { setThemeFromCookie } from './darkmode.js';
+import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.js';
+import { createPopUp } from './popUp.js';
 
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -7,11 +9,30 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 let darkModeEnabled;
+const popUp = document.getElementById("popup");
 
 if(document.cookie.match(/theme=dark/) != null) {
   darkModeEnabled = true;
 }
 
+window.onload = (event) => {
+  if(document.cookie){
+    createPopUp("Hey", ["This is a special edition of the game wordle.", "You can either Sign Up or Log In (if you already have an account) to save your highscores and compare yourself with the best players in the whole word or you play for free without any saves.", "Keep in mind that your data will be stored securely and will not be passed on to third parties!", "With this edition you can set the word length of the words to be searched for in the game settings. You can also choose the word length with which you want to compare yourself with others on the leaderboard. But beware! It's not about the length, it's about the best time and the number of attempts.", "When you find any bugs please write anyone of us an e-mail. You can find our mails in the 'Contact Us' Tab.", "Now have fun while playing!!"]);
+  }else{
+    console.log(document.cookie)
+  }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    if(getCookieValue('username') !== ""){
+      document.getElementById('logIn').style.display = 'none';
+      document.getElementById('userInfo').style.display='block';
+      document.getElementById('username').innerHTML = getCookieValue('username');
+    }else{
+      document.getElementById('userInfo').style.display='none';
+      document.getElementById('logIn').style.display = 'block';
+    }
+});
 
 function getCookieValue(a) {
   const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
@@ -40,6 +61,9 @@ const start = () => {
 
 let newGame  = document.getElementById('newGame');
 newGame.addEventListener('click', restart, true);
+
+let newGame2  = document.getElementById('newGame2');
+newGame2.addEventListener('click', restart, true);
 
 //delete, enter button
 document.addEventListener("DOMContentLoaded", initBoard);
@@ -123,11 +147,12 @@ async function checkGuess() {
   let exists = true;
   let correct = false;
   let letterColor;
+  let result;
   await fetch(`http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}&username=${getCookieValue('username')}`)
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      let result = JSON.parse(json);
+      result = JSON.parse(json);
       letterColor = result[1];
       if(result[0] == 'notInList'){
         exists=false;
@@ -161,8 +186,9 @@ async function checkGuess() {
   }
 
   if (correct) {
-    toastr.success("You guessed right! Game over!");
     guessesRemaining = 0;
+    openModal(result[2]);
+    startConfetti();
     return;
   } else {
     guessesRemaining -= 1;
@@ -177,7 +203,7 @@ async function checkGuess() {
 }
 //inserts a letter in the next box
 function insertLetter(pressedKey) {
-  if (nextLetter === WORD_LENGTH) {
+  if (nextLetter === WORD_LENGTH || popUp.style.visibility == 'visible') {
     return;
   }
   pressedKey = pressedKey.toLowerCase();
@@ -231,7 +257,7 @@ document.addEventListener("keyup", (e) => {
     return;
   }
 
-  if (pressedKey === "Enter") {
+  if (pressedKey === "Enter" && popUp.style.visibility != 'visible') {
     checkGuess();
     return;
   }
@@ -279,6 +305,8 @@ menu.addEventListener('click', () => {
 });
 
 function restart() {
+  closeModal();
+  stopConfetti();
   const rows = document.getElementsByClassName("letter-row");
     while(rows.length > 0){
       rows[0].parentNode.removeChild(rows[0]);
@@ -300,3 +328,4 @@ function restart() {
     }
   }
 }
+

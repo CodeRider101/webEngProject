@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.label{
+  color: #333;
 }
 
 .login-box{
@@ -22,7 +28,7 @@
   position: absolute;
   padding: 50px 40px;
   inset: 6px;
-  background-color: #F0F0F0;
+  background-color: #ffffff;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -71,11 +77,12 @@
 
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
+  padding: 12px 20px;
+  /* border: 1px solid #ccc; */
   box-sizing: border-box;
   margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #999;
 }
 
 .login {
@@ -83,16 +90,17 @@ input[type=text], input[type=password] {
   color: white;
   padding: 14px 25px;
   margin: 12px 0;
+  margin-top: 30px;
   border: none;
   cursor: pointer;
   width: 80%;
   font-size: large;
   position: relative;
-  left: 10%;
+  left: 8%;
   border-radius: 12px;
 }
 
-button:hover {
+.login:hover {
     background-color: #0a9824;
 }
 
@@ -123,7 +131,20 @@ button:hover {
     color: white;
 }
 
+.loginIcon{
+  position: absolute;
+  top: 40%;
+  color: #333;
+}
+.formGroup{
+  position: relative;
+}
 
+img{
+  width: 34px;
+  height: 28px;
+  margin-right: 3px;
+}
 
 
 /* Change styles for span and cancel button on extra small screens */
