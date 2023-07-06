@@ -1,3 +1,5 @@
+import { setThemeFromCookie } from './darkmode.js';
+
 const signUp = document.getElementById("signUp");
 if(signUp){
   console.log("Sign Up");

@@ -45,6 +45,7 @@ export const check = async (req, res) => {
     let i = 0;
     let found = false;
     let resultCheck;
+    let score;
     if(guess === rightGuessString){
         tries++;
         resultCheck= "correct";
@@ -53,24 +54,29 @@ export const check = async (req, res) => {
         end = Date.now();
         let time = (end-start)/1000; 
         console.log(time + " seconds");
-        let score = (wordLength/(tries+(time*0.2)))*10000;
+        let wordLengthCalc = wordLength*100000;
+        tries = (tries+4)*1000;
+        time*=6;
+        score = (wordLengthCalc/(tries+(time)))*100;
+        console.log(score);
         score = score.toFixed(0);
         console.log("Score: "+ score);
-        console.log("Username: "+ req.query.username)
-        console.log("wordLength: "+ wordLength)
-        let date = new Date().toUTCString();
-        console.log(date);
-        let scoreEntry = new highScoreSchema({
-        username: req.query.username,
-        score: score,
-        date: date,
-        wordLength: wordLength
-        })
-        try{
-        scoreEntry.save();
-        }catch(err){
-        console.log(err);
-        }
+        if(req.query.username === undefined){
+          console.log("Username: "+ req.query.username)
+          let date = new Date().toUTCString();
+          console.log(date);
+          let scoreEntry = new highScoreSchema({
+            username: req.query.username,
+            score: score,
+            date: date,
+            wordLength: wordLength
+          })
+          try{
+            scoreEntry.save();
+          }catch(err){
+            console.log(err);
+          }
+        } 
 
         
 
@@ -126,6 +132,7 @@ export const check = async (req, res) => {
     let result = [];
     result.push(resultCheck);
     result.push(letterColor);
+    result.push(score);
     let resultJSON= JSON.stringify(result);
     console.log(resultJSON);
     res.json(resultJSON);
