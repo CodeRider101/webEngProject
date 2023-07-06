@@ -45,6 +45,7 @@ export const check = async (req, res) => {
     let i = 0;
     let found = false;
     let resultCheck;
+    let score;
     if(guess === rightGuessString){
         tries++;
         resultCheck= "correct";
@@ -56,7 +57,7 @@ export const check = async (req, res) => {
         let wordLengthCalc = wordLength*100000;
         tries = (tries+4)*1000;
         time*=6;
-        let score = (wordLengthCalc/(tries+(time)))*100;
+        score = (wordLengthCalc/(tries+(time)))*100;
         console.log(score);
         score = score.toFixed(0);
         console.log("Score: "+ score);
@@ -131,6 +132,7 @@ export const check = async (req, res) => {
     let result = [];
     result.push(resultCheck);
     result.push(letterColor);
+    result.push(score);
     let resultJSON= JSON.stringify(result);
     console.log(resultJSON);
     res.json(resultJSON);
