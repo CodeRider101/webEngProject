@@ -3,6 +3,7 @@ import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.j
 import { createPopUp } from './popUp.js';
 import { getCookieValue } from './cookies.js';
 
+
 const wordle = document.getElementById('wordle');
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
@@ -11,31 +12,21 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 let darkModeEnabled;
-const popUp = document.getElementById("popup");
+let popUp;
+
 
 if(document.cookie.match(/theme=dark/) != null) {
   darkModeEnabled = true;
 }
 
-window.onload = (event) => {
+
+document.addEventListener("DOMContentLoaded", function () {
   if(getCookieValue('username') === ""){
     createPopUp("Hey", ["This is a special edition of the game wordle.", "You can either Sign Up or Log In (if you already have an account) to save your highscores and compare yourself with the best players in the whole word or you play for free without any saves.", "Keep in mind that your data will be stored securely and will not be passed on to third parties!", "With this edition you can set the word length of the words to be searched for in the game settings. You can also choose the word length with which you want to compare yourself with others on the leaderboard. But beware! It's not about the length, it's about the best time and the number of attempts.", "When you find any bugs please write anyone of us an e-mail. You can find our mails in the 'Contact Us' Tab.", "Now have fun while playing!!"]);
   }else{
     console.log(document.cookie)
   }
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-    if(getCookieValue('username') !== ""){
-      document.getElementById('logIn').style.display = 'none';
-      document.getElementById('userInfo').style.display='block';
-      document.getElementById('username').innerHTML = getCookieValue('username');
-    }else{
-      document.getElementById('userInfo').style.display='none';
-      document.getElementById('logIn').style.display = 'block';
-    }
 });
-
 
 // start the game and sets a new word in the backend();
 const start = () => {
@@ -203,6 +194,7 @@ async function checkGuess() {
 }
 //inserts a letter in the next box
 function insertLetter(pressedKey) {
+  popUp = document.getElementById("popup");
   if (nextLetter === WORD_LENGTH || popUp.style.visibility == 'visible') {
     return;
   }
@@ -247,6 +239,7 @@ const animateCSS = (element, animation, prefix = "animate__") =>
   });
 
 document.addEventListener("keyup", (e) => {
+  popUp = document.getElementById("popup");
   if (guessesRemaining === 0) {
     return;
   }
@@ -285,8 +278,8 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
-let menu = document.querySelector('#menu-icon');
-let navBar = document.querySelector('.navbar');
+// let menu = document.querySelector('#menu-icon');
+// let navBar = document.querySelector('.navbar');
 
 function wordLength() {
   let wordLength = document.getElementById('wordLength').value;
@@ -299,16 +292,16 @@ function wordLength() {
   }
 }
 
-menu.addEventListener('click', () => {
-  menu.classList.toggle('bx-x');
-  navBar.classList.toggle('open');
+// menu.addEventListener('click', () => {
+//   menu.classList.toggle('bx-x');
+//   navBar.classList.toggle('open');
 
-  if(navBar.classList.contains('open')) {
-    document.getElementById('wordle').style.zIndex = '-1';
- } else {
-     document.getElementById('wordle').style.zIndex = '0';
- }
-});
+//   if(navBar.classList.contains('open')) {
+//     document.getElementById('wordle').style.zIndex = '-1';
+//  } else {
+//      document.getElementById('wordle').style.zIndex = '0';
+//  }
+// });
 
 function restart() {
   closeModal();
