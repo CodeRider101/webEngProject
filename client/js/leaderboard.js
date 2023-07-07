@@ -57,7 +57,7 @@ async function loadPersonalBest(wordLength){
   const personalContainer = document.getElementById("personalContainer");
   //delete all previous data
   personalContainer.innerHTML = ""; 
-  if(getCookieValue('username') !== ""){
+  if(getCookieValue('username') == ""){
     const text = document.createElement("div");
     text.setAttribute("class", "text");
     text.innerHTML= "Please Log In for a Personal Best!";
