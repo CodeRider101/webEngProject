@@ -6,6 +6,10 @@
     opacity:1;
 }
 
+#settingsDiv{
+    position: fixed;
+}
+
 /* Word Length Settings */
 
 .wordSettings{
@@ -147,8 +151,4 @@ label {
     content: attr(data-off);
     right: auto;
     left: 20px;
-}
-
-#settings{
-    z-index: 0;
 }

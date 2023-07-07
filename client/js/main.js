@@ -3,6 +3,7 @@ import { startConfetti, stopConfetti, openModal, closeModal } from './confetti.j
 import { createPopUp } from './popUp.js';
 import { getCookieValue } from './cookies.js';
 
+const wordle = document.getElementById('wordle');
 let menuOpen = false;
 let NUMBER_OF_GUESSES = 6;
 let WORD_LENGTH = 5;
@@ -172,8 +173,10 @@ async function checkGuess() {
       animateCSS(box, "flipInX");
       //shade box
       letterColor.forEach ((color, index) => {
-        if(darkModeEnabled && color === "yellow"){
+        if(color === "yellow"){
           letterColor[index] = "#ffbf00";
+        } else if(darkModeEnabled && color === "gray"){
+          letterColor[index] = "#404245";
         }
       });
       
@@ -299,6 +302,12 @@ function wordLength() {
 menu.addEventListener('click', () => {
   menu.classList.toggle('bx-x');
   navBar.classList.toggle('open');
+
+  if(navBar.classList.contains('open')) {
+    document.getElementById('wordle').style.zIndex = '-1';
+ } else {
+     document.getElementById('wordle').style.zIndex = '0';
+ }
 });
 
 function restart() {

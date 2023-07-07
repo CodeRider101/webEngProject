@@ -131,15 +131,14 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 
 
 // Popup
-const closeModalButtons = document.querySelectorAll('[data-close-button]');
+const closeModalButton = document.getElementById('close-modal-btn');
 const overlay = document.getElementById('overlay');
 const modal = document.getElementById('modal');
 
-closeModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
+closeModalButton.addEventListener('click', () => {
     closeModal(modal);
+	stopConfetti();
   });
-});
 
 document.getElementById('wordle').addEventListener('click', () => {
 	closeModal(modal);
@@ -150,10 +149,7 @@ export function openModal(score) {
 	if(modal == null) return;
 	modal.classList.add('active');
 
-	let scoreText = document.createElement('p');
-	let textNode = document.createTextNode("You reached a score of " + score + ".");
-	scoreText.appendChild(textNode);
-	document.getElementById('modal-text').appendChild(scoreText);
+	document.getElementById('scoreText').innerHTML = "You reached a score of " + score + ".";
 	overlay.classList.add('active');
 }
 

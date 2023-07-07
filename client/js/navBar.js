@@ -30,7 +30,7 @@ if(menu){
     menu.addEventListener('click', () => {
         menu.classList.toggle('bx-x');
         navBar.classList.toggle('open');
-      });
+    });
 }
 
 function openPopup() {
@@ -42,9 +42,10 @@ function openPopup() {
     //Leaderboard
     let leaderboard = document.getElementById('leaderboardDiv')
     //Settings.html
-    let settings = document.getElementById('settings')
+    let settings = document.getElementById('settingsDiv')
+    console.log(settings)
     //Impressum
-    let impressum = document.getElementById('impressum')
+    let impressum = document.getElementById('impressumDiv')
 
     if(wordle){
         wordle.style.zIndex = '-1';
@@ -52,10 +53,10 @@ function openPopup() {
         leaderboard.style.zIndex = '-1';
     }else if(settings){
         settings.style.zIndex = '-1';
+        console.log(settings.style.zIndex)
     }else if(impressum){
         impressum.style.zIndex = '-1';
     }
-
     popup.style.visibility = 'visible';
     popup.style.opacity = '1';
 
@@ -93,11 +94,11 @@ function openPopup() {
     //Index.html
     const wordle = document.getElementById('wordle')
     //Leaderboard
-    const leaderboard = document.getElementById('wordle')
+    const leaderboard = document.getElementById('leaderboardDiv')
     //Settings.html
-    const settings = document.getElementById('settings')
+    let settings = document.getElementById('settingsDiv')
     //Impressum
-    const impressum = document.getElementById('ksl')
+    const impressum = document.getElementById('impressumDiv')
 
     if(wordle){
         wordle.style.zIndex = '0';
@@ -114,7 +115,7 @@ function openPopup() {
   }
 
 window.onload = function() {
-    let homeTab = document.getElementById("Home");
+    let homeTab = document.getElementById("home");
     let leaderBoardTab = document.getElementById("leaderboard");
     let settingsTab = document.getElementById("settings");
     let contactUsTab = document.getElementById("contactUs");

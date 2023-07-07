@@ -8,14 +8,15 @@ if(signUp){
 
 async function checkSignUp(event) {
     event.preventDefault();
-    const username = document.getElementById('uname').value;
-    const password = document.getElementById('psw').value;
-    const confirmPassword = document.getElementById('psw2').value;
+    const username = document.getElementById('signUpUsername').value;
+    const password = document.getElementById('signUpPw').value;
+    const confirmPassword = document.getElementById('signUpPw2').value;
     const securityAnswer = document.getElementById('securityAnswer').value;
     const securityQuestion = document.getElementById('securityQuestion').value;
   
   
     if(password === confirmPassword && username != "Not Acceptable"){
+      console.log("fetch");
       await fetch(`http://localhost:8000/api/login/signUp`, {
         method: "POST",
       headers: {
