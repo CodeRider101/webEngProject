@@ -5,11 +5,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/userSettings.css">
+    <link rel="stylesheet" href="../css/dark.css">
+    
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
+    
     <title>User settings</title>
 </head>
 <body>
+  <div class="theme-switch" hidden="hidden">
+    <input type="checkbox" />
+  </div>
     <script type="text/javascript">
         $(document).ready(function() {
           $('#nav-container').load('navBar.html', function(){
@@ -28,11 +35,9 @@
             <p class="inputLabel"><b>Change username:</b></p>
             <div class="inputContainer">
               <i class='bx bxs-user loginIconU'></i>
-              <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+              <input class="input" type="text" placeholder="Enter Username" name="uname" id="newUsernameValue" required>
             </div>
-            <div id="buttonChangeUsername" class="buttonChange">
-        
-            </div>
+            <button id="buttonChangeUsername" class="changeButton">Change username</button>
           </div>
         </div>
 
@@ -41,39 +46,42 @@
             <p class="inputLabel"><b>Change password:</b></p>
             <div class="inputContainer">
               <i class='bx bxs-lock loginIconU'></i>
-              <input type="password" placeholder="Enter current Password" name="psw" id="psw" required>
+              <input class="input" type="password" placeholder="Enter current Password" name="psw" id="currentPassword" required>
             </div>
             <div class="inputContainer">
-              <p class="inputLabel"><b>Security Question:</b></p>
+              
               <div class="form-group">
-                <select class="select" name="securityQuestion" id="securityQuestion" required>
+                <p class="inputLabel"><b>Security Question:</b></p>
+                <select class="select input" name="securityQuestion" id="securityQuestion" required>
                   <option>What is your Mothers maiden name?</option>
-                  <option>What was your highschoolname?</option>
+                  <option>What was your highschool name?</option>
                   <option>Which was your best grade in math?</option>
                   <option>Which team is your favorite in football?</option>
                 </select>
-                <input class="exposed-style" type="text" placeholder="Your answer" id="securityAnswer" name="securityAnswer" required>
+                <input class="exposed-style input" type="text" placeholder="Your answer" id="securityAnswer" name="securityAnswer" required>
               </div>
             </div>
+            
               
             
             <hr>
             <div class="inputContainer">
               <i class='bx bxs-lock loginIconU'></i>
-              <input type="password" placeholder="Enter new Password" name="psw" id="psw" required>
+              <input class="input" type="password" placeholder="Enter new Password" name="psw" id="newPassword" required>
             </div>
             <div class="inputContainer">
               <i class='bx bxs-lock loginIconU'></i>
-              <input type="password" placeholder="Confirm new Password" name="psw" id="psw" required>
+              <input class="input" type="password" placeholder="Confirm new Password" name="psw" id="newPasswordConfirm" required>
             </div>
+            <button id="buttonChangePassword" class="changeButton">Change password</button>
           </div>
         </div>  
       </div>
       <div class="break"></div>
         
-        <div class="signOut">
+        <button class="signOut" id="signOutButton">
           <i class='bx bx-log-out logoutIcon'></i>Sign Out
-        </div>
+        </button>
       </div>
     </div>
   
@@ -84,7 +92,6 @@ src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="../js/settings.js" type="module"></script>
-<script src="../js/userSettings.js"></script>
+<script src="../js/userSettings.js" type="module"></script>
 </body>
 </html>
