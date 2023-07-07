@@ -70,9 +70,3 @@ function calculateDate(timeSpan) {
   return currentDate.toISOString();
 }
 
-function getStartOfWeek() {
-  const currentDate = new Date();
-  const startOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
-  startOfWeek.setHours(0, 0, 0, 0);
-  return startOfWeek;
-}

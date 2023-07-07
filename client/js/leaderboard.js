@@ -15,17 +15,19 @@ window.onload = function() {
   document.getElementById('sliderScore').setAttribute("value",wordLength);
   document.getElementById('outputScore').textContent = wordLength;
   document.querySelector('.selectLeaderboard').addEventListener('click', (e) => {
-    console.log("ich wurde gedrückt: " + e.target.textContent);
-    timeSpan = e.target.textContent;
-    const leaderboardElements = document.querySelectorAll('.selectLeaderboard li');
-    leaderboardElements.forEach(element => {
-      if (element === e.target) {
-        element.innerHTML = `<b>${element.textContent}</b>`;
-      } else {
-        element.innerHTML = element.textContent;
-      }
-    });
-    loadOverallBest(wordLength, timeSpan);
+    if(!e.target.textContent.includes("\n")&&timeSpan !== e.target.textContent){
+      timeSpan = e.target.textContent;
+      const leaderboardElements = document.querySelectorAll('.selectLeaderboard li');
+      leaderboardElements.forEach(element => {
+        if (element !== e.target) {
+          element.innerHTML = element.textContent;
+        } else {
+          element.innerHTML = `<b>${element.textContent}</b>`;   
+        }
+      });
+      loadOverallBest(wordLength, timeSpan);
+    }
+    
   });
   loadOverallBest(wordLength, timeSpan)
   loadPersonalBest(wordLength);
@@ -99,7 +101,7 @@ async function loadPersonalBest(wordLength){
 
       const date = document.createElement("div");
       date.setAttribute("class", "date");
-      date.innerHTML=entry.date;
+      date.innerHTML=entry.date.slice(8, 10)+'.' + (entry.date.slice(5, 7)) + '.'+entry.date.slice(0, 4)+ "     "+entry.date.slice(11, 16)+ "Uhr";
       row.appendChild(place);
       row.appendChild(score);
       row.appendChild(date);
@@ -151,7 +153,12 @@ async function loadOverallBest(wordLength, timeSpan){
 
     const username = document.createElement("div");
     username.setAttribute("class", "username");
-    username.innerHTML=entry.username;
+    if(entry.username== getCookieValue('username')){
+      username.innerHTML=`<i>${entry.username}</i>`;
+    }else{
+      username.innerHTML=entry.username;
+    }
+    
 
     const score = document.createElement("div");
     score.setAttribute("class", "score");
@@ -159,7 +166,7 @@ async function loadOverallBest(wordLength, timeSpan){
 
     const date = document.createElement("div");
     date.setAttribute("class", "date");
-    date.innerHTML=entry.date;
+    date.innerHTML=entry.date.slice(8, 10)+'.' + (entry.date.slice(5, 7)) + '.'+entry.date.slice(0, 4)+ "     "+entry.date.slice(11, 16)+ "Uhr";
     row.appendChild(place);
     row.appendChild(username);
     row.appendChild(score);
