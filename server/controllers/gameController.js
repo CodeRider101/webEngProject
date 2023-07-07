@@ -63,7 +63,7 @@ export const check = async (req, res) => {
         console.log("Score: "+ score);
         if(req.query.username != undefined){
           console.log("Username: "+ req.query.username)
-          let date = new Date().toUTCString();
+          let date = new Date().toISOString();
           console.log(date);
           let scoreEntry = new highScoreSchema({
             username: req.query.username,

@@ -78,7 +78,7 @@
 .row {
   width: 600px;
 	display: grid;
-  grid-template-columns: 10% 40% 20% 30%;
+  grid-template-columns: 10% 40% 25% 25%;
   height: 40px;
   border-bottom: 1px solid #000000;
 }

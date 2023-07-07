@@ -13,15 +13,14 @@ export const leaderboardOnInnit = async(req, res)=>{
           })
         }else if(timeSpan === "All time"){
           result = await highScoreSchema.find({
-            wordLength: wordLength,
+            wordLength: wordLength
           })
         }
         else{
           result = await highScoreSchema.find({
             wordLength: wordLength,
-            date: { $gte: calculateDate(timeSpan) } 
-
-          })
+            date: { $gte: calculateDate(timeSpan) }
+          });
         }
         
         result = sortLeaderboard(result);
@@ -43,7 +42,7 @@ function sortLeaderboard(result){
 
 function calculateDate(timeSpan) {
   const currentDate = new Date();
-  console.log(currentDate + "hihihihohoho");
+  console.log(currentDate);
 
   // Calculate the date based on the timeSpan
   if (timeSpan === "Daily") {
@@ -67,7 +66,13 @@ function calculateDate(timeSpan) {
     console.log(currentDate.getMonth() + 1 + "hier");
 
   }
-  console.log(currentDate.toUTCString() + "ahhhhhh");
-  return currentDate.toUTCString();
+  console.log(currentDate.toISOString() + "ahhhhhh");
+  return currentDate.toISOString();
 }
 
+function getStartOfWeek() {
+  const currentDate = new Date();
+  const startOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
+  startOfWeek.setHours(0, 0, 0, 0);
+  return startOfWeek;
+}
