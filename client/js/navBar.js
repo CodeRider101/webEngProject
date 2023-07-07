@@ -1,12 +1,29 @@
 
 // Fetch and insert the navbar HTML
-fetch('../html/navbar.html')
-    .then(response => response.text())
-    .then(html => {
-      const navbarContainer = document.createElement('div');
-      navbarContainer.innerHTML = html;
-      document.body.insertBefore(navbarContainer, document.body.firstChild);
+document.addEventListener("DOMContentLoaded", () => {
+    
+    
 });
+
+function checkIfLoggedIn(){
+
+    if(getCookieValue('username') !== ""){
+        document.getElementById('signIn').style.display = 'none';
+        document.getElementById('userInfo').style.display='block';
+        document.getElementById('username').innerHTML = getCookieValue('username');
+    }else{
+        document.getElementById('userInfo').style.display='none';
+        document.getElementById('signIn').style.display = 'block';
+    }
+
+}
+
+
+function getCookieValue(a) {
+    const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+  }
+
 
 let menu = document.querySelector('#menu-icon');
 if(menu){
@@ -136,3 +153,4 @@ window.onload = function() {
         })
     }
 }
+

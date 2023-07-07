@@ -1,0 +1,87 @@
+/* center the username and password field and adjust its size to the navbar */
+
+
+.body{
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  font-family: 'Montserrat', sans-serif;
+}
+.userSettingsBody{
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+}
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+#userSettings{
+    top:30%;
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    width: 80%;
+    justify-content: center;
+    vertical-align: middle;
+    z-index: 0;
+    
+
+}
+
+.change{
+    display:flex;
+    width: 50%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.formGroup{
+  width: 80%;
+  align-items: center;
+}
+
+.input{
+  
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  padding: 12px 30px !important;
+}
+  .inputContainer{
+    display:flex;
+    align-content: center;
+    padding-top: 10px;
+    width: 85%;
+    
+  }
+
+  .inputLabel{
+    padding-bottom: 10px;
+  }
+
+  .loginIconU{
+    position: absolute;
+    font-size: 20px;
+    margin-top: 2%;
+  }
+
+  .signOut{
+    margin-top: 5%;
+    background-color: var(--accentColor);
+    padding:5px;
+    border-radius: 10px;
+  }
+
+  .logoutIcon{
+    padding-right: 10px;
+  }
+
+  .changeButton{
+    margin-top: 1%;
+    background-color: var(--mainColor);
+    padding:5px;
+    border-radius: 10px;
+    width: 40%;
+
+  }

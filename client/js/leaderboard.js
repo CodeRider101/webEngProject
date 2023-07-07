@@ -1,6 +1,6 @@
 import { setThemeFromCookie } from './darkmode.js';
 
-let menu = document.querySelector('#menu-icon');
+// let menu = document.querySelector('#menu-icon');
 let navBar = document.querySelector('.navbar');
 let wordLength = 5;
 let timeSpan = "All time";

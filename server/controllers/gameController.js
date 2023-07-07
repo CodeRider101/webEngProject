@@ -60,6 +60,7 @@ export const check = async (req, res) => {
         score = (wordLengthCalc/(tries+(time)))*100;
         console.log(score);
         score = score.toFixed(0);
+
         console.log("Score: "+ score);
         if(req.query.username != undefined){
           console.log("Username: "+ req.query.username)

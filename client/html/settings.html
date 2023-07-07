@@ -6,10 +6,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <link rel="stylesheet" href="../css/settings.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
     <title>Settings</title>
 </head>
 <body>
-    <script src="../js/navBar.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#nav-container').load('navBar.html', function(){
+              checkIfLoggedIn();
+          });
+        });
+        </script>
+      <div id="nav-container"></div>
     <div id="settingsDiv">
         <div class="themeSettings">
             <h3>Theme Settings:</h3>

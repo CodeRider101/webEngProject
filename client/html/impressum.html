@@ -10,9 +10,18 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/dark.css">
     <link rel="stylesheet" href="../css/impressum.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <script src="../js/navBar.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#nav-container').load('navBar.html', function(){
+              checkIfLoggedIn();
+          });
+        });
+        </script>
+      <div id="nav-container"></div>
+
     <div class="theme-switch" hidden="hidden">
         <input type="checkbox" />
     </div>

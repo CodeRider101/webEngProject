@@ -12,9 +12,9 @@
           <li><a id="settings" href="./settings.html">Game Settings</a></li>
           <li><a id="contactUs" href="./impressum.html">Contact Us</a></li>
       </ul>
-  
       <div class="main" hidden="hidden">
-        <a id="openLogin" onclick="openPopup()" class="user"><i class='bx bxs-user'></i><i>Log in</i></a>
+        <a onclick="openPopup()" class="user" id="signIn"></i><i>Sign in</i></a>
+        <a class="user" id="userInfo" href="userSettings.html"><i class='bx bxs-user' id="userIcon"></i><span id="username"></span></a>
         <div id="popup" class="popup">
           <div class="popup-content">
             <!-- LogIn HTML -->
@@ -56,5 +56,4 @@
 </div>
 <script src="../js/navBar.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="../js/settings.js" type="module"></script>
 <script src="../js/darkmode.js"></script>
