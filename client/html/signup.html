@@ -15,19 +15,34 @@
     <form id="signUp">
       <h2 class="label" style="padding-bottom: 30px; font-size: xx-large;">Sign Up Form</h2>
       <div class="container">
-        <label for="uname" class="label"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" id="uname" maxlength="15" minlength="3" name="uname" required>
-        <label for="psw" class="label"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
-        <label for="psw2" class="label"><b>Confirm Password</b></label>
-        <input type="password" placeholder="Confirm Password" id="psw2" name="psw2" required>
+        <div class="formGroup">
+          <label for="uname" class="label"><b>Username</b></label>
+          <div>
+            <i class='bx bxs-user signupIcon'></i>
+            <input type="text" placeholder="Enter Username" id="signUpUsername" maxlength="15" minlength="3" name="uname" required>
+          </div>
+        </div>
+        <div class="formGroup">
+          <label for="psw" class="label"><b>Password</b></label>
+          <div>
+            <i class='bx bxs-lock-open signupIcon'></i>
+            <input type="password" placeholder="Enter Password" id="signUpPw" name="psw" required>
+          </div>
+        </div> 
+        <div class="formGroup">
+          <label for="psw2" class="label"><b>Confirm Password</b></label>
+          <div>
+            <i class='bx bxs-lock signupIcon'></i>
+            <input type="password" placeholder="Confirm Password" id="signUpPw2" name="psw2" required>
+          </div>
+        </div>
         <label for="securityQuestion" class="label"><b>Security Question</b></label>
         <div class="form-group">
           <select class="select" name="securityQuestion" id="securityQuestion" required>
-            <option>What is your Mothers maiden name?</option>
-            <option>What was your highschoolname?</option>
-            <option>Which was your best grade in math?</option>
-            <option>Which team is your favorite in football?</option>
+            <option>What is your mother's maiden name??</option>
+            <option>What high school did you attend?</option>
+            <option>Where was your best family vacation as a kid?</option>
+            <option>What was the name of your first pet?</option>
           </select>
           <input class="exposed-style" type="text" placeholder="Your answer" id="securityAnswer" name="securityAnswer" required>
         </div>

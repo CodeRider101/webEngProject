@@ -9,11 +9,19 @@
   color: #333;
 }
 
+.signupIcon{
+  position: absolute;
+  top: 40%;
+  color: #333;
+}
+.formGroup{
+  position: relative;
+}
+
 input[type=text]:not(.exposed-style, #checkUname), input[type=password] {
   width: 100%;
-  padding: 12px 10px;
+  padding: 12px 20px;
   margin: 8px 0;
-  border: 1px solid #ccc;
   box-sizing: border-box;
   margin-bottom: 30px;
 }
@@ -142,6 +150,11 @@ button:hover {
   height: 40px;
   width: 50%;
   margin-right: 15px;
+  border: none;
+}
+
+#securityAnswer{
+  width: 50%;
 }
 
 span.psw {
