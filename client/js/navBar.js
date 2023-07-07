@@ -1,12 +1,9 @@
 
+
 // Fetch and insert the navbar HTML
-document.addEventListener("DOMContentLoaded", () => {
-    
-    
-});
 
-function checkIfLoggedIn(){
-
+function checkIfLoggedIn() {
+    debugger;
     if(getCookieValue('username') !== ""){
         document.getElementById('signIn').style.display = 'none';
         document.getElementById('userInfo').style.display='block';
@@ -19,6 +16,9 @@ function checkIfLoggedIn(){
 }
 
 
+
+
+
 function getCookieValue(a) {
     const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
     return b ? b.pop() : '';
@@ -26,6 +26,7 @@ function getCookieValue(a) {
 
 
 let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
 if(menu){
     menu.addEventListener('click', () => {
         menu.classList.toggle('bx-x');
