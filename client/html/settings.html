@@ -17,11 +17,10 @@
           });
         });
         </script>
-      <div id="nav-container"></div>
-    <div class="themeSettings">
-        <div id="settingsDiv"></div>
-        <h3>Theme Settings:</h3>
-        
+    <div id="nav-container"></div>
+    <div id="settingsDiv">
+        <div class="themeSettings">
+            <h3>Theme Settings:</h3>
             <div class="theme-switch">
                     <label class="switch themeToggle">
                         <input type="checkbox" name="color_mode" id="color_mode" value="1">
@@ -29,23 +28,24 @@
                     </label>
             </div>
         </div>
-    </div>
 
-    <div class="wordSettings">
-        <h3 >Word Length:</h3>
-        <div class="slider-container">
-            <div class="value-container">
-                <span id="output" class="output"></span>
-            </div>
-            <input type="range" min="3" max="9" class="slider" id="slider">
+        <div class="wordSettings">
+            <h3 >Word Length:</h3>
+            <div class="slider-container">
+                <div class="value-container">
+                    <span id="output" class="output"></span>
+                </div>
+                <input type="range" min="3" max="9" class="slider" id="slider">
+                </div>
             </div>
         </div>
-    </div>
+</div>
     <script
 src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="../js/settings.js" type="module"></script>
+<script src="../js/navBar.js" defer type="module"></script>
 </body>
 </html>
