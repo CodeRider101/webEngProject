@@ -1,14 +1,32 @@
 
+
 // Fetch and insert the navbar HTML
-fetch('../html/navbar.html')
-    .then(response => response.text())
-    .then(html => {
-      const navbarContainer = document.createElement('div');
-      navbarContainer.innerHTML = html;
-      document.body.insertBefore(navbarContainer, document.body.firstChild);
-});
+
+function checkIfLoggedIn() {
+    debugger;
+    if(getCookieValue('username') !== ""){
+        document.getElementById('signIn').style.display = 'none';
+        document.getElementById('userInfo').style.display='block';
+        document.getElementById('username').innerHTML = getCookieValue('username');
+    }else{
+        document.getElementById('userInfo').style.display='none';
+        document.getElementById('signIn').style.display = 'block';
+    }
+
+}
+
+
+
+
+
+function getCookieValue(a) {
+    const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+  }
+
 
 let menu = document.querySelector('#menu-icon');
+let navBar = document.querySelector('.navbar');
 if(menu){
     menu.addEventListener('click', () => {
         menu.classList.toggle('bx-x');
@@ -51,10 +69,12 @@ function openPopup() {
 
     const login = document.getElementById("logInButton");
     if(login){
+        debugger;
         login.addEventListener('click', function() {
             //Import the login Javascript
-            import('./logIn.js')
+            import('../js/logIn.js')
                 .then(module => {
+
                     //Script loaded successfully
                     //Import our module
                     module.checkLogin();
@@ -136,3 +156,4 @@ window.onload = function() {
         })
     }
 }
+

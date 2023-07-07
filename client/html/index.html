@@ -16,7 +16,15 @@
     <link rel="stylesheet" href="../css/popup.css">
 </head>
 <body>
-  <script src="../js/navBar.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#nav-container').load('navBar.html', function(){
+          checkIfLoggedIn();
+      });
+    });
+    </script>
+  <div id="nav-container"></div>
+
   <div class="theme-switch" hidden="hidden">
     <input type="checkbox" />
   </div>
