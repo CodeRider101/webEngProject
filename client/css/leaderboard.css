@@ -2,7 +2,6 @@
   position: relative;
 }
 
-/* Split the screen in half */
 .center{
   text-align: center;
   margin-top: 100px;
@@ -20,19 +19,15 @@
     width: 50%;
     position: fixed;
     top: 0;
-    overflow-x: hidden;
     padding-top: 20px;
     margin-top: 200px;
   }
   
-  /* Control the left side */
   .left {
     left: 0;
     background-color: #2196f3;
-    
   }
   
-  /* Control the right side */
   .right {
     right: 0;
     background-color: #add1ee;
@@ -139,5 +134,53 @@
 
 .selectLeaderboard > li:hover,.selectLeaderboard > li:active{
   color: var(--mainColor);
-  font-weight: bold;
+  font-weight: bold;  
 } 
+@media (max-width: 1200px){
+  #leaderboardDiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow:scroll;
+
+  }
+  .center{
+    text-align: center;
+    margin-top: 100px;
+    display: flex;             
+    flex-direction: column; 
+    align-items: center;   
+  }
+  .split {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding-top: 20px;
+    margin-top: 200px;
+  }
+  .left {
+    top:400px;
+    background-color: #2196f3;
+    height: 400px;
+
+
+  }
+  .left > .centered > h2{
+    margin-bottom: 25px;
+  }
+  
+  .right {
+    background-color: #add1ee;
+    height: 400px;
+    
+
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
