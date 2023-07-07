@@ -69,10 +69,12 @@ function openPopup() {
 
     const login = document.getElementById("logInButton");
     if(login){
+        debugger;
         login.addEventListener('click', function() {
             //Import the login Javascript
-            import('./logIn.js')
+            import('../js/logIn.js')
                 .then(module => {
+
                     //Script loaded successfully
                     //Import our module
                     module.checkLogin();
