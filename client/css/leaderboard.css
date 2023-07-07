@@ -15,20 +15,6 @@
   position: fixed;
 }
 
-.navbarLead{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  list-style-type: none;
-  padding-inline-start: 0px;
-  margin-right: 10px;
-  padding: 5px 0px;
-}
-
-.navbarLead > li:hover{
-  color: red;
-}
-
 .split {
     height: 100%;
     width: 50%;
@@ -55,7 +41,7 @@
   }
 
   .left > .centered > h2{
-    margin-bottom: 125px;
+    margin-bottom: 131px;
   }
   
   .centered {
@@ -84,15 +70,9 @@
 }
 
 
-
-.score{
-  padding: 5px;
-}  
-.place {
+.place, .score, .username{
+  position: relative;
 	padding: 5px;
-}
-.name{
-  padding-bottom: 5px;
 }
   
 /* Slider */
@@ -150,14 +130,14 @@
   color: var(--textColor);
   text-decoration: none;
   font-size: 1.1rem;
-  margin: 0 10px;
   padding: 5px 0px;
+  padding-left: 10px;
+  padding-right: 10px;
   transition: all .50s ease;
   
 }
 
 .selectLeaderboard > li:hover,.selectLeaderboard > li:active{
   color: var(--mainColor);
-  border-bottom: 2px solid var(--mainColor);
   font-weight: bold;
 } 
