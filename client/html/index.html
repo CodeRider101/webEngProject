@@ -70,10 +70,11 @@
 <div class="modal" id="modal">
   <div class="modal-header">
     <div class="title">Congratulations!</div>
-    <button data-close-button class="close-button">&times;</button>
+    <button data-close-button id="close-modal-btn" class="close-button">&times;</button>
   </div>
   <div class="modal-body">
     <h3 id="modal-text">You won!</h3>
+    <p id="scoreText"></p>
     <div class="playAgain">
       <label for="newGame2">Want to play again?</label>
       <button class="resetBtn" type="button" id="newGame2" onclick="this.blur()">Restart</button>
@@ -88,6 +89,5 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="../js/main.js" type="module"></script>
-  <script type="module"> import { removePopUp } from '../js/popUp.js';</script>
 </body>
 </html>
