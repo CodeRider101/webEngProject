@@ -48,13 +48,15 @@ export const changePassword = async(req, res) =>{
   try{
       const result = await userSchema.findOne({
         username: req.body.username,
+        securityQuestion: req.body.securityQuestion
       })
+      console.log(result);
       if(result){
-        if(bcrypt.compareSync(req.body.currentPassword, result.password && req.body.securityAnswer === result.securityAnswer)){
+        if(bcrypt.compareSync(req.body.currentPassword, result.password) && req.body.securityAnswer === result.securityAnswer){
           if(bcrypt.compareSync(req.body.newPassword, result.password)){
             return res.status(400).json({error: "Your New Password Can't Be The Old Password!"});
           }else{
-            const hashedPassword =  bcrypt.hashSync(req.body.password);
+            const hashedPassword =  bcrypt.hashSync(req.body.newPassword);
             console.log(result+", pw: "+hashedPassword);
             await userSchema.updateOne(
               result,

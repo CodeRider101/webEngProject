@@ -23,6 +23,7 @@ buttonChangeUsername.addEventListener("click", (e) => {
 
 
 async function changePassword(){
+    debugger;
     const username = getCookieValue('username');
     const currentPassword = document.getElementById('currentPassword').value;
     const newPassword = document.getElementById('newPassword').value;
@@ -96,8 +97,8 @@ async function changeUsername(){
         throw new Error(response.statusText);
       }else{
         alert("You changed your username successfully");
-        setCookie("username", newUsername, 30);
-        document.cookie = "username = "+newUsername;
+        document.cookie = "username = " + newUsername;
+        document.getElementById('username').innerHTML = newUsername;
 
       }
     }).then(json=>{
