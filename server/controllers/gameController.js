@@ -61,7 +61,7 @@ export const check = async (req, res) => {
         console.log(score);
         score = score.toFixed(0);
         console.log("Score: "+ score);
-        if(req.query.username === undefined){
+        if(req.query.username != undefined){
           console.log("Username: "+ req.query.username)
           let date = new Date().toUTCString();
           console.log(date);
@@ -77,7 +77,9 @@ export const check = async (req, res) => {
           }catch(err){
             console.log(err);
           }
-        } 
+        }else{
+          console.log("Dumm?")
+        }
 
         
 
