@@ -1,59 +1,65 @@
-<link href="../css/navBar.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/dark.css">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/dark.css">
-<link rel="stylesheet" href="../css/login.css">
-<div class="header">
-  <header>
-      <div class="logo"><img src="../images/turtle.png" alt="turtleLight"></i><span>VTordle</span></div>
-      <ul class="navbar">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hallo</title>
+    <link href="../css/navBar.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dark.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dark.css">
+    <link rel="stylesheet" href="../css/login.css">
+  </head>
+  <div class="header">
+    <header>
+        <div class="logo"><img src="../images/turtle.png" alt="turtleLight"><span>VTordle</span></div>
+        <ul class="navbar">
           <li><a id="home" href="./index.html">Home</a></li>
           <li><a id="leaderboard" href="./leaderboard.html">Leaderboard</a></li>
           <li><a id="settings" href="./settings.html">Game Settings</a></li>
           <li><a id="contactUs" href="./impressum.html">Contact Us</a></li>
-      </ul>
-      <div class="main" hidden="hidden">
-        <a onclick="openPopup()" class="user" id="signIn"></i><i>Sign in</i></a>
-        <a class="user" id="userInfo" href="userSettings.html"><i class='bx bxs-user' id="userIcon"></i><span id="username"></span></a>
-        <div id="popup" class="popup">
-          <div class="popup-content">
-            <!-- LogIn HTML -->
-            <div class="login-box">
-              <form id="wholeBox" class="container">
-                <h2 class="label" style="padding-bottom: 30px;">Sign in</h2>
-                <div class="formGroup">
-                  <label class="label" for="uname"><b>Username</b></label>
-                  <div>
-                    <i class='bx bxs-user loginIcon'></i>
-                    <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+        </ul>
+        <div class="main" hidden="hidden">
+          <a onclick="openPopup()" class="user" id="signIn"><i>Sign in</i></a>
+          <a class="user" id="userInfo" href="userSettings.html"><i class='bx bxs-user' id="userIcon"></i><span id="username"></span></a>
+          <div id="popup" class="popup">
+            <div class="popup-content">
+              <!-- LogIn HTML -->
+              <div class="login-box">
+                <form id="wholeBox" class="container">
+                  <h2 class="label" style="padding-bottom: 30px;">Sign in</h2>
+                  <div class="formGroup">
+                    <label class="label" for="uname"><b>Username</b></label>
+                    <div>
+                      <i class='bx bxs-user loginIcon'></i>
+                      <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+                    </div>
                   </div>
-                </div>
-                <div class="formGroup">
-                  <label class="label" for="psw"><b>Password</b></label>
-                  <div>
-                    <i class='bx bxs-lock loginIcon'></i>
-                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                  <div class="formGroup">
+                    <label class="label" for="psw"><b>Password</b></label>
+                    <div>
+                      <i class='bx bxs-lock loginIcon'></i>
+                      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                    </div>
                   </div>
-                </div>
-                <label class="label">
-                  <input type="checkbox" checked="checked" name="remember" id="remember"> Remember me
-                </label>
-                <button class="login" id="logInButton" onclick="event.preventDefault();">Login</button>
-                <div style="display:flex;">
-                  <a class="cancelbtn" onclick="closePopup()" style="flex:1; margin-right: 10px;" >Cancel</a>
-                  <a class="signup" style="flex:1" href="./signup.html">Sign Up</a>
-                </div>
-                <span class="psw"><a href="./forgotPassword.html" style="color: black;">Forgot password?</a></span>
-              </form>
+                  <label class="label">
+                    <input type="checkbox" checked="checked" name="remember" id="remember"> Remember me
+                  </label>
+                  <button class="login" id="logInButton" onclick="event.preventDefault();">Login</button>
+                  <div style="display:flex;">
+                    <a class="cancelbtn" onclick="closePopup()" style="flex:1; margin-right: 10px;" >Cancel</a>
+                    <a class="signup" style="flex:1" href="./signup.html">Sign Up</a>
+                  </div>
+                  <span class="psw"><a href="./forgotPassword.html" style="color: black;">Forgot password?</a></span>
+                </form>
+              </div>
+              <!-- end login html file -->
             </div>
-            <!-- end login html file -->
           </div>
+        <div id="overlay" class="overlay"></div>
+            <div class="bx bx-menu" id="menu-icon"></div>
         </div>
-      <div id="overlay" class="overlay"></div>
-          <div class="bx bx-menu" id="menu-icon"></div>
-      </div>
-  </header>
-</div>
-<script src="../js/navBar.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="../js/darkmode.js"></script>
+    </header>
+  </div>
+  <script src="../js/navBar.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="../js/darkmode.js"></script>
+</html>
