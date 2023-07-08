@@ -1,6 +1,6 @@
 let popUp = document.getElementById("popUp");
 
-export const createPopUp = (title, text)=>{
+export const createPopUp = (title, text) => {
     const titleH1 = document.createElement("h1");
     const textP = document.createElement("p");
     titleH1.setAttribute("id", "titleP");
@@ -8,11 +8,11 @@ export const createPopUp = (title, text)=>{
     titleH1.appendChild(document.createTextNode(title));
     textP.appendChild(document.createTextNode(text));
 
-    if(popUp){
+    if (popUp) {
         const oldP = document.getElementById("popP");
         popUp.replaceChild(textP, oldP);
         popUp.classList.add("open-popUp");
-    }else{
+    } else {
         const textContainer = document.createElement("div");
         textContainer.setAttribute("id", "textContainer");
         const popUpDiv = document.createElement("div");
@@ -22,12 +22,12 @@ export const createPopUp = (title, text)=>{
         popUpDiv.appendChild(textContainer);
 
         const closeButton = document.createElement("button");
-        closeButton.onclick = ()=>{
-            if(popUp){
-                popUp.classList.remove("open-popUp")
+        closeButton.onclick = () => {
+            if (popUp) {
+                popUp.classList.remove("open-popUp");
             }
         };
-        closeButton.setAttribute("id", "closePopUpButton")
+        closeButton.setAttribute("id", "closePopUpButton");
         closeButton.textContent = "Ok!";
         popUpDiv.appendChild(closeButton);
         document.body.appendChild(popUpDiv);
@@ -38,10 +38,10 @@ export const createPopUp = (title, text)=>{
     const textContainer = document.getElementById("textContainer");
     textContainer.innerHTML = "";
 
-    text.forEach(t => {
+    text.forEach((t) => {
         const textP = document.createElement("p");
         textP.setAttribute("class", "popP");
         textP.appendChild(document.createTextNode(t));
         textContainer.appendChild(textP);
-      });
-}
+    });
+};

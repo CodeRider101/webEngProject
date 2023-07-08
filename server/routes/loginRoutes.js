@@ -6,6 +6,6 @@ import { login, signup } from "../controllers/loginController.js";
 const loginRouter = express.Router();
 
 loginRouter.post("/signUp", signup);
-loginRouter.post("/login", login)
+loginRouter.post("/login", login);
 
 export default loginRouter;

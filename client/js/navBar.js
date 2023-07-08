@@ -1,159 +1,148 @@
-
-
 // Fetch and insert the navbar HTML
 
 function checkIfLoggedIn() {
     debugger;
-    if(getCookieValue('username') !== ""){
-        document.getElementById('signIn').style.display = 'none';
-        document.getElementById('userInfo').style.display='block';
-        document.getElementById('username').innerHTML = getCookieValue('username');
-    }else{
-        document.getElementById('userInfo').style.display='none';
-        document.getElementById('signIn').style.display = 'block';
+    if (getCookieValue("username") !== "") {
+        document.getElementById("signIn").style.display = "none";
+        document.getElementById("userInfo").style.display = "block";
+        document.getElementById("username").innerHTML =
+            getCookieValue("username");
+    } else {
+        document.getElementById("userInfo").style.display = "none";
+        document.getElementById("signIn").style.display = "block";
     }
-
 }
 
-
-
-
-
 function getCookieValue(a) {
-    const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-    return b ? b.pop() : '';
-  }
+    const b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
+    return b ? b.pop() : "";
+}
 
-
-let menu = document.querySelector('#menu-icon');
-let navBar = document.querySelector('.navbar');
-if(menu){
-    menu.addEventListener('click', () => {
-        menu.classList.toggle('bx-x');
-        navBar.classList.toggle('open');
+let menu = document.querySelector("#menu-icon");
+let navBar = document.querySelector(".navbar");
+if (menu) {
+    menu.addEventListener("click", () => {
+        menu.classList.toggle("bx-x");
+        navBar.classList.toggle("open");
     });
 }
 
 function openPopup() {
-    let popup = document.getElementById('popup');
-    let overlay = document.getElementById('overlay');
+    let popup = document.getElementById("popup");
+    let overlay = document.getElementById("overlay");
 
     //Index.html
-    let wordle = document.getElementById('wordle')
+    let wordle = document.getElementById("wordle");
     //Leaderboard
-    let leaderboard = document.getElementById('leaderboardDiv')
+    let leaderboard = document.getElementById("leaderboardDiv");
     //Settings.html
-    let settings = document.getElementById('settingsDiv')
-    console.log(settings)
+    let settings = document.getElementById("settingsDiv");
+    console.log(settings);
     //Impressum
-    let impressum = document.getElementById('impressumDiv')
+    let impressum = document.getElementById("impressumDiv");
 
-    if(wordle){
-        wordle.style.zIndex = '-1';
-    }else if(leaderboard){
-        leaderboard.style.zIndex = '-1';
-    }else if(settings){
-        settings.style.zIndex = '-1';
-        console.log(settings.style.zIndex)
-    }else if(impressum){
-        impressum.style.zIndex = '-1';
+    if (wordle) {
+        wordle.style.zIndex = "-1";
+    } else if (leaderboard) {
+        leaderboard.style.zIndex = "-1";
+    } else if (settings) {
+        settings.style.zIndex = "-1";
+        console.log(settings.style.zIndex);
+    } else if (impressum) {
+        impressum.style.zIndex = "-1";
     }
-    popup.style.visibility = 'visible';
-    popup.style.opacity = '1';
+    popup.style.visibility = "visible";
+    popup.style.opacity = "1";
 
-    overlay.classList.add('active');
+    overlay.classList.add("active");
 
     //set autoFocus on username Inputfield
     document.getElementById("uname").focus();
 
-
     const login = document.getElementById("logInButton");
-    if(login){
+    if (login) {
         debugger;
-        login.addEventListener('click', function() {
+        login.addEventListener("click", function () {
             //Import the login Javascript
-            import('../js/logIn.js')
-                .then(module => {
-
+            import("../js/logIn.js")
+                .then((module) => {
                     //Script loaded successfully
                     //Import our module
                     module.checkLogin();
-                    })
-                    .catch(error => {
+                })
+                .catch((error) => {
                     // Error while loading the script
-                    console.error('Error loading script:', error);
+                    console.error("Error loading script:", error);
                 });
         });
     }
 }
 
-  function closePopup() {
-    let popup = document.getElementById('popup');
-    let overlay = document.getElementById('overlay');
+function closePopup() {
+    let popup = document.getElementById("popup");
+    let overlay = document.getElementById("overlay");
 
-    popup.style.visibility = 'hidden';
-    popup.style.opacity = '0';
-    
+    popup.style.visibility = "hidden";
+    popup.style.opacity = "0";
+
     //Index.html
-    const wordle = document.getElementById('wordle')
+    const wordle = document.getElementById("wordle");
     //Leaderboard
-    const leaderboard = document.getElementById('leaderboardDiv')
+    const leaderboard = document.getElementById("leaderboardDiv");
     //Settings.html
-    let settings = document.getElementById('settingsDiv')
+    let settings = document.getElementById("settingsDiv");
     //Impressum
-    const impressum = document.getElementById('impressumDiv')
+    const impressum = document.getElementById("impressumDiv");
 
-    if(wordle){
-        wordle.style.zIndex = '0';
-    }else if(leaderboard){
-        leaderboard.style.zIndex = '0';
-    }else if(settings){
-        settings.style.zIndex = '0';
-    }else if(impressum){
-        impressum.style.zIndex = '0';
+    if (wordle) {
+        wordle.style.zIndex = "0";
+    } else if (leaderboard) {
+        leaderboard.style.zIndex = "0";
+    } else if (settings) {
+        settings.style.zIndex = "0";
+    } else if (impressum) {
+        impressum.style.zIndex = "0";
     }
 
+    overlay.classList.remove("active");
+}
 
-    overlay.classList.remove('active');
-  }
-
-window.onload = function() {
+window.onload = function () {
     let homeTab = document.getElementById("home");
     let leaderBoardTab = document.getElementById("leaderboard");
     let settingsTab = document.getElementById("settings");
     let contactUsTab = document.getElementById("contactUs");
-    if(homeTab){
-        homeTab.addEventListener("click", ()=>{
+    if (homeTab) {
+        homeTab.addEventListener("click", () => {
             homeTab.classList.add("active");
             leaderBoardTab.classList.remove("active)");
             settingsTab.classList.remove("active)");
             contactUsTab.classList.remove("active)");
-        })
+        });
     }
-    if(leaderBoardTab){
-        leaderBoardTab.addEventListener("click", ()=>{
+    if (leaderBoardTab) {
+        leaderBoardTab.addEventListener("click", () => {
             homeTab.classList.remove("active");
             leaderBoardTab.classList.add("active)");
             settingsTab.classList.remove("active)");
             contactUsTab.classList.remove("active)");
-        })
+        });
     }
-    if(settingsTab){
-        settingsTab.addEventListener("click", ()=>{
+    if (settingsTab) {
+        settingsTab.addEventListener("click", () => {
             homeTab.classList.remove("active");
             leaderBoardTab.classList.remove("active)");
             settingsTab.classList.add("active)");
             contactUsTab.classList.remove("active)");
-        })
+        });
     }
-    if(contactUsTab){
-        contactUsTab.addEventListener("click", ()=>{
-            console.log("Hallo Contact Us")
+    if (contactUsTab) {
+        contactUsTab.addEventListener("click", () => {
+            console.log("Hallo Contact Us");
             contactUsTab.classList.toggle("active)");
             homeTab.classList.remove("active");
             leaderBoardTab.classList.remove("active)");
             settingsTab.classList.remove("active)");
-        })
+        });
     }
-}
-
+};
