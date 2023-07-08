@@ -1,7 +1,6 @@
 // Fetch and insert the navbar HTML
 
 function checkIfLoggedIn() {
-    debugger;
     if (getCookieValue("username") !== "") {
         document.getElementById("signIn").style.display = "none";
         document.getElementById("userInfo").style.display = "block";
@@ -61,7 +60,7 @@ function openPopup() {
 
     const login = document.getElementById("logInButton");
     if (login) {
-        debugger;
+        ;
         login.addEventListener("click", function () {
             //Import the login Javascript
             import("../js/logIn.js")

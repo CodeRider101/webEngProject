@@ -21,7 +21,7 @@ buttonChangeUsername.addEventListener("click", (e) => {
 });
 
 async function changePassword() {
-    debugger;
+    ;
     const username = getCookieValue("username");
     const currentPassword = document.getElementById("currentPassword").value;
     const newPassword = document.getElementById("newPassword").value;
@@ -69,7 +69,7 @@ async function changePassword() {
 
 async function changeUsername() {
     const newUsername = document.getElementById("newUsernameValue").value;
-    debugger;
+    ;
     console.log(newUsername);
     const currentUsername = getCookieValue("username");
 
@@ -88,7 +88,7 @@ async function changeUsername() {
             }),
         })
             .then((response) => {
-                debugger;
+                ;
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 } else {

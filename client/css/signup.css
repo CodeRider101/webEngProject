@@ -4,7 +4,6 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
-
 .label{
   color: #333;
 }
@@ -133,21 +132,31 @@ button:hover {
 }
 
 .form-group{
+  margin-top : 10px;
   display: flex;
   align-items: flex-start;
   justify-items: start;
 }
 
 .select{
-  height: 40px;
+  position: relative;
+  height: 50px;
   width: 50%;
   margin-right: 15px;
+}
+
+.exposed-style{
+  height: 50px;
+  width: 100%;
+  padding: 12px 10px;
+  margin: 0px 0;
 }
 
 span.psw {
   float: right;
   padding-top: 16px;
 }
+
 
 @media screen and (max-width: 300px) {
   .box{
