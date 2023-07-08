@@ -1,6 +1,11 @@
-import express from 'express';
+import express from "express";
 //import User functions
-import { getSecurityQuestion, resetPassword, changePassword, changeUsername } from "../controllers/userController.js";
+import {
+    getSecurityQuestion,
+    resetPassword,
+    changePassword,
+    changeUsername,
+} from "../controllers/userController.js";
 
 //create Router from express
 const userRouter = express.Router();
