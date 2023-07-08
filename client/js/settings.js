@@ -1,7 +1,7 @@
 import { setThemeFromCookie } from './darkmode.js';
 
 // Save the theme preference for 10 years.
-var endDate = new Date();
+let endDate = new Date();
 endDate.setFullYear(endDate.getFullYear() + 10);
 
 // Set theme from cookie and set slider value after DOM is loaded
