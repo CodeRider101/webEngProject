@@ -35,8 +35,8 @@ if(menu){
 }
 
 function openPopup() {
-    var popup = document.getElementById('popup');
-    var overlay = document.getElementById('overlay');
+    let popup = document.getElementById('popup');
+    let overlay = document.getElementById('overlay');
 
     //Index.html
     let wordle = document.getElementById('wordle')
@@ -88,8 +88,8 @@ function openPopup() {
 }
 
   function closePopup() {
-    var popup = document.getElementById('popup');
-    var overlay = document.getElementById('overlay');
+    let popup = document.getElementById('popup');
+    let overlay = document.getElementById('overlay');
 
     popup.style.visibility = 'hidden';
     popup.style.opacity = '0';
