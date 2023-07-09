@@ -8,23 +8,18 @@ if (usernameField) {
     document
         .getElementById("checkUser")
         .addEventListener("click", checkWhichSecurityQuestion);
-    if (cookieName != "" && cookieName) {
-        usernameField.value = cookieName;
-        checkWhichSecurityQuestion();
-    } else {
-        usernameField.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                checkWhichSecurityQuestion();
-            }
-        });
-    }
+  
+    usernameField.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            checkWhichSecurityQuestion();
+        }
+    })
 }
 
 // Check whether the username exists and display the corresponding security question if it does.
 async function checkWhichSecurityQuestion(event) {
     console.log("checkWhichSecurityQuestion");
     const username = document.getElementById("checkUname").value;
-    document.cookie = "username=" + username;
     await fetch(`http://localhost:8000/api/users/getSecurityQuestion`, {
         method: "POST",
         headers: {

@@ -5,8 +5,6 @@ export const checkLogin = async (event) => {
     let password = document.getElementById("psw").value;
     let rememberMe = document.getElementById("remember").value;
 
-    document.cookie = "username=" + username;
-
     await fetch(`http://localhost:8000/api/login/logIn`, {
         method: "POST",
         headers: {
@@ -21,7 +19,9 @@ export const checkLogin = async (event) => {
     })
         .then((response) => {
             if (response.ok) {
-                //Successful login
+                //set username cookie
+                document.cookie = "username=" + username;
+                // Successful login
                 console.log("Login successful");
                 //Redirect to main
                 confirm(
