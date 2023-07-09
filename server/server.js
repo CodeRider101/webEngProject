@@ -16,7 +16,6 @@ app.use(cors());
 
 //Routes
 app.use("/api/users", userRouter);
-app.use("/api/login", loginRouter);
 app.use("/api/game", gameRouter);
 app.use("/api/leaderboard", leaderboardRouter);
 

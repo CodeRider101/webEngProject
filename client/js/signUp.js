@@ -16,7 +16,7 @@ async function checkSignUp(event) {
 
     if (password === confirmPassword && username != "Not Acceptable") {
         console.log("fetch");
-        await fetch(`http://localhost:8000/api/login/signUp`, {
+        await fetch(`http://localhost:8000/api/users/signUp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
