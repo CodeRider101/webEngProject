@@ -1,6 +1,5 @@
 import axios from "axios";
 import highScoreSchema from "../models/highscoreSchema.js";
-import cookieParser from "cookie-parser";
 let rightGuessString;
 let tries = 0;
 let start;
