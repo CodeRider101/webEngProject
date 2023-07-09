@@ -1,12 +1,11 @@
+// Check if the entered username and password are correct
 export const checkLogin = async (event) => {
     console.log("Check login");
     let username = document.getElementById("uname").value;
     let password = document.getElementById("psw").value;
     let rememberMe = document.getElementById("remember").value;
 
-    document.cookie = "username=" + username;
-
-    await fetch(`http://localhost:8000/api/users/logIn`, {
+    await fetch(`http://localhost:8000/api/users/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -20,15 +19,17 @@ export const checkLogin = async (event) => {
     })
         .then((response) => {
             if (response.ok) {
+                //set username cookie
+                document.cookie = "username=" + username;
                 // Successful login
                 console.log("Login successful");
-                //redirect to main
+                //Redirect to main
                 confirm(
-                    "Welcome back. You'll get redirected to the main page in a sec."
+                    "Welcome back! You'll be redirected to the main page in a sec."
                 );
                 window.location.href = "../html/index.html";
             } else {
-                //wrong user or wrong password
+                //Wrong user or wrong password
                 return response.json().then((data) => {
                     throw new Error(data.error);
                 });

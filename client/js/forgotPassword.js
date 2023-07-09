@@ -1,5 +1,6 @@
 import { getCookieValue, setCookie } from "./cookies.js";
 
+// After the username is entered, the security question is displayed.
 const usernameField = document.getElementById("checkUname");
 if (usernameField) {
     console.log("Forgot Password");
@@ -7,22 +8,18 @@ if (usernameField) {
     document
         .getElementById("checkUser")
         .addEventListener("click", checkWhichSecurityQuestion);
-    if (cookieName != "" && cookieName) {
-        usernameField.value = cookieName;
-        checkWhichSecurityQuestion();
-    } else {
-        usernameField.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                checkWhichSecurityQuestion();
-            }
-        });
-    }
+  
+    usernameField.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            checkWhichSecurityQuestion();
+        }
+    })
 }
 
+// Check whether the username exists and display the corresponding security question if it does.
 async function checkWhichSecurityQuestion(event) {
     console.log("checkWhichSecurityQuestion");
     const username = document.getElementById("checkUname").value;
-    document.cookie = "username=" + username;
     await fetch(`http://localhost:8000/api/users/getSecurityQuestion`, {
         method: "POST",
         headers: {
@@ -34,7 +31,7 @@ async function checkWhichSecurityQuestion(event) {
         }),
     }).then((response) => {
         if (!response.ok) {
-            alert("The User Is Not Given!");
+            alert("The user does not exist!");
         } else {
             response.json().then((data) => {
                 document.getElementById("securityQuestion").innerHTML =
@@ -59,6 +56,7 @@ async function checkWhichSecurityQuestion(event) {
     });
 }
 
+// Check whether the security answer is correct and whether the password and the confirm password match. If so, the password is changed.
 async function checkForgotPassword(event) {
     event.preventDefault();
     const username = usernameField.value;

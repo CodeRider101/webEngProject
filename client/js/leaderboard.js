@@ -7,6 +7,7 @@ let timeSpan = "All time";
 let output = document.getElementById("outputScore");
 let slider = document.getElementById("sliderScore");
 
+// When the page is loaded, add event listeners and load the leaderboard
 window.onload = function () {
     console.log("Leaderboard");
     slider.addEventListener("change", updateSlider, false);
@@ -42,6 +43,7 @@ function getCookieValue(a) {
     return b ? b.pop() : "";
 }
 
+// Fetch the leaderboard data from the server and find a users best score
 async function findBest(user, wordLength, personal, timeSpan) {
     try {
         const response = await fetch(
@@ -60,6 +62,7 @@ async function findBest(user, wordLength, personal, timeSpan) {
     }
 }
 
+// Load the personal best scores from the server and display them
 async function loadPersonalBest(wordLength) {
     const personalContainer = document.getElementById("personalContainer");
     //delete all previous data
@@ -129,6 +132,7 @@ async function loadPersonalBest(wordLength) {
     }
 }
 
+// Load the overall best scores from the server and display them
 async function loadOverallBest(wordLength, timeSpan) {
     const data = await findBest("xxx", wordLength, "false", timeSpan);
 
@@ -200,6 +204,7 @@ async function loadOverallBest(wordLength, timeSpan) {
     }
 }
 
+// If the menu is opened, it will be in front of the leaderboard
 menu.addEventListener("click", () => {
     menu.classList.toggle("bx-x");
     navBar.classList.toggle("open");
@@ -211,7 +216,7 @@ menu.addEventListener("click", () => {
     }
 });
 
-// Word length slider
+// Word length slider to change the word length of the portrayed data
 function updateSlider() {
     wordLength = document.getElementById("sliderScore").value;
     output.textContent = wordLength;

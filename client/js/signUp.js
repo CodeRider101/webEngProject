@@ -1,11 +1,13 @@
 import { setThemeFromCookie } from "./darkmode.js";
 
+// If the page is opened, add an event listener to the form
 const signUp = document.getElementById("signUp");
 if (signUp) {
     console.log("Sign Up");
     signUp.addEventListener("submit", checkSignUp);
 }
 
+// Check whether the password and the confirm password match and whether the username is already taken. If so, the user is created.
 async function checkSignUp(event) {
     event.preventDefault();
     const username = document.getElementById("signUpUsername").value;
@@ -53,6 +55,6 @@ async function checkSignUp(event) {
                 );
             });
     } else {
-        alert("Your password didn't match the Confirmpassword!");
+        alert("Your password didn't match the confirm password!");
     }
 }
