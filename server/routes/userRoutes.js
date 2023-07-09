@@ -16,7 +16,7 @@ userRouter.post("/resetPassword", resetPassword);
 userRouter.post("/getSecurityQuestion", getSecurityQuestion);
 userRouter.post("/changePassword", changePassword);
 userRouter.post("/changeUsername", changeUsername);
-loginRouter.post("/signUp", signup);
-loginRouter.post("/login", login);
+userRouter.post("/signUp", signup);
+userRouter.post("/login", login);
 
 export default userRouter;
