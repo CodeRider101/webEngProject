@@ -1,5 +1,4 @@
 import highScoreSchema from "../models/highscoreSchema.js";
-import cookieParser from "cookie-parser";
 
 export const leaderboardOnInnit = async (req, res) => {
     try {

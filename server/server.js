@@ -6,7 +6,6 @@ import userRouter from './routes/userRoutes.js';
 import loginRouter from './routes/loginRoutes.js';
 import gameRouter from './routes/gameRoutes.js';
 import leaderboardRouter from './routes/leaderboardRoutes.js';
-import cookieParser from 'cookie-parser';
 
 const app = express();
 const port = 8000;
@@ -14,7 +13,6 @@ const port = 8000;
 // Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
 app.use(cors());
-app.use(cookieParser());
 
 //Routes
 app.use("/api/users", userRouter);
