@@ -7,16 +7,12 @@ if (usernameField) {
     document
         .getElementById("checkUser")
         .addEventListener("click", checkWhichSecurityQuestion);
-    if (cookieName != "" && cookieName) {
-        usernameField.value = cookieName;
-        checkWhichSecurityQuestion();
-    } else {
-        usernameField.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                checkWhichSecurityQuestion();
-            }
-        });
-    }
+  
+    usernameField.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            checkWhichSecurityQuestion();
+        }
+    })
 }
 
 async function checkWhichSecurityQuestion(event) {
