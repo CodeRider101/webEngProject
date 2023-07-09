@@ -1,3 +1,4 @@
+// Check if the entered username and password are correct
 export const checkLogin = async (event) => {
     console.log("Check login");
     let username = document.getElementById("uname").value;
@@ -20,15 +21,15 @@ export const checkLogin = async (event) => {
     })
         .then((response) => {
             if (response.ok) {
-                // Successful login
+                //Successful login
                 console.log("Login successful");
-                //redirect to main
+                //Redirect to main
                 confirm(
-                    "Welcome back. You'll get redirected to the main page in a sec."
+                    "Welcome back! You'll be redirected to the main page in a sec."
                 );
                 window.location.href = "../html/index.html";
             } else {
-                //wrong user or wrong password
+                //Wrong user or wrong password
                 return response.json().then((data) => {
                     throw new Error(data.error);
                 });

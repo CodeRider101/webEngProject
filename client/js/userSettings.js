@@ -1,6 +1,9 @@
+// Import function to set theme from cookie
 import { setThemeFromCookie } from "./darkmode.js";
+
 import { getCookieValue, setCookie } from "./cookies.js";
 
+// Add event listener to sign out button
 let signOutButton = document.getElementById("signOutButton");
 signOutButton.addEventListener("click", (e) => {
     document.cookie = "username = ";
@@ -10,6 +13,7 @@ signOutButton.addEventListener("click", (e) => {
     }, 500);
 });
 
+// Add event listeners
 let buttonChangePassword = document.getElementById("buttonChangePassword");
 buttonChangePassword.addEventListener("click", (e) => {
     changePassword();
@@ -20,6 +24,7 @@ buttonChangeUsername.addEventListener("click", (e) => {
     changeUsername();
 });
 
+// Change the password
 async function changePassword() {
     ;
     const username = getCookieValue("username");
@@ -67,6 +72,7 @@ async function changePassword() {
     }
 }
 
+// Change the username, if it is not the same as the old one or already taken
 async function changeUsername() {
     const newUsername = document.getElementById("newUsernameValue").value;
     ;

@@ -1,4 +1,6 @@
+//Import function to set the theme from the cookie
 import { setThemeFromCookie } from "./darkmode.js";
+
 import {
     startConfetti,
     stopConfetti,
@@ -18,10 +20,12 @@ let nextLetter = 0;
 let darkModeEnabled;
 let popUp;
 
+// Set a boolean depending on the cookie value
 if (document.cookie.match(/theme=dark/) != null) {
     darkModeEnabled = true;
 }
 
+// Create a greeting pop up if the user has not logged in or signed up 
 document.addEventListener("DOMContentLoaded", function () {
     if (getCookieValue("username") === "") {
         createPopUp("Hey", [
@@ -37,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// start the game and sets a new word in the backend();
+// Start the game and set a new word in the backend();
 const start = () => {
     fetch(`http://localhost:8000/api/game/`, {
         method: "POST",
@@ -56,18 +60,13 @@ const start = () => {
         .catch((err) => console.log(err));
 };
 
-let newGame = document.getElementById("newGame");
-newGame.addEventListener("click", restart, true);
-
-let newGame2 = document.getElementById("newGame2");
-newGame2.addEventListener("click", restart, true);
-
-//delete, enter button
+//Start the game when the page is loaded
 document.addEventListener("DOMContentLoaded", initBoard);
+//Delete and enter button
 document.getElementById("deleteButton").addEventListener("click", deleteLetter);
 document.getElementById("enterButton").addEventListener("click", checkGuess);
 
-//initializes the board with the right number of rows and boxes
+//Initialize the board with the right number of rows and boxes
 function initBoard() {
     let board = document.getElementById("game-board");
 
@@ -76,6 +75,7 @@ function initBoard() {
         .split("; ")
         .find((row) => row.startsWith("wLength="))
         ?.split("=")[1];
+    // If the cookie value is defined set the word length to the cookie value
     if (cookieValue !== undefined) {
         NUMBER_OF_GUESSES = parseInt(cookieValue) + 1;
         guessesRemaining = NUMBER_OF_GUESSES;
@@ -97,7 +97,7 @@ function initBoard() {
     start();
 }
 
-//colors one key on the keyboard
+//Colors one key on the keyboard
 function shadeKeyBoard(letter, color) {
     for (const elem of document.getElementsByClassName("keyboard-button")) {
         if (elem.textContent === letter) {
@@ -115,7 +115,8 @@ function shadeKeyBoard(letter, color) {
         }
     }
 }
-//deletes the last letter in the box and the current guess
+
+//Deletes the last letter in the box of the current guess
 function deleteLetter() {
     let row =
         document.getElementsByClassName("letter-row")[
@@ -129,7 +130,8 @@ function deleteLetter() {
         nextLetter -= 1;
     }
 }
-//checks the current guess based on the result from the backend and colors the boxes accordingly
+
+//Checks the current guess based on the result from the backend and colors the boxes accordingly
 async function checkGuess() {
     let row =
         document.getElementsByClassName("letter-row")[
@@ -150,6 +152,7 @@ async function checkGuess() {
     let correct = false;
     let letterColor;
     let result;
+    // Get the result from the backend
     await fetch(
         `http://localhost:8000/api/game/check?guess=${guessString}&length=${WORD_LENGTH}&username=${getCookieValue(
             "username"
@@ -173,6 +176,8 @@ async function checkGuess() {
         }
         return;
     }
+
+    //Animate the boxes and change the color
     for (let i = 0; i < WORD_LENGTH; i++) {
         let box = row.children[i];
         let delay = 250 * i;
@@ -193,6 +198,7 @@ async function checkGuess() {
         }, delay);
     }
 
+    // If the guess is correct, show the congratulations modal and start the confetti
     if (correct) {
         guessesRemaining = 0;
         openModal(result[2]);
@@ -205,11 +211,11 @@ async function checkGuess() {
 
         if (guessesRemaining === 0) {
             toastr.error("You've run out of guesses! Game over!");
-            //toastr.info(`The right word was: "${rightGuessString}"`);
         }
     }
 }
-//inserts a letter in the next box
+
+//Inserts a letter in the next box
 function insertLetter(pressedKey) {
     popUp = document.getElementById("popup");
     if (nextLetter === WORD_LENGTH || popUp.style.visibility == "visible") {
@@ -228,7 +234,8 @@ function insertLetter(pressedKey) {
     currentGuess.push(pressedKey);
     nextLetter += 1;
 }
-//animates the boxes
+
+//Animates the boxes
 const animateCSS = (element, animation, prefix = "animate__") =>
     // We create a Promise and return it
     new Promise((resolve, reject) => {
@@ -260,6 +267,7 @@ const animateCSS = (element, animation, prefix = "animate__") =>
         });
     });
 
+// Event listeners for the keyboard    
 document.addEventListener("keyup", (e) => {
     popUp = document.getElementById("popup");
     if (guessesRemaining === 0) {
@@ -285,6 +293,7 @@ document.addEventListener("keyup", (e) => {
     }
 });
 
+// Event listener for the keyboard buttons
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     const target = e.target;
 
@@ -303,17 +312,18 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 // let menu = document.querySelector('#menu-icon');
 // let navBar = document.querySelector('.navbar');
 
-function wordLength() {
-    let wordLength = document.getElementById("wordLength").value;
-    if (wordLength < 3 || wordLength > 9) {
-        toastr.error("Please enter a number between 3 and 9");
-        p;
-    } else {
-        NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
-        WORD_LENGTH = wordLength;
-        restart();
-    }
-}
+
+// function wordLength() {
+//     let wordLength = document.getElementById("wordLength").value;
+//     if (wordLength < 3 || wordLength > 9) {
+//         toastr.error("Please enter a number between 3 and 9");
+//         p;
+//     } else {
+//         NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
+//         WORD_LENGTH = wordLength;
+//         restart();
+//     }
+// }
 
 // menu.addEventListener('click', () => {
 //   menu.classList.toggle('bx-x');
@@ -326,6 +336,8 @@ function wordLength() {
 //  }
 // });
 
+
+// Restart the game according to the current settings
 function restart() {
     closeModal();
     stopConfetti();
@@ -350,3 +362,9 @@ function restart() {
         }
     }
 }
+
+// Event listeners for the restart buttons
+let newGame = document.getElementById("newGame");
+newGame.addEventListener("click", restart, true);
+let newGame2 = document.getElementById("newGame2");
+newGame2.addEventListener("click", restart, true);

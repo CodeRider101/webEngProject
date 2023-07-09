@@ -1,10 +1,11 @@
+// Import function to set theme from cookie
 import { setThemeFromCookie } from "./darkmode.js";
 
 // Save the theme preference for 10 years.
 let endDate = new Date();
 endDate.setFullYear(endDate.getFullYear() + 10);
 
-// Set theme from cookie and set slider value after DOM is loaded
+// Set theme from cookie and set slider value either to a default or the cookie value, after DOM is loaded
 window.addEventListener("DOMContentLoaded", () => {
     toggleTheme();
     setThemeFromCookie();
@@ -19,7 +20,7 @@ window.addEventListener("DOMContentLoaded", () => {
     slider.value = cookieValue;
 });
 
-// Theme toggle
+// Theme toggle to switch between light and dark mode
 const toggleTheme = () => {
     const toggleSwitch = document.querySelector(
         '.theme-switch input[type="checkbox"]'
@@ -41,7 +42,7 @@ const toggleTheme = () => {
     toggleSwitch.addEventListener("change", switchTheme, false);
 };
 
-// Word length slider
+// Word length slider to change the length of the words in the game
 function wordLength() {
     let wordLength = document.getElementById("slider").value;
     document.cookie = "wLength=" + wordLength + "; Expires=" + endDate + ";";
@@ -57,6 +58,7 @@ slider.addEventListener("change", wordLength, false);
 let menu = document.querySelector("#menu-icon");
 let navBar = document.querySelector(".navbar");
 
+// If the menu icon is clicked, toggle the menu and the icon and change the z-index of the settings div
 menu.addEventListener("click", () => {
     menu.classList.toggle("bx-x");
     navBar.classList.toggle("open");

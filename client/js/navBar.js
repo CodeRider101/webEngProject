@@ -1,5 +1,4 @@
-// Fetch and insert the navbar HTML
-
+// If a user is logged in, the username will be displayed in the navbar
 function checkIfLoggedIn() {
     if (getCookieValue("username") !== "") {
         document.getElementById("signIn").style.display = "none";
@@ -17,6 +16,7 @@ function getCookieValue(a) {
     return b ? b.pop() : "";
 }
 
+// Toggle the navbar on mobile
 let menu = document.querySelector("#menu-icon");
 let navBar = document.querySelector(".navbar");
 if (menu) {
@@ -26,6 +26,7 @@ if (menu) {
     });
 }
 
+// If the login popup is opened, it will be in front of the other content
 function openPopup() {
     let popup = document.getElementById("popup");
     let overlay = document.getElementById("overlay");
@@ -77,6 +78,7 @@ function openPopup() {
     }
 }
 
+// Close the login popup
 function closePopup() {
     let popup = document.getElementById("popup");
     let overlay = document.getElementById("overlay");
@@ -106,6 +108,7 @@ function closePopup() {
     overlay.classList.remove("active");
 }
 
+// Add event listeners to the navbar and set the active tab
 window.onload = function () {
     let homeTab = document.getElementById("home");
     let leaderBoardTab = document.getElementById("leaderboard");
