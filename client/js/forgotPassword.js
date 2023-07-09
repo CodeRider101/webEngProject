@@ -22,7 +22,6 @@ if (usernameField) {
 async function checkWhichSecurityQuestion(event) {
     console.log("checkWhichSecurityQuestion");
     const username = document.getElementById("checkUname").value;
-    document.cookie = "username=" + username;
     await fetch(`http://localhost:8000/api/users/getSecurityQuestion`, {
         method: "POST",
         headers: {
