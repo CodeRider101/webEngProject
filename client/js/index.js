@@ -19,6 +19,7 @@ let currentGuess = [];
 let nextLetter = 0;
 let darkModeEnabled;
 let popUp;
+let checking = false;
 
 // Set a boolean depending on the cookie value
 if (document.cookie.match(/theme=dark/) != null) {
@@ -203,11 +204,13 @@ async function checkGuess() {
         guessesRemaining = 0;
         openModal(result[2]);
         startConfetti();
+        checking = false;
         return;
     } else {
         guessesRemaining -= 1;
         currentGuess = [];
         nextLetter = 0;
+        checking = false;
 
         if (guessesRemaining === 0) {
             toastr.error("You've run out of guesses! Game over!");
@@ -280,8 +283,9 @@ document.addEventListener("keyup", (e) => {
         return;
     }
 
-    if (pressedKey === "Enter" && popUp.style.visibility != "visible") {
+    if (pressedKey === "Enter" && popUp.style.visibility != "visible" && checking == false) {
         checkGuess();
+        checking = true;
         return;
     }
 
