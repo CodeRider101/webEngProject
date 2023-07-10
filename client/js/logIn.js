@@ -5,7 +5,7 @@ export const checkLogin = async (event) => {
     let password = document.getElementById("psw").value;
     let rememberMe = document.getElementById("remember").value;
 
-    await fetch(`http://localhost:8000/api/login/logIn`, {
+    await fetch(`http://localhost:8000/api/users/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

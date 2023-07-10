@@ -7,7 +7,7 @@ if (signUp) {
     signUp.addEventListener("submit", checkSignUp);
 }
 
-// Check whether the password and the confirm password match and whether the username is already taken. If so, the user is created.
+// Check whether the password and the confirm password match and whether the username isn't already taken. If so, the user is created.
 async function checkSignUp(event) {
     event.preventDefault();
     const username = document.getElementById("signUpUsername").value;
@@ -18,7 +18,7 @@ async function checkSignUp(event) {
 
     if (password === confirmPassword && username != "Not Acceptable") {
         console.log("fetch");
-        await fetch(`http://localhost:8000/api/login/signUp`, {
+        await fetch(`http://localhost:8000/api/users/signUp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

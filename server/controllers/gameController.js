@@ -4,7 +4,7 @@ let rightGuessString;
 let tries = 0;
 let start;
 let end;
-
+//gets new word from the word api and saves it in rightGuessString
 async function getRightGuess(length) {
     const options = {
         method: "GET",
@@ -21,6 +21,7 @@ async function getRightGuess(length) {
     }
 }
 
+//starts the game 
 export const gameStart = async (req, res) => {
     getRightGuess(req.body.length);
     res.status(200).send("started");
@@ -29,6 +30,7 @@ export const gameStart = async (req, res) => {
     start = Date.now();
 };
 
+//checks a guess and returns the if the word is correct and the color of the letters and the score if the word is correct
 export const check = async (req, res) => {
     const wordLength = req.query.length;
     const guess = req.query.guess;
@@ -47,7 +49,7 @@ export const check = async (req, res) => {
             tries++;
             resultCheck = "correct";
             found = true;
-
+            //calculate score
             end = Date.now();
             let time = (end - start) / 1000;
             console.log(time + " seconds");
@@ -60,9 +62,8 @@ export const check = async (req, res) => {
 
             console.log("Score: " + score);
             if (req.query.username != undefined) {
-                console.log("Username: " + req.query.username);
+                //save to database
                 let date = new Date().toISOString();
-                console.log(date);
                 let scoreEntry = new highScoreSchema({
                     username: req.query.username,
                     score: score,
@@ -82,6 +83,7 @@ export const check = async (req, res) => {
 
             tries = 0;
         }
+        //checks if the word exists
         while (!found) {
             if (response.data[i] === guess) {
                 resultCheck = "inList";
@@ -93,9 +95,10 @@ export const check = async (req, res) => {
             }
             i++;
         }
-        console.log(tries);
+
         let rightGuessArray = Array.from(rightGuessString);
         let guessArray = Array.from(guess);
+        //sets the color of the letters
         let letterColor = ["gray", "gray", "gray", "gray", "gray"];
         if (!found) {
             resultCheck = "notInList";
@@ -126,6 +129,7 @@ export const check = async (req, res) => {
                 correct = true;
             }
         }
+        //pushes everything in result
         let result = [];
         result.push(resultCheck);
         result.push(letterColor);
