@@ -313,34 +313,6 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
-// let menu = document.querySelector('#menu-icon');
-// let navBar = document.querySelector('.navbar');
-
-
-// function wordLength() {
-//     let wordLength = document.getElementById("wordLength").value;
-//     if (wordLength < 3 || wordLength > 9) {
-//         toastr.error("Please enter a number between 3 and 9");
-//         p;
-//     } else {
-//         NUMBER_OF_GUESSES = parseInt(wordLength) + 1;
-//         WORD_LENGTH = wordLength;
-//         restart();
-//     }
-// }
-
-// menu.addEventListener('click', () => {
-//   menu.classList.toggle('bx-x');
-//   navBar.classList.toggle('open');
-
-//   if(navBar.classList.contains('open')) {
-//     document.getElementById('wordle').style.zIndex = '-1';
-//  } else {
-//      document.getElementById('wordle').style.zIndex = '0';
-//  }
-// });
-
-
 // Restart the game according to the current settings
 function restart() {
     closeModal();
