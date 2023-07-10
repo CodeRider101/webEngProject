@@ -23,6 +23,40 @@ if (menu) {
     menu.addEventListener("click", () => {
         menu.classList.toggle("bx-x");
         navBar.classList.toggle("open");
+
+        //Index.html
+        let wordle = document.getElementById("wordle");
+        //Leaderboard
+        let leaderboard = document.getElementById("leaderboardDiv");
+        //Settings.html
+        let settings = document.getElementById("settingsDiv");
+        console.log(settings);
+        //Impressum
+        let impressum = document.getElementById("impressumDiv");
+
+        if (navBar.classList.contains("open")){
+            if (wordle) {
+                wordle.style.zIndex = "-1";
+            } else if (leaderboard) {
+                leaderboard.style.zIndex = "-1";
+            } else if (settings) {
+                settings.style.zIndex = "-1";
+                console.log(settings.style.zIndex);
+            } else if (impressum) {
+                impressum.style.zIndex = "-1";
+            }
+        } else {
+            if (wordle) {
+                wordle.style.zIndex = "0";
+            } else if (leaderboard) {
+                leaderboard.style.zIndex = "0";
+            } else if (settings) {
+                settings.style.zIndex = "0";
+                console.log(settings.style.zIndex);
+            } else if (impressum) {
+                impressum.style.zIndex = "0";
+            }
+        }
     });
 }
 
