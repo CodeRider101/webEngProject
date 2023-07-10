@@ -1,3 +1,4 @@
+// Set a cookie
 export function setCookie(cName, cValue, expDays) {
     let date = new Date();
     date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
@@ -5,6 +6,7 @@ export function setCookie(cName, cValue, expDays) {
     document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
 }
 
+// Get a cookie
 export function getCookieValue(name) {
     let cookieName = name + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

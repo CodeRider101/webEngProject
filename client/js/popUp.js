@@ -1,5 +1,6 @@
 let popUp = document.getElementById("popUp");
 
+// Create a popUp with a title and a text
 export const createPopUp = (title, text) => {
     const titleH1 = document.createElement("h1");
     const textP = document.createElement("p");

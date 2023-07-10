@@ -5,6 +5,7 @@ export let stopConfetti; //call to stop adding confetti
 let toggleConfetti; //call to start or stop the confetti animation depending on whether it's already running
 let removeConfetti; //call to stop the confetti animation and remove all confetti immediately
 
+// Confetti animation
 (function () {
     startConfetti = startConfettiInner;
     stopConfetti = stopConfettiInner;
@@ -155,21 +156,24 @@ let removeConfetti; //call to stop the confetti animation and remove all confett
     }
 })();
 
-// Popup
+// Congratulations Popup
 const closeModalButton = document.getElementById("close-modal-btn");
 const overlay = document.getElementById("overlay");
 const modal = document.getElementById("modal");
 
+// If the modal is closed, the confetti should stop
 closeModalButton.addEventListener("click", () => {
     closeModal(modal);
     stopConfetti();
 });
 
+// If the user clicks outside the modal, the modal should close
 document.getElementById("wordle").addEventListener("click", () => {
     closeModal(modal);
     stopConfetti();
 });
 
+// Open the modal and display the score
 export function openModal(score) {
     if (modal == null) return;
     modal.classList.add("active");
@@ -179,6 +183,7 @@ export function openModal(score) {
     overlay.classList.add("active");
 }
 
+// Close the modal
 export function closeModal() {
     if (modal == null) return;
     modal.classList.remove("active");
