@@ -9,7 +9,6 @@ let slider = document.getElementById("sliderScore");
 
 // When the page is loaded, add event listeners and load the leaderboard
 window.onload = function () {
-    console.log("Leaderboard");
     slider.addEventListener("change", updateSlider, false);
     document.getElementById("sliderScore").setAttribute("value", wordLength);
     document.getElementById("outputScore").textContent = wordLength;
@@ -52,10 +51,7 @@ async function findBest(user, wordLength, personal, timeSpan) {
         if (response.ok) {
             const json = await response.json();
             return json;
-        } else {
-            console.log("Error: Unable to fetch high score" + personal);
-            return null;
-        }
+        } 
     } catch (error) {
         console.log("Error: ", error);
         return null;
@@ -79,7 +75,6 @@ async function loadPersonalBest(wordLength) {
             "true",
             "nothing here"
         );
-        console.log("hi" + data);
         let i = 1;
         for (const entry of data) {
             const row = document.createElement("div");
@@ -139,8 +134,6 @@ async function loadOverallBest(wordLength, timeSpan) {
     const overallContainer = document.getElementById("overallContainer");
     //delete all previous data
     overallContainer.innerHTML = "";
-    console.log("wordLength: " + wordLength);
-    console.log("timeSpan: " + timeSpan);
 
     let i = 1;
     for (const entry of data) {

@@ -71,7 +71,6 @@ function openPopup() {
     let leaderboard = document.getElementById("leaderboardDiv");
     //Settings.html
     let settings = document.getElementById("settingsDiv");
-    console.log(settings);
     //Impressum
     let impressum = document.getElementById("impressumDiv");
 
@@ -81,7 +80,6 @@ function openPopup() {
         leaderboard.style.zIndex = "-1";
     } else if (settings) {
         settings.style.zIndex = "-1";
-        console.log(settings.style.zIndex);
     } else if (impressum) {
         impressum.style.zIndex = "-1";
     }
@@ -174,7 +172,6 @@ window.onload = function () {
     }
     if (contactUsTab) {
         contactUsTab.addEventListener("click", () => {
-            console.log("Hallo Contact Us");
             contactUsTab.classList.toggle("active)");
             homeTab.classList.remove("active");
             leaderBoardTab.classList.remove("active)");

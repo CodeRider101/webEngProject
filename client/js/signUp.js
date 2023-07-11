@@ -3,7 +3,6 @@ import { setThemeFromCookie } from "./darkmode.js";
 // If the page is opened, add an event listener to the form
 const signUp = document.getElementById("signUp");
 if (signUp) {
-    console.log("Sign Up");
     signUp.addEventListener("submit", checkSignUp);
 }
 
@@ -17,7 +16,6 @@ async function checkSignUp(event) {
     const securityQuestion = document.getElementById("securityQuestion").value;
 
     if (password === confirmPassword && username != "Not Acceptable") {
-        console.log("fetch");
         await fetch(`http://localhost:8000/api/users/signUp`, {
             method: "POST",
             headers: {

@@ -37,9 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "When you find any bugs please write anyone of us an e-mail. You can find our mails in the 'Contact Us' Tab.",
             "Now have fun while playing!!",
         ]);
-    } else {
-        console.log(document.cookie);
-    }
+    } 
 });
 
 // Start the game and set a new word in the backend();
@@ -161,7 +159,6 @@ async function checkGuess() {
     )
         .then((response) => response.json())
         .then((json) => {
-            console.log(json);
             result = JSON.parse(json);
             letterColor = result[1];
             if (result[0] == "notInList") {

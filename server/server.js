@@ -24,8 +24,6 @@ mongoose.connect('mongodb+srv://jere_YT:rIG0jourr6rrUlng@vtordle-data.n0naebt.mo
 )
 .then(() => {
   app.listen(port);
-  console.log('Server is running on port ' + port);
-  console.log('Connected to the database!')
 }).catch(() => {
     console.log('Connection failed!')
 });

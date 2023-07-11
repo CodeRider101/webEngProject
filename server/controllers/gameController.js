@@ -14,7 +14,6 @@ async function getRightGuess(length) {
 
     try {
         const response = await axios.request(options);
-        console.log(response.data);
         rightGuessString = response.data[0];
     } catch (error) {
         console.error(error);
@@ -25,7 +24,6 @@ async function getRightGuess(length) {
 export const gameStart = async (req, res) => {
     getRightGuess(req.body.length);
     res.status(200).send("started");
-    console.log("started");
     tries = 0;
     start = Date.now();
 };
@@ -52,15 +50,11 @@ export const check = async (req, res) => {
             //calculate score
             end = Date.now();
             let time = (end - start) / 1000;
-            console.log(time + " seconds");
             let wordLengthCalc = wordLength * 100000;
             tries = (tries + 4) * 1000;
             time *= 6;
             score = (wordLengthCalc / (tries + time)) * 100;
-            console.log(score);
             score = score.toFixed(0);
-
-            console.log("Score: " + score);
             if (req.query.username != undefined) {
                 //save to database
                 let date = new Date().toISOString();
@@ -72,14 +66,11 @@ export const check = async (req, res) => {
                 });
                 try {
                     scoreEntry.save();
-                    console.log("Safed to Database.");
                     gud;
                 } catch (err) {
                     console.log(err);
                 }
-            } else {
-                console.log("Dumm?");
-            }
+            } 
 
             tries = 0;
         }
@@ -135,7 +126,6 @@ export const check = async (req, res) => {
         result.push(letterColor);
         result.push(score);
         let resultJSON = JSON.stringify(result);
-        console.log(resultJSON);
         res.json(resultJSON);
     } catch (error) {
         console.error(error);

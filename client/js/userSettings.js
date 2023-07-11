@@ -75,8 +75,6 @@ async function changePassword() {
 // Change the username, if it is not the same as the old one or already taken
 async function changeUsername() {
     const newUsername = document.getElementById("newUsernameValue").value;
-    ;
-    console.log(newUsername);
     const currentUsername = getCookieValue("username");
 
     if (newUsername === currentUsername) {

@@ -19,7 +19,6 @@ export const resetPassword = async (req, res) => {
                     });
             } else {
                 const hashedPassword = bcrypt.hashSync(req.body.password);
-                console.log(result + ", pw: " + hashedPassword);
                 await userSchema.updateOne(result, {
                     password: hashedPassword,
                 });
@@ -73,7 +72,6 @@ export const changePassword = async (req, res) => {
                     const hashedPassword = bcrypt.hashSync(
                         req.body.newPassword
                     );
-                    console.log(result + ", pw: " + hashedPassword);
                     await userSchema.updateOne(result, {
                         password: hashedPassword,
                     });
@@ -131,7 +129,6 @@ export const signup = async (req, res) => {
         } catch (err) {
             console.log(err);
         }
-        console.log("User Created!");
         return res.status(201).json({ newUser });
     }
     return res.status(400).json({ message: "User Already Exists!" });

@@ -1,6 +1,5 @@
 // Check if the entered username and password are correct
 export const checkLogin = async (event) => {
-    console.log("Check login");
     let username = document.getElementById("uname").value;
     let password = document.getElementById("psw").value;
     let rememberMe = document.getElementById("remember").value;
@@ -21,8 +20,6 @@ export const checkLogin = async (event) => {
             if (response.ok) {
                 //set username cookie
                 document.cookie = "username=" + username;
-                // Successful login
-                console.log("Login successful");
                 //Redirect to main
                 confirm(
                     "Welcome back! You'll be redirected to the main page in a sec."
@@ -37,6 +34,5 @@ export const checkLogin = async (event) => {
         })
         .catch((error) => {
             alert(error.message);
-            console.log(error.message);
         });
 };

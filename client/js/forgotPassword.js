@@ -3,7 +3,6 @@ import { getCookieValue, setCookie } from "./cookies.js";
 // After the username is entered, the security question is displayed.
 const usernameField = document.getElementById("checkUname");
 if (usernameField) {
-    console.log("Forgot Password");
     const cookieName = getCookieValue("username");
     document
         .getElementById("checkUser")
@@ -18,7 +17,6 @@ if (usernameField) {
 
 // Check whether the username exists and display the corresponding security question if it does.
 async function checkWhichSecurityQuestion(event) {
-    console.log("checkWhichSecurityQuestion");
     const username = document.getElementById("checkUname").value;
     await fetch(`http://localhost:8000/api/users/getSecurityQuestion`, {
         method: "POST",

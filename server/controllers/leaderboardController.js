@@ -21,7 +21,6 @@ export const leaderboardOnInnit = async (req, res) => {
         }
 
         result = sortLeaderboard(result);
-        console.log(result);
         return res.json(result);
     } catch (e) {
         res.status(400).json(e);
@@ -38,26 +37,16 @@ function sortLeaderboard(result) {
 
 function calculateDate(timeSpan) {
     const currentDate = new Date();
-    console.log(currentDate);
 
     // Calculate the date based on the timeSpan
     if (timeSpan === "Daily") {
         currentDate.setDate(currentDate.getDate() - 1);
-        console.log(currentDate.getDate() + "hier");
-        console.log("day");
     } else if (timeSpan === "Hourly") {
-        console.log("hour");
         currentDate.setHours(currentDate.getHours() - 1);
-        console.log(currentDate.getHours() + "hier");
     } else if (timeSpan === "Weekly") {
-        console.log("week");
         currentDate.setDate(currentDate.getDate() - 7);
-        console.log(currentDate.getDate() + "hier");
     } else if (timeSpan === "Monthly") {
-        console.log("month");
         currentDate.setMonth(currentDate.getMonth() - 1);
-        console.log(currentDate.getMonth() + 1 + "hier");
     }
-    console.log(currentDate.toISOString() + "ahhhhhh");
     return currentDate.toISOString();
 }
