@@ -66,7 +66,6 @@ export const check = async (req, res) => {
                 });
                 try {
                     scoreEntry.save();
-                    gud;
                 } catch (err) {
                     console.log(err);
                 }
